@@ -1,0 +1,13 @@
+[Unit]
+Description=Run dotfiles auto-sync every day and shortly after boot
+
+[Timer]
+# Chạy lần đầu sau khi khởi động máy 15 phút
+OnBootSec=15min
+# Chạy định kỳ mỗi 24 tiếng (mỗi ngày 1 lần)
+OnUnitActiveSec=1d
+# Chạy ngay nếu máy bị tắt lúc đến giờ hẹn
+Persistent=true
+
+[Install]
+WantedBy=timers.target

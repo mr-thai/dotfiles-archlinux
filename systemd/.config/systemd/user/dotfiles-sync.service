@@ -1,0 +1,10 @@
+[Unit]
+Description=Auto commit and push dotfiles to GitHub
+After=network-online.target
+
+[Service]
+Type=oneshot
+# Thực thi file script kiểm tra và đẩy code lên
+ExecStart=/usr/bin/bash -c 'cd %h/dotfiles && git add . && git commit -m "Auto-backup: $(date)" && git push'
+# Không báo lỗi nếu không có gì thay đổi để commit
+SuccessExitStatus=0 1
