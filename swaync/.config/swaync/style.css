@@ -1,0 +1,497 @@
+/* =============================================================================
+ *
+ * SwayNC Premium Stylesheet
+ * Theme: Catppuccin Mocha (Glassmorphism & Glow edition)
+ * Compatible with JetBrainsMono Nerd Font
+ *
+ * =========================================================================== */
+
+/* -----------------------------------------------------------------------------
+ * Catppuccin Mocha Palette
+ * -------------------------------------------------------------------------- */
+@define-color base #1e1e2e;
+@define-color mantle #181825;
+@define-color crust #11111b;
+@define-color text #cdd6f4;
+@define-color subtext #a6adc8;
+@define-color surface #313244;
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color surface2 #585b70;
+
+@define-color red #f38ba8;
+@define-color peach #fab387;
+@define-color yellow #f9e2af;
+@define-color green #a6e3a1;
+@define-color teal #94e2d5;
+@define-color sapphire #74c7ec;
+@define-color blue #89b4fa;
+@define-color lavender #b4befe;
+@define-color mauve #cba6f7;
+@define-color pink #f5c2e7;
+
+/* -----------------------------------------------------------------------------
+ * Global & Base Elements
+ * -------------------------------------------------------------------------- */
+* {
+  font-family: "JetBrainsMono Nerd Font", "Inter", sans-serif;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+notificationwindow,
+blankwindow {
+  background: transparent;
+}
+
+/* -----------------------------------------------------------------------------
+ * Control Center Base Window
+ * -------------------------------------------------------------------------- */
+.control-center {
+  background: rgba(24, 24, 37, 0.82);
+  /* Glassmorphism background */
+  color: @text;
+  border-radius: 16px;
+  border: 1px solid rgba(203, 166, 247, 0.15);
+  /* Sleek mauve border */
+  margin: 8px;
+  padding: 10px;
+}
+
+/* Placeholder when no notifications are present */
+.control-center .control-center-list-placeholder {
+  opacity: 0.7;
+  color: @subtext;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.control-center .control-center-list {
+  background: transparent;
+  padding: 4px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Notifications Layout (Within CC & Floating)
+ * -------------------------------------------------------------------------- */
+.notification-row {
+  background: transparent;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notification-row .notification-background {
+  padding: 6px 4px;
+  background: transparent;
+}
+
+/* Outer notification container */
+.notification-row .notification-background .notification {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(30, 30, 46, 0.75);
+  padding: 10px;
+}
+
+/* Urgency variations */
+.notification-row .notification-background .notification.low {
+  background: rgba(24, 24, 37, 0.6);
+  border-color: rgba(166, 173, 200, 0.15);
+}
+
+.notification-row .notification-background .notification.normal {
+  border-color: rgba(203, 166, 247, 0.15);
+}
+
+.notification-row .notification-background .notification.critical {
+  border: 1px solid rgba(243, 139, 168, 0.6);
+  background: rgba(243, 139, 168, 0.1);
+}
+
+/* Glow and highlight on hover */
+.notification-row .notification-background .notification:hover {
+  background: rgba(49, 50, 68, 0.9);
+  border-color: rgba(203, 166, 247, 0.4);
+}
+
+/* Default interactive action overlay */
+.notification-row .notification-background .notification .notification-default-action {
+  padding: 6px;
+  margin: 0;
+  background: transparent;
+  border: none;
+  color: @text;
+  border-radius: 10px;
+}
+
+.notification-row .notification-background .notification .notification-default-action:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Notification Contents styling */
+.notification-row .notification-background .notification .notification-default-action .notification-content {
+  background: transparent;
+  padding: 2px;
+}
+
+/* Notification main image */
+.notification-row .notification-background .notification .notification-default-action .notification-content .image {
+  border-radius: 8px;
+  margin-right: 12px;
+  -gtk-icon-size: 56px;
+}
+
+/* Small app emblem when primary image is present */
+.notification-row .notification-background .notification .notification-default-action .notification-content .app-icon {
+  -gtk-icon-size: 20px;
+  margin: 4px;
+}
+
+/* Texts formatting */
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .summary {
+  font-size: 14px;
+  font-weight: 800;
+  color: @lavender;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .time {
+  font-size: 11px;
+  font-weight: 500;
+  color: @subtext;
+  opacity: 0.8;
+  margin-right: 10px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .body {
+  font-size: 12px;
+  font-weight: normal;
+  color: @text;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* Close action button on top right of each notification */
+.close-button {
+  background: rgba(255, 255, 255, 0.06);
+  color: @text;
+  padding: 0;
+  border-radius: 50%;
+  margin-top: 4px;
+  margin-right: 4px;
+  border: none;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.close-button:hover {
+  background: @red;
+  color: @crust;
+}
+
+/* Inline actions / replies */
+.notification-row .notification-background .notification .notification-action {
+  margin: 4px;
+  padding: 0;
+}
+
+.notification-row .notification-background .notification .notification-action>button {
+  background: @surface0;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  color: @text;
+  padding: 6px 12px;
+  font-weight: bold;
+}
+
+.notification-row .notification-background .notification .notification-action>button:hover {
+  background: @mauve;
+  color: @crust;
+  border-color: @mauve;
+}
+
+/* Inline reply entry input */
+.notification-row .notification-background .notification .notification-default-action .notification-content .inline-reply {
+  margin-top: 8px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .inline-reply .inline-reply-entry {
+  background: @mantle;
+  color: @text;
+  caret-color: @text;
+  border: 1px solid @surface1;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .inline-reply .inline-reply-button {
+  margin-left: 6px;
+  background: @surface0;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  color: @text;
+  padding: 6px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .inline-reply .inline-reply-button:hover {
+  background: @mauve;
+  color: @crust;
+}
+
+/* -----------------------------------------------------------------------------
+ * Grouped Notifications
+ * -------------------------------------------------------------------------- */
+.notification-group {
+  padding: 4px 0;
+}
+
+.notification-group .notification-group-close-button .close-button {
+  margin: 8px 12px;
+}
+
+.notification-group .notification-group-headers {
+  margin: 4px 12px;
+  color: @text;
+  font-weight: bold;
+}
+
+.notification-group .notification-group-headers .notification-group-icon {
+  color: @mauve;
+  -gtk-icon-size: 20px;
+  margin-right: 8px;
+}
+
+.notification-group .notification-group-headers .notification-group-header {
+  font-size: 13px;
+  color: @text;
+}
+
+.notification-group.collapsed .notification-row .notification {
+  background-color: rgba(30, 30, 46, 0.9);
+}
+
+.notification-group.collapsed:hover .notification-row:not(:only-child) .notification {
+  background-color: @surface0;
+}
+
+
+/* -----------------------------------------------------------------------------
+ * Widget: DND (Do Not Disturb)
+ * -------------------------------------------------------------------------- */
+.widget-dnd {
+  margin: 4px 4px 12px 4px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  z-index: 1;
+}
+
+.widget-dnd label {
+  font-size: 13px;
+  font-weight: bold;
+  color: @text;
+}
+
+.widget-dnd switch {
+  background: @surface0;
+  border-radius: 16px;
+  border: 1px solid @surface1;
+  min-height: 24px;
+  min-width: 48px;
+}
+
+.widget-dnd switch slider {
+  background: @subtext;
+  border-radius: 50%;
+  min-height: 18px;
+  min-width: 18px;
+  margin: 3px;
+}
+
+.widget-dnd switch:checked {
+  background: @mauve;
+  border-color: @mauve;
+}
+
+.widget-dnd switch:checked slider {
+  background: @crust;
+}
+
+/* -----------------------------------------------------------------------------
+ * Widget: MPRIS Media Player
+ * -------------------------------------------------------------------------- */
+.widget-mpris {
+  padding: 0;
+  margin: 2px 2px 8px 2px;
+}
+
+.widget-mpris .widget-mpris-player {
+  background: rgba(30, 30, 46, 0.6);
+  border: 1px solid rgba(203, 166, 247, 0.1);
+  border-radius: 12px;
+}
+
+.widget-mpris .widget-mpris-player .mpris-background {
+  opacity: 0.35;
+}
+
+.widget-mpris .widget-mpris-player .mpris-overlay {
+  background: rgba(24, 24, 37, 0.7);
+  padding: 12px;
+}
+
+.widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-album-art {
+  border-radius: 8px;
+  -gtk-icon-size: 72px;
+  margin-right: 12px;
+}
+
+.widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-title {
+  font-weight: 800;
+  font-size: 14px;
+  color: @text;
+}
+
+.widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-subtitle {
+  font-size: 12px;
+  color: @subtext;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* Player control buttons */
+.widget-mpris .widget-mpris-player .mpris-overlay button {
+  background: rgba(255, 255, 255, 0.05);
+  color: @text;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0;
+  margin: 0 6px;
+}
+
+.widget-mpris .widget-mpris-player .mpris-overlay button:hover {
+  background: @mauve;
+  color: @crust;
+}
+
+/* Side navigation buttons (when multiple players exist) */
+.widget-mpris>box>button {
+  background: @surface0;
+  color: @text;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.widget-mpris>box>button:hover {
+  background: @surface1;
+}
+
+.widget-mpris>box>button:disabled {
+  opacity: 0.3;
+}
+
+/* -----------------------------------------------------------------------------
+ * Widget: Volume & Backlight (Sliders)
+ * -------------------------------------------------------------------------- */
+.widget-volume,
+.widget-backlight {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  margin: 2px 2px 6px 2px;
+  padding: 8px 12px;
+}
+
+/* App volumes box container */
+.per-app-volume {
+  background-color: @surface0;
+  margin: 6px 4px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.widget-volume row image {
+  -gtk-icon-size: 16px;
+  margin-right: 8px;
+  color: @lavender;
+}
+
+/* Slider GTK mapping classes */
+.widget-volume scale,
+.widget-backlight scale,
+.widget-slider scale {
+  padding: 4px 0;
+}
+
+.widget-volume scale trough,
+.widget-backlight scale trough,
+.widget-slider scale trough {
+  border-radius: 6px;
+  background: @surface0;
+  min-height: 10px;
+  border: none;
+}
+
+.widget-volume scale highlight,
+.widget-backlight scale highlight,
+.widget-slider scale highlight {
+  border-radius: 6px;
+  background: linear-gradient(90deg, @blue 0%, @mauve 100%);
+  min-height: 10px;
+}
+
+.widget-volume scale slider,
+.widget-backlight scale slider,
+.widget-slider scale slider {
+  background: @text;
+  border-radius: 50%;
+  min-width: 14px;
+  min-height: 14px;
+  margin: -2px 0;
+}
+
+.widget-volume scale slider:hover,
+.widget-backlight scale slider:hover {
+  background: @pink;
+  transform: scale(1.2);
+}
+
+/* Icon / label styling on side of sliders */
+.widget-volume label,
+.widget-backlight label {
+  font-size: 15px;
+  font-weight: bold;
+  color: @mauve;
+  margin-right: 12px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Widget: Inhibitors
+ * -------------------------------------------------------------------------- */
+.widget-inhibitors {
+  margin: 6px 4px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+}
+
+.widget-inhibitors>label {
+  font-size: 13px;
+  font-weight: bold;
+  color: @text;
+}
+
+.widget-inhibitors>button {
+  background: @surface0;
+  color: @text;
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+
+.widget-inhibitors>button:hover {
+  background: @red;
+  color: @crust;
+}

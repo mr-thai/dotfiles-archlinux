@@ -1,0 +1,24 @@
+{
+  "columns": [
+    {
+      "name": "COMM",
+      "count": 0,
+      "cards": null
+    },
+    {
+      "name": "TODO",
+      "count": 0,
+      "cards": null
+    },
+    {
+      "name": "DOING",
+      "count": 0,
+      "cards": null
+    },
+    {
+      "name": "DONE",
+      "count": 0,
+      "cards": null
+    }
+  ]
+}

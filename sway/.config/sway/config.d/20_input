@@ -1,0 +1,37 @@
+# ==========================================
+# INPUT — Keyboard, Touchpad, Mouse
+# ==========================================
+
+# --- KEYBOARD CONFIGURATION ---
+input "type:keyboard" {
+    xkb_layout us
+    xkb_numlock enabled
+    # Đã xóa xkb_options caps:escape vì Keyd đã đảm nhận ở tầng Kernel
+    repeat_delay 350
+    repeat_rate 40
+}
+
+# --- TOUCHPAD CONFIGURATION ---
+input "type:touchpad" {
+    accel_profile adaptive
+    pointer_accel 0.30
+    natural_scroll enabled
+    scroll_method two_finger
+    scroll_factor 1.0
+    tap enabled
+    tap_button_map lmr
+    click_method button_areas
+    drag enabled
+    drag_lock enabled
+    dwt disabled
+    middle_emulation enabled
+    left_handed disabled
+}
+
+# --- MOUSE CONFIGURATION ---
+input "type:pointer" {
+    accel_profile flat
+    pointer_accel 0.10
+    natural_scroll disabled
+    middle_emulation enabled
+}

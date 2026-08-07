@@ -1,0 +1,111 @@
+;; ==============================================================================
+;; Mode Indicator HUD Window (Capture / Record)
+;; ==============================================================================
+(defwindow mode_indicator
+  :monitor 0
+  :geometry (geometry :x "0px" :y "15px" :anchor "top center" :width "450px" :height "60px")
+  :stacking "overlay"
+  :exclusive false
+  (mode_indicator_layout))
+
+(defwidget mode_indicator_layout []
+  (box :class "mode-osd-container"
+       :orientation "v" :space-evenly false :halign "center" :valign "center"
+       (label :class "mode-osd-keys" :text "󰹑 Capture: [S] Region  [W] Window  [D] Display")
+       (label :class "mode-osd-keys-alt" :text "󰕧 Record: [R] Region  [V] Display")))
+
+;; ==============================================================================
+;; Power Menu HUD Window
+;; ==============================================================================
+(defwindow power_menu
+  :monitor 0
+  :geometry (geometry :x "0px" :y "15px" :anchor "top center" :width "800px" :height "45px")
+  :stacking "overlay"
+  :exclusive false
+  (power_menu_layout))
+
+(defwidget power_menu_layout []
+  (box :class "power-menu-container mode-osd-container"
+       :orientation "h" :space-evenly false :halign "center" :valign "center"
+       (label :class "power-keys mode-osd-keys" :text "󰐥 Power:  󰐥 [S]hutdown  |  󰑐 [R]estart  |  󰌾 [L]ock  |  󰍃 L[o]gout")))
+
+;; ==============================================================================
+;; Translate Menu HUD Window
+;; ==============================================================================
+(defwindow trans_menu
+  :monitor 0
+  :geometry (geometry :x "0px" :y "15px" :anchor "top center" :width "650px" :height "60px")
+  :stacking "overlay"
+  :exclusive false
+  (trans_menu_layout))
+
+(defwidget trans_menu_layout []
+  (box :class "mode-osd-container"
+       :orientation "v" :space-evenly false :halign "center" :valign "center"
+       (label :class "mode-osd-keys" :text "🇬🇧 [E] Vi->En   [Shift+E] En->Vi   |   🇯🇵 [N] Vi->Ja   [Shift+N] Ja->Vi")
+       (label :class "mode-osd-keys-alt" :text "🇨🇳 [Z] Vi->Zh   [Shift+Z] Zh->Vi   |   󰍉 [T] Text   [O] OCR")))
+
+;; ==============================================================================
+;; Fcitx Menu HUD Window
+;; ==============================================================================
+(defwindow fcitx_menu
+  :monitor 0
+  :geometry (geometry :x "0px" :y "15px" :anchor "top center" :width "600px" :height "45px")
+  :stacking "overlay"
+  :exclusive false
+  (fcitx_menu_layout))
+
+(defwidget fcitx_menu_layout []
+  (box :class "power-menu-container mode-osd-container"
+       :orientation "h" :space-evenly false :halign "center" :valign "center"
+       (label :class "power-keys mode-osd-keys" :text "󰌌 Bàn phím:  🇻🇳 [V]iệt  |  🇺🇸 [A]nh  |  🇨🇳 [T]rung  |  🇯🇵 [N]hật")))
+
+;; ==============================================================================
+;; Quick Translation HUD Widget (Top Right)
+;; ==============================================================================
+(defwindow translate_hud
+  :monitor 0
+  :geometry (geometry :x "20px" :y "80px" :anchor "top right" :width "480px")
+  :stacking "fg"
+  :windowtype "dialog"
+  :wm-ignore false
+  (translate_layout))
+
+(defwidget translate_layout []
+  (eventbox :cursor "pointer"
+            :onclick "wl-copy '${trans_result}' && eww update trans_status='󰄬 Copied!'"
+            :onrightclick "eww close translate_hud"
+    (box :class "trans-card" :orientation "v" :space-evenly false
+         (box :class "trans-header" :orientation "h" :space-evenly true
+              (label :class "trans-title" :halign "start" :text trans_status)
+              (button :class "trans-close-btn" :halign "end" :onclick "eww close translate_hud" "󰅖"))
+         (box :class "trans-source-box" :orientation "v" :space-evenly false
+              (label :class "trans-source-text" :wrap true :show-truncated false :xalign 0 :text trans_source))
+         (label :class "trans-divider-icon" :text "󰿟")
+         (box :class "trans-result-box" :orientation "v" :space-evenly false
+              (label :class "trans-result-text" :wrap true :show-truncated false :xalign 0 :text trans_result))
+         (label :class "trans-footer" :text "Left click: Copy | Right click: Close"))))
+
+;; ==============================================================================
+;; Detail Translation Popup
+;; ==============================================================================
+(defwindow detail_popup
+  :monitor 0
+  :geometry (geometry :x "16px" :y "16px" :width "360px" :anchor "top right")
+  :stacking "overlay"
+  :windowtype "dialog"
+  :wm-ignore true
+  (detail_hud))
+
+(defwidget detail_hud []
+  (box :class "detail-card" :orientation "v" :space-evenly false :spacing 6
+    (box :class "detail-header" :orientation "h" :space-evenly false :spacing 4
+      (label :class "detail-title" :halign "start" :hexpand true :text detail_status)
+      (button :class "detail-icon-btn" :onclick "wl-copy '${detail_source}' && eww update detail_status='󰄬 src'" "󰋊")
+      (button :class "detail-icon-btn" :onclick "wl-copy '${detail_result}' && eww update detail_status='󰄬 copied'" "󰆏")
+      (button :class "detail-icon-btn detail-icon-close" :onclick "eww close detail_popup" "󰅖"))
+    (box :class "detail-source-box"
+      (label :class "detail-source-text" :wrap true :show-truncated false :xalign 0 :yalign 0 :text detail_source))
+    (box :halign "center" (label :class "detail-divider" :text "▼"))
+    (box :class "detail-result-box"
+      (label :class "detail-result-text" :wrap true :show-truncated false :xalign 0 :yalign 0 :text detail_result))))

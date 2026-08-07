@@ -1,0 +1,117 @@
+[[manager.prepend_keymap]]
+on   = [ "f" ]
+run  = "plugin smart-filter"
+desc = "Smart filter"
+
+[[manager.prepend_keymap]]
+on   = [ "T" ]
+run  = "plugin max-preview"
+desc = "Maximize or restore preview"
+
+[[manager.prepend_keymap]]
+on   = [ "f", "g" ]
+run  = "plugin fg"
+desc = "Find text with ripgrep"
+
+[[manager.prepend_keymap]]
+on   = [ "<C-n>" ]
+run  = 'shell -- ripdrag "$@" -x 2>/dev/null &'
+desc = "Drag and drop with ripdrag"
+
+[[manager.prepend_keymap]]
+on   = [ "c", "a" ]
+run  = "plugin compress"
+desc = "Archive selected files"
+
+[[manager.prepend_keymap]]
+on   = [ "z" ]
+run  = "plugin zoxide"
+desc = "Jump to a directory using zoxide"
+
+# Disable dangerous built-ins
+[[manager.prepend_keymap]]
+on   = [ "D" ]
+run  = "noop"
+desc = "Disabled: permanent delete"
+
+[[manager.prepend_keymap]]
+on   = [ "-" ]
+run  = "noop"
+desc = "Disabled: go to previous dir (use zoxide instead)"
+
+[[manager.prepend_keymap]]
+on   = [ "s", "l" ]
+run  = 'shell -- localsend "$@" &'
+desc = "Send via LocalSend"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "s" ]
+run  = 'shell --block --confirm -- git status'
+desc = "Git status in current directory"
+
+# Lô 3: Custom Plugins & Shell extensions
+[[manager.prepend_keymap]]
+on   = [ "M" ]
+run  = "plugin mediainfo"
+desc = "Show mediainfo"
+
+[[manager.prepend_keymap]]
+on   = [ "E" ]
+run  = 'shell -- ouch decompress "$@" &'
+desc = "Extract here with ouch"
+
+[[manager.prepend_keymap]]
+on   = [ "C" ]
+run  = 'shell -- echo -n "$@" | wl-copy'
+desc = "Copy absolute path to clipboard"
+
+[[manager.prepend_keymap]]
+on   = [ "d", "s" ]
+run  = 'shell --block --confirm -- dust "$@" || du -sh "$@"'
+desc = "Directory size"
+
+[[manager.prepend_keymap]]
+on   = [ "x" ]
+run  = 'shell --block --confirm -- ./"$@"'
+desc = "Execute file"
+
+[[manager.prepend_keymap]]
+on   = [ "F" ]
+run  = 'shell --block -- fzf --bind "enter:execute(xdg-open {})"'
+desc = "FZF search in current dir"
+
+[[manager.prepend_keymap]]
+on   = [ "<C-p>" ]
+run  = 'shell -- wl-paste > "pasted_$(date +%s).png"'
+desc = "Paste image from clipboard"
+
+[[manager.prepend_keymap]]
+on   = [ "t", "m" ]
+run  = "create"
+desc = "Create file/dir"
+
+[[manager.prepend_keymap]]
+on   = [ "m", "d" ]
+run  = "create --dir"
+desc = "Create directory"
+
+# Recycle bin keybindings
+[[manager.prepend_keymap]]
+on   = [ "R", "o" ]
+run  = "plugin recycle-bin -- open"
+desc = "Open Trash"
+
+[[manager.prepend_keymap]]
+on   = [ "R", "r" ]
+run  = "plugin recycle-bin -- restore"
+desc = "Restore from Trash"
+
+[[manager.prepend_keymap]]
+on   = [ "R", "d" ]
+run  = "plugin recycle-bin -- delete"
+desc = "Delete from Trash"
+
+[[manager.prepend_keymap]]
+on   = [ "R", "e" ]
+run  = "plugin recycle-bin -- empty"
+desc = "Empty Trash"

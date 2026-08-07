@@ -1,0 +1,71 @@
+;; ==============================================================================
+;; Fcitx5 Keyboard Language HUD Widget
+;; ==============================================================================
+(defwindow fcitx_hud
+  :monitor 0
+  :geometry (geometry :x "20px" :y "20px" :anchor "bottom right" :width "120px" :height "46px")
+  :stacking "fg"
+  :exclusive false
+  (fcitx_layout))
+
+(defwidget fcitx_layout []
+  (eventbox :cursor "pointer" 
+            :onclick "fcitx5-remote -t"
+            :tooltip {fcitx_status.tooltip}
+    (box :class "lang-container ${fcitx_status.class}"
+         :orientation "h" :space-evenly false :halign "center" :valign "center"
+         (label :class "lang-text" :text {fcitx_status.text}))))
+
+;; ==============================================================================
+;; Screen Recorder HUD Window
+;; ==============================================================================
+(defwindow record_hud
+  :monitor 0
+  :geometry (geometry :x "20px" :y "20px" :anchor "top left" :width "120px" :height "46px")
+  :stacking "fg"
+  :exclusive false
+  (record_layout))
+
+(defwidget record_layout []
+  (eventbox :cursor "pointer"
+            :onclick "~/.config/sway/scripts/actions/record_screen.sh stop"
+            :tooltip "Recording screen. Click to Stop."
+    (box :class "record-container"
+         :orientation "h" :space-evenly false :halign "center" :valign "center"
+         (label :class "record-icon" :text "󰑋")
+         (label :class "record-text" :text " REC"))))
+
+;; ==============================================================================
+;; System Status HUD Window
+;; ==============================================================================
+(defwindow status_hud
+  :monitor 0
+  :geometry (geometry :x "0px" :y "16px" :anchor "top center" :width "280px" :height "46px")
+  :stacking "fg"
+  :exclusive false
+  (status_layout))
+
+(defwidget status_layout []
+  (box :class "status-container"
+       :orientation "h" :space-evenly false :spacing 12 :halign "center" :valign "center"
+       (box :class "status-pill time-pill"
+            (label :class "status-text" :text "󰅐 ${time_status}"))
+       (box :class "status-pill network-pill"
+            (label :class "status-text" :text network_status))
+       (box :class "status-pill battery-pill ${battery_status.class}"
+            (label :class "status-text" :text {battery_status.text}))))
+
+;; ==============================================================================
+;; Workspace OSD HUD Window
+;; ==============================================================================
+(defwindow workspace_osd
+  :monitor 0
+  :geometry (geometry :x "20px" :y "20px" :anchor "bottom left" :width "60px" :height "60px")
+  :stacking "overlay"
+  :exclusive false
+  (workspace_osd_layout))
+
+(defwidget workspace_osd_layout []
+  (box :class "ws-osd-container"
+       :orientation "v" :space-evenly false :halign "center" :valign "center"
+       (label :class "ws-osd-text" :text "${current_workspace}")))

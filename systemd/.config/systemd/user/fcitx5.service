@@ -1,0 +1,9 @@
+[Unit]
+Description=Fcitx5 Input Method
+
+[Service]
+ExecStart=/usr/bin/fcitx5
+Restart=always
+
+[Install]
+WantedBy=default.target

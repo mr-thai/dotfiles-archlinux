@@ -1,0 +1,25 @@
+$bg-color: rgba(30, 30, 46, 0.85);
+$border-color: rgba(255, 255, 255, 0.05);
+$accent-color: #b4befe;
+$text-color: #cdd6f4;
+$text-muted: #a6adc8;
+
+$color-work: #f38ba8;
+$color-break: #a6e3a1;
+$color-long-break: #89b4fa;
+$color-idle: $text-muted;
+
+$sky: #89dceb;
+$green: #a6e3a1;
+$yellow: #f9e2af;
+$peach: #fab387;
+$red: #f38ba8;
+
+* {
+  font-family: "JetBrains Mono", "Iosevka Nerd Font", "Symbols Nerd Font", sans-serif;
+}
+
+window {
+  background-color: transparent;
+  background: transparent;
+}

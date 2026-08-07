@@ -1,0 +1,10 @@
+[Unit]
+Description=Restart Fcitx5 after resume
+After=suspend.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/fcitx5 -r
+
+[Install]
+WantedBy=suspend.target

@@ -1,0 +1,67 @@
+# Starship prompt theme (Catppuccin Mocha with full Nerd Font icons)
+format = "$sudo$username$python$directory$git_branch$git_status$character"
+right_format = "$cmd_duration$time"
+add_newline = true
+
+[directory]
+style = "bold fg:#89b4fa"
+truncation_length = 3
+truncation_symbol = "…/"
+format = "[](fg:#313244)[󰉋 $path](fg:#89b4fa bg:#313244 bold)[](fg:#313244) "
+
+[directory.substitutions]
+"~" = "󰋜 ~"
+
+[git_branch]
+symbol = " "
+style = "fg:#cba6f7"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "fg:#f38ba8"
+format = "[$all_status$ahead_behind]($style) "
+conflicted = "󰳦"
+untracked = ""
+modified = ""
+staged = ""
+renamed = ""
+deleted = ""
+stashed = ""
+
+[character]
+success_symbol = "[❯](fg:#a6e3a1)"
+error_symbol = "[❯](fg:#f38ba8)"
+vimcmd_symbol = "[❮](fg:#89b4fa)"
+
+[cmd_duration]
+min_time = 500
+format = "[󱎫 $duration]($style) "
+style = "fg:#fab387"
+
+[time]
+disabled = false
+time_format = "%H:%M"
+format = "[󰅐 $time]($style)"
+style = "fg:#a6adc8"
+
+[hostname]
+ssh_only = true
+format = "[@$hostname]($style) "
+style = "fg:#cdd6f4"
+
+[username]
+show_always = true
+format = "[ $user]($style) "
+style_user = "fg:#cdd6f4"
+
+[sudo]
+disabled = true
+symbol = "󰌾 "
+format = "[$symbol]($style)"
+style = "fg:#f38ba8"
+
+[python]
+symbol = "🐍 "
+format = "[$symbol$virtualenv]($style) "
+style = "fg:#f9e2af"
+

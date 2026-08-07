@@ -1,0 +1,20 @@
+# Cấu hình mẫu cho Kanshi (Tự động chuyển đổi profile màn hình)
+# Bạn cần đổi "eDP-1" và "HDMI-A-1" thành tên màn hình thực tế của bạn.
+# (Mở Terminal gõ: swaymsg -t get_outputs | grep name)
+
+# 1. Profile khi rút cáp (Chỉ xài Laptop)
+profile "undocked" {
+    output eDP-1 enable
+}
+
+# 2. Profile khi cắm cáp ở nhà (Ví dụ: Xài cả 2 màn)
+profile "home_docked" {
+    output eDP-1 enable
+    output HDMI-A-1 enable position 0,0
+}
+
+# 3. Profile khi cắm cáp làm việc (Ví dụ: Tắt màn Laptop, chỉ xuất ra màn Rời)
+# profile "work_docked" {
+#     output eDP-1 disable
+#     output HDMI-A-1 enable
+# }

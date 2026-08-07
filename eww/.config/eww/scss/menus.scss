@@ -1,0 +1,175 @@
+// ==============================================================================
+// Mode OSD HUD (Capture, Translate, Power)
+// ==============================================================================
+.mode-osd-container {
+    background-color: rgba(30, 30, 46, 0.90);
+    border: 2px solid $peach;
+    border-radius: 12px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.mode-osd-keys {
+    color: $text-color;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.mode-osd-keys-alt {
+    color: $text-muted;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+// ==============================================================================
+// Power Menu HUD
+// ==============================================================================
+.power-menu-container {
+    border: 2px solid $red;
+}
+.power-keys {
+    color: $red;
+}
+
+// ==============================================================================
+// Translation HUD
+// ==============================================================================
+.trans-card {
+  background-color: $bg-color;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.trans-header {
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 6px;
+}
+
+.trans-title {
+  color: $accent-color;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.trans-close-btn {
+  color: $text-muted;
+  background: none;
+  border: none;
+  font-size: 13px;
+  padding: 2px 6px;
+  border-radius: 6px;
+
+  &:hover {
+    color: $text-color;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.trans-source-box {
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.trans-source-text {
+  color: $text-muted;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.trans-divider-icon {
+  color: rgba($text-muted, 0.5);
+  font-size: 14px;
+  margin: 6px 0;
+}
+
+.trans-result-box {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  padding: 10px 14px;
+  border-left: 3px solid $accent-color;
+}
+
+.trans-result-text {
+  color: $text-color;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.trans-footer {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+// ==============================================================================
+// Detail Translation Popup
+// ==============================================================================
+.detail-card {
+    background-color: rgba(24, 24, 37, 0.75);
+    border: 1px solid rgba(180, 190, 254, 0.15);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0px 6px 28px rgba(0, 0, 0, 0.85);
+}
+
+.detail-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 7px;
+    margin-bottom: 2px;
+}
+
+.detail-title {
+    color: $accent-color;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.detail-icon-btn {
+    background: none;
+    border: none;
+    color: $text-muted;
+    font-size: 14px;
+    padding: 2px 5px;
+    border-radius: 5px;
+    min-width: 24px;
+}
+
+.detail-icon-close {
+    color: rgba(243, 139, 168, 0.5);
+}
+
+.detail-source-box {
+    background-color: rgba(255, 255, 255, 0.025);
+    border-radius: 6px;
+    padding: 8px 10px;
+}
+
+.detail-source-text {
+    color: $text-muted;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.detail-divider {
+    color: rgba(180, 190, 254, 0.4);
+    font-size: 14px;
+    margin: 2px 0;
+}
+
+.detail-result-box {
+    background-color: rgba(180, 190, 254, 0.12);
+    border-radius: 6px;
+    border-left: 2px solid rgba(180, 190, 254, 0.5);
+    padding: 8px 10px;
+}
+
+.detail-result-text {
+    color: $text-color;
+    font-size: 14px;
+    font-weight: 500;
+}

@@ -1,0 +1,124 @@
+// ==============================================================================
+// Fcitx5 Keyboard Language HUD
+// ==============================================================================
+.lang-container {
+  background-color: $bg-color;
+  border: 1px solid $border-color;
+  border-radius: 9999px;
+  padding: 6px 18px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s;
+
+  &.lang-vi { border-color: rgba(243, 139, 168, 0.4); }
+  &.lang-en { border-color: rgba(137, 180, 250, 0.4); }
+  &.lang-zh { border-color: rgba(249, 226, 175, 0.4); }
+  &.lang-jp { border-color: rgba(250, 179, 135, 0.4); }
+  &.lang-generic { border-color: rgba(203, 166, 247, 0.4); }
+}
+
+.lang-text {
+  color: $text-color;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+// ==============================================================================
+// Screen Recorder HUD
+// ==============================================================================
+.record-container {
+  background-color: $bg-color;
+  border: 1px solid rgba(243, 139, 168, 0.4);
+  border-radius: 9999px;
+  padding: 6px 18px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.record-icon {
+  color: #f38ba8;
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.record-text {
+  color: #f38ba8;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+// ==============================================================================
+// System Status HUD
+// ==============================================================================
+.status-container {
+  background-color: transparent;
+  padding: 4px;
+  border: none;
+  box-shadow: none;
+}
+
+.status-pill {
+  background-color: $bg-color;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  margin: 0 5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.time-pill {
+  background-color: rgba(180, 190, 254, 0.15);
+  border-color: rgba(180, 190, 254, 0.3);
+  color: $accent-color;
+}
+
+.network-pill {
+  background-color: rgba(137, 220, 235, 0.15);
+  border-color: rgba(137, 220, 235, 0.3);
+  color: $sky;
+}
+
+.battery-pill {
+  background-color: rgba(166, 227, 161, 0.15);
+  border-color: rgba(166, 227, 161, 0.3);
+  color: $green;
+  
+  &.charging { 
+    background-color: rgba(249, 226, 175, 0.15);
+    border-color: rgba(249, 226, 175, 0.3);
+    color: $yellow; 
+  }
+  &.warning { 
+    background-color: rgba(250, 179, 135, 0.15);
+    border-color: rgba(250, 179, 135, 0.3);
+    color: $peach; 
+  }
+  &.critical { 
+    background-color: rgba(243, 139, 168, 0.15);
+    border-color: rgba(243, 139, 168, 0.3);
+    color: $red; 
+  }
+}
+
+.status-pill .status-text {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "JetBrains Mono", "Symbols Nerd Font", sans-serif;
+  color: inherit;
+}
+
+// ==============================================================================
+// Workspace OSD HUD
+// ==============================================================================
+.ws-osd-container {
+    background-color: rgba(30, 30, 46, 0.85);
+    border: 2px solid $accent-color;
+    border-radius: 12px;
+    padding: 10px 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.ws-osd-text {
+    color: $text-color;
+    font-size: 28px;
+    font-weight: 800;
+}

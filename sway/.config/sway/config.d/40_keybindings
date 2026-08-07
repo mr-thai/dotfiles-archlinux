@@ -1,0 +1,181 @@
+# ==========================================
+# KEYBINDINGS
+# Variables → see 00_variables
+# ==========================================
+
+# --- WINDOW MANAGEMENT ---
+bindsym $mod+Shift+q kill
+floating_modifier $mod normal
+bindsym $mod+a floating toggle, move position center
+bindsym $mod+f fullscreen
+
+bindsym {
+    $mod+$left  focus left
+    $mod+$down  focus down
+    $mod+$up    focus up
+    $mod+$right focus right
+
+    $mod+Shift+$left  move left
+    $mod+Shift+$down  move down
+    $mod+Shift+$up    move up
+    $mod+Shift+$right move right
+
+    $mod+Alt+$up   move workspace to output up
+    $mod+Alt+$down move workspace to output down
+}
+
+# --- RESIZING ---
+bindsym {
+    $mod+ctrl+$right resize grow width 50 px
+    $mod+ctrl+$left  resize shrink width 50 px
+    $mod+ctrl+$up    resize grow height 50 px
+    $mod+ctrl+$down  resize shrink height 50 px
+}
+
+# --- WORKSPACE SWITCHING ---
+bindsym $mod+Tab workspace back_and_forth
+
+bindcode {
+    # --- Chuyển hướng đến Workspace ---
+    $mod+10 workspace number 1
+    $mod+11 workspace number 2
+    $mod+12 workspace number 3
+    $mod+13 workspace number 4
+    $mod+14 workspace number 5
+    $mod+15 workspace number 6
+    $mod+16 workspace number 7
+    $mod+17 workspace number 8
+    $mod+18 workspace number 9
+    $mod+19 workspace number 10
+
+    # --- Di chuyển Cửa sổ sang Workspace ---
+    $mod+Shift+10 move container to workspace number 1
+    $mod+Shift+11 move container to workspace number 2
+    $mod+Shift+12 move container to workspace number 3
+    $mod+Shift+13 move container to workspace number 4
+    $mod+Shift+14 move container to workspace number 5
+    $mod+Shift+15 move container to workspace number 6
+    $mod+Shift+16 move container to workspace number 7
+    $mod+Shift+17 move container to workspace number 8
+    $mod+Shift+18 move container to workspace number 9
+    $mod+Shift+19 move container to workspace number 10
+}
+
+# --- QUICK APP SHORTCUTS ---
+bindsym $mod+Return exec bash $scripts/actions/focus_terminal.sh
+bindsym $mod+p      exec $window_switcher
+bindsym $mod+w      exec bash $scripts/actions/toggle_eww.sh
+bindsym $mod+t      exec bash $scripts/actions/toggle_status_hud.sh
+bindsym $mod+F1     exec $toggle_scratchpad scratchpad_nmtui    "footclient --app-id=scratchpad_nmtui -e nmtui"
+bindsym $mod+F2     exec $toggle_scratchpad scratchpad_pulsemixer "footclient --app-id=scratchpad_pulsemixer -e pulsemixer"
+bindsym $mod+F3     exec $toggle_scratchpad scratchpad_bluetui   "footclient --app-id=scratchpad_bluetui -e bluetui"
+bindsym $mod+F4     exec $toggle_scratchpad spotify "spotify"
+bindsym $mod+x exec eww close detail_popup
+bindsym $mod+v exec bash $scripts/clipmenu.sh
+
+# --- DICTIONARY & TRANSLATION (SUBMAP) ---
+mode "Translate" {
+    bindsym e exec eww close trans_menu, exec bash ~/.config/eww/scripts/english_practice.sh, mode "default"
+    bindsym Shift+e exec eww close trans_menu, exec bash ~/.config/eww/scripts/en_to_vi.sh, mode "default"
+    
+    bindsym n exec eww close trans_menu, exec bash ~/.config/eww/scripts/vi_to_ja.sh, mode "default"
+    bindsym Shift+n exec eww close trans_menu, exec bash ~/.config/eww/scripts/ja_to_vi.sh, mode "default"
+    
+    bindsym z exec eww close trans_menu, exec bash ~/.config/eww/scripts/vi_to_zh.sh, mode "default"
+    bindsym Shift+z exec eww close trans_menu, exec bash ~/.config/eww/scripts/zh_to_vi.sh, mode "default"
+    
+    bindsym t exec eww close trans_menu, exec bash ~/.config/eww/scripts/translate.sh, mode "default"
+    bindsym o exec eww close trans_menu, exec bash ~/.config/eww/scripts/ocr_translate.sh, mode "default"
+    
+    bindsym Escape exec eww close trans_menu, mode "default"
+    bindsym Return exec eww close trans_menu, mode "default"
+}
+bindsym $mod+d exec eww open trans_menu, mode "Translate"
+
+# Giữ lại phím English theo yêu cầu
+bindsym $mod+e exec bash ~/.config/eww/scripts/english_practice.sh
+
+# Window rules for translation popups
+for_window [app_id="practice_input"]  floating enable, border pixel 2, move position center
+for_window [app_id="en_to_vi_input"] floating enable, border pixel 2, move position center
+for_window [app_id="vi_to_ja_input"]  floating enable, border pixel 2, move position center
+for_window [app_id="ja_to_vi_input"]  floating enable, border pixel 2, move position center
+for_window [app_id="vi_to_zh_input"]  floating enable, border pixel 2, move position center
+for_window [app_id="zh_to_vi_input"]  floating enable, border pixel 2, move position center
+
+# Translation History
+bindsym $mod+Alt+e exec $toggle_scratchpad scratchpad_trans_history "foot --app-id=scratchpad_trans_history -e ~/.config/eww/scripts/trans_history.sh"
+
+# --- SYSTEM & POWER (SUBMAP) ---
+mode "Power" {
+    bindsym s exec eww close power_menu, exec systemctl poweroff
+    bindsym r exec eww close power_menu, exec systemctl reboot
+    bindsym l exec eww close power_menu, exec loginctl lock-session, mode "default"
+    bindsym o exec eww close power_menu, exec swaymsg exit
+    bindsym Escape exec eww close power_menu, mode "default"
+    bindsym Return exec eww close power_menu, mode "default"
+}
+bindsym $mod+Escape exec eww open power_menu, mode "Power"
+
+bindsym $mod+Shift+c   reload, exec notify-send "Sway" "Configuration reloaded!" -t 2000
+
+# --- SCREENSHOT & RECORDING (SUBMAP MODE) ---
+mode "Capture" {
+    # 📷 Screenshot
+    bindsym s exec eww close mode_indicator, exec bash $scripts/actions/screenshot_select.sh, mode "default"
+    bindsym w exec eww close mode_indicator, exec bash $scripts/actions/screenshot_window.sh, mode "default"
+    bindsym d exec eww close mode_indicator, exec bash $scripts/actions/screenshot_display.sh, mode "default"
+    
+    # 🎥 Record
+    bindsym r exec eww close mode_indicator, exec bash $scripts/actions/record_screen.sh region, mode "default"
+    bindsym v exec eww close mode_indicator, exec bash $scripts/actions/record_screen.sh display, mode "default"
+    
+    # Thoát chế độ
+    bindsym Escape exec eww close mode_indicator, mode "default"
+    bindsym Return exec eww close mode_indicator, mode "default"
+}
+bindsym $mod+s exec bash $scripts/actions/screenshot_mode_osd.sh, mode "Capture"
+bindsym $mod+Shift+r exec bash $scripts/actions/record_screen.sh stop
+
+# ==========================================
+# FCITX KEYBOARD LAYOUT MENU ($mod+space)
+# ==========================================
+mode "Fcitx" {
+    bindsym v exec bash -c 'fcitx5-remote -s bamboo || fcitx5-remote -s unikey || fcitx5-remote -s vni', exec eww close fcitx_menu, mode "default"
+    bindsym a exec bash -c 'fcitx5-remote -s keyboard-us || fcitx5-remote -s keyboard-us-intl', exec eww close fcitx_menu, mode "default"
+    bindsym t exec bash -c 'fcitx5-remote -s pinyin || fcitx5-remote -s rime || fcitx5-remote -s chewing', exec eww close fcitx_menu, mode "default"
+    bindsym n exec bash -c 'fcitx5-remote -s mozc || fcitx5-remote -s anthy', exec eww close fcitx_menu, mode "default"
+    
+    bindsym Escape exec eww close fcitx_menu, mode "default"
+    bindsym Return exec eww close fcitx_menu, mode "default"
+    bindsym space exec eww close fcitx_menu, mode "default"
+}
+bindsym $mod+space exec eww open fcitx_menu, mode "Fcitx"
+
+# --- SCRATCHPADS ---
+bindsym $mod+ctrl+s    move scratchpad
+bindsym $mod+Alt+i     exec bash $scripts/actions/focus_or_launch.sh zen "zen-browser"
+bindsym $mod+backslash exec $toggle_scratchpad obsidian "obsidian"
+bindsym $mod+Alt+a     exec bash $scripts/actions/focus_or_launch.sh anki
+bindsym $mod+Alt+d     exec bash $scripts/actions/focus_or_launch.sh dbeaver
+bindsym $mod+Alt+b     exec bash $scripts/actions/focus_or_launch.sh bruno
+bindsym $mod+Alt+o     exec bash $scripts/actions/focus_or_launch.sh com.obsproject.Studio obs
+bindsym $mod+Alt+v     exec bash $scripts/actions/focus_or_launch.sh virt-manager
+bindsym $mod+Alt+t     exec $toggle_scratchpad twintaillauncher "env WINEFSYNC=1 WINEESYNC=1 DXVK_ASYNC=1 gamemoderun twintaillauncher"
+
+# --- MEDIA CONTROLS ---
+bindsym --locked XF86AudioRaiseVolume  exec swayosd-client --output-volume raise
+bindsym --locked XF86AudioLowerVolume  exec swayosd-client --output-volume lower
+bindsym --locked XF86AudioMute         exec swayosd-client --output-volume mute-toggle
+
+bindsym --locked XF86AudioPlay         exec playerctl play-pause
+bindsym --locked XF86AudioNext         exec playerctl next
+bindsym --locked XF86AudioPrev         exec playerctl previous
+
+bindsym --locked XF86MonBrightnessUp   exec swayosd-client --brightness raise
+bindsym --locked XF86MonBrightnessDown exec swayosd-client --brightness lower
+
+bindsym $mod+F11    exec $toggle_scratchpad ferdium "ferdium"
+bindsym $mod+F12    exec swaync-client -t -sw
+
+bindsym --locked Caps_Lock exec swayosd-client --caps-lock

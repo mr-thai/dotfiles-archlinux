@@ -1,0 +1,11 @@
+# ==========================================
+# BEHAVIOR — WM behavior settings
+# ==========================================
+
+# --- FOCUS ---
+focus_follows_mouse no
+focus_wrapping no
+focus_on_window_activation smart
+
+# --- CURSOR ---
+seat * hide_cursor 15000

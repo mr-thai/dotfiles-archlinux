@@ -1,0 +1,66 @@
+[manager]
+show_hidden = true
+show_symlink = true
+scrolloff = 5
+
+[preview]
+tab_size = 4
+max_width = 800
+max_height = 800
+cache_dir = ""
+image_filter = "triangle"
+image_quality = 75
+sixel_fraction = 15
+
+[opener]
+edit = [
+    { run = 'nvim "$@"', block = true }
+]
+play = [
+    { run = 'mpv "$@"', orphan = true }
+]
+open = [
+    { run = 'xdg-open "$@"', orphan = true }
+]
+pdf = [
+    { run = 'zathura "$@"', orphan = true }
+]
+image = [
+    { run = 'imv "$@"', orphan = true }
+]
+extract = [
+    { run = 'ouch decompress "$@"', desc = "Extract here", block = true }
+]
+
+[open]
+rules = [
+    { url = "*/", use = [ "edit", "open" ] },
+    { mime = "text/*", use = "edit" },
+    { mime = "image/*", use = [ "image", "open" ] },
+    { mime = "video/*", use = "play" },
+    { mime = "audio/*", use = "play" },
+    { mime = "application/zip", use = "extract" },
+    { mime = "application/x-tar", use = "extract" },
+    { mime = "application/x-bzip2", use = "extract" },
+    { mime = "application/x-gzip", use = "extract" },
+    { mime = "application/x-7z-compressed", use = "extract" },
+    { mime = "application/x-rar", use = "extract" },
+    { mime = "application/pdf", use = [ "pdf", "open" ] },
+    { mime = "application/epub+zip", use = [ "pdf", "open" ] },
+    { mime = "image/vnd.djvu", use = [ "pdf", "open" ] },
+]
+
+[plugin]
+# Khôi phục toàn bộ Previewer và Opener của bạn
+prepend_previewers = [
+    # Ouch
+    { mime = "application/x-tar", run = "ouch" },
+    { mime = "application/zip", run = "ouch" },
+    { mime = "application/x-7z-compressed", run = "ouch" },
+    { mime = "application/x-rar", run = "ouch" },
+    # Mediainfo
+    { mime = "video/*", run = "mediainfo" },
+    { mime = "audio/*", run = "mediainfo" }
+]
+
+

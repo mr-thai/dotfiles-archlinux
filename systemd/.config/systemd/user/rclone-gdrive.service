@@ -1,0 +1,17 @@
+[Unit]
+Description=Rclone Mount Google Drive
+AssertPathIsDirectory=%h/Cloud/GoogleDrive
+After=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/rclone mount gdrive: %h/Cloud/GoogleDrive \
+    --vfs-cache-mode full \
+    --vfs-cache-max-size 5G \
+    --vfs-cache-max-age 24h \
+    --dir-cache-time 48h
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
