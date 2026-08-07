@@ -411,3 +411,31 @@ if [[ -z "$ZELLIJ" ]] && [[ "$TERM" != "linux" ]]; then
     zellij attach -c main
 fi
 
+# Dễ dàng đưa 1 app mới vào dotfiles
+function stow-app() {
+    if [[ -z "$1" ]]; then
+        echo "Cách dùng: stow-app ~/.config/ten_app"
+        return 1
+    fi
+    local src=$(realpath "$1")
+    local pkg=$(basename "$src")
+    local dest="$HOME/dotfiles/$pkg/.config/$pkg"
+    
+    if [[ ! -e "$src" ]]; then
+        echo "Lỗi: Không tìm thấy $src"
+        return 1
+    fi
+    if [[ -L "$src" ]]; then
+        echo "Lỗi: $src đã là một symlink!"
+        return 1
+    fi
+
+    echo "Đang dọn nhà cho $pkg vào ~/dotfiles..."
+    mkdir -p "$(dirname "$dest")"
+    mv "$src" "$dest"
+    
+    cd ~/dotfiles
+    stow "$pkg"
+    cd - > /dev/null
+    echo "✅ Thành công! Bạn hãy cd ~/dotfiles và git commit nhé."
+}
