@@ -1,0 +1,10 @@
+[Unit]
+Description=Autostart Antigravity News Schedules
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/mr-thai/.local/bin/autostart_news.sh
+
+[Install]
+WantedBy=default.target
