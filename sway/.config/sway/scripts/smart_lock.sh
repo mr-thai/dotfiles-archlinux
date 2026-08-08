@@ -8,11 +8,11 @@ done
 
 # Run swaylock with -f so it blocks until screen is securely painted,
 # then forks to background and returns so systemd can sleep.
-swaylock -f -c 11111b
+dms ipc call lock lock
 
 # Fork a background watcher to unfreeze apps after unlock
 (
-    while pgrep -x swaylock >/dev/null; do
+    while pgrep -x dms >/dev/null && dms ipc call lock isLocked | grep -q 'true'; do
         sleep 1
     done
     

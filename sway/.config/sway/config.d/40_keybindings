@@ -149,7 +149,8 @@ bindsym $mod+space exec eww open fcitx_menu, mode "Fcitx"
 # --- SCRATCHPADS ---
 bindsym $mod+ctrl+s    move scratchpad
 bindsym $mod+Alt+i     exec bash $scripts/actions/focus_or_launch.sh zen "zen-browser"
-bindsym $mod+backslash exec $toggle_scratchpad obsidian "obsidian"
+# bindsym $mod+backslash exec $toggle_scratchpad obsidian "obsidian"
+bindsym $mod+backslash exec bash $scripts/actions/focus_or_launch.sh obsidian
 bindsym $mod+Alt+a     exec bash $scripts/actions/focus_or_launch.sh anki
 bindsym $mod+Alt+d     exec bash $scripts/actions/focus_or_launch.sh dbeaver
 bindsym $mod+Alt+b     exec bash $scripts/actions/focus_or_launch.sh bruno
@@ -169,7 +170,8 @@ bindsym --locked XF86AudioPrev         exec playerctl previous
 bindsym --locked XF86MonBrightnessUp   exec dms ipc call brightness increment 5 backlight:intel_backlight
 bindsym --locked XF86MonBrightnessDown exec dms ipc call brightness decrement 5 backlight:intel_backlight
 
-bindsym $mod+F11    exec $toggle_scratchpad ferdium "ferdium"
+# bindsym $mod+F11    exec $toggle_scratchpad ferdium "ferdium"
+bindsym $mod+F11    exec bash $scripts/actions/focus_or_launch.sh ferdium
 # bindsym $mod+F9     exec dms ipc call notifications toggle
 # bindsym $mod+F12    exec dms ipc call dash toggle
 bindsym $mod+F12    exec dms ipc call notifications toggle

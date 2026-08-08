@@ -24,7 +24,7 @@ font pango:Inter Medium, JetBrains Mono, Symbols Nerd Font 14
 seat * xcursor_theme $cursor_theme $cursor_size
 
 # --- WALLPAPER ---
-output * bg $HOME/.config/sway/wallpaper/Wall-1.jpg fill
+# output * bg $HOME/.config/sway/wallpaper/Wall-1.jpg fill
 
 # --- WINDOW COLORS ---
 #                         border    background  text       indicator  child_border
