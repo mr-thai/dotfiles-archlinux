@@ -13,7 +13,7 @@
   "matugenScheme": "scheme-tonal-spot",
   "matugenContrast": 0,
   "runUserMatugenTemplates": true,
-  "matugenTargetMonitor": "",
+  "matugenTargetMonitor": "DP-1",
   "popupTransparency": 1,
   "dockTransparency": 1,
   "widgetBackgroundColor": "sch",
@@ -568,7 +568,9 @@
   "updaterIgnoredPackages": [],
   "displayNameMode": "system",
   "screenPreferences": {
-    "wallpaper": [],
+    "wallpaper": [
+      "all"
+    ],
     "notifications": [
       {
         "name": "DP-1",

@@ -147,8 +147,9 @@ mode "Fcitx" {
 bindsym $mod+space exec eww open fcitx_menu, mode "Fcitx"
 
 # --- SCRATCHPADS ---
-bindsym $mod+ctrl+s    move scratchpad
-bindsym $mod+Alt+i     exec bash $scripts/actions/focus_or_launch.sh zen "zen-browser"
+bindsym $mod+ctrl+s          move scratchpad
+bindsym $mod+Shift+Return    exec $toggle_scratchpad quake_term "foot --app-id=quake_term"
+bindsym $mod+Alt+i           exec bash $scripts/actions/focus_or_launch.sh zen "zen-browser"
 # bindsym $mod+backslash exec $toggle_scratchpad obsidian "obsidian"
 bindsym $mod+backslash exec bash $scripts/actions/focus_or_launch.sh obsidian
 bindsym $mod+Alt+a     exec bash $scripts/actions/focus_or_launch.sh anki
@@ -171,6 +172,7 @@ bindsym --locked XF86MonBrightnessUp   exec dms ipc call brightness increment 5 
 bindsym --locked XF86MonBrightnessDown exec dms ipc call brightness decrement 5 backlight:intel_backlight
 
 # bindsym $mod+F11    exec $toggle_scratchpad ferdium "ferdium"
+bindsym $mod+F10    exec dms ipc call dash open 0
 bindsym $mod+F11    exec bash $scripts/actions/focus_or_launch.sh ferdium
 # bindsym $mod+F9     exec dms ipc call notifications toggle
 # bindsym $mod+F12    exec dms ipc call dash toggle

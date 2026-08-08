@@ -12,7 +12,7 @@ assign [class="(?i)foot"]        workspace 1
 assign [app_id="(?i)footclient"] workspace 1
 
 # --- SCRATCHPAD APPLICATIONS ---
-for_window [app_id="quake_term"]       floating enable, border pixel 1, resize set width 100 ppt height 40 ppt, move position 0 0
+for_window [app_id="quake_term"]       floating enable, move scratchpad, border pixel 1, resize set width 100 ppt height 40 ppt, move position 0 0
 for_window [app_id="scrcpy"]           floating enable, move scratchpad, border pixel 1, resize set width 360 px height 800 px, move position 20 px 260 px
 for_window [app_id="fcitx5-config-qt"] floating enable, border pixel 1, resize set width 600 px height 400 px, move position center
 for_window [app_id="kbptr"]            floating enable, border none, resize set width 1 px height 1 px, move position 0 0, move scratchpad

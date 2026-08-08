@@ -41,6 +41,7 @@ if [ "$WIN_JSON_ARRAY" != "[]" ]; then
                 "sys_dashboard"|"virt-manager") CMD_STR="$CMD_STR, resize set width 90 ppt height 80 ppt, move position center" ;;
                 "scratchpad_nmtui") CMD_STR="$CMD_STR, resize set width 35 ppt height 60 ppt, move position center" ;;
                 "scratchpad_pulsemixer"|"scratchpad_bluetui"|"scratchpad_rmpc") CMD_STR="$CMD_STR, resize set width 40 ppt height 50 ppt, move position center" ;;
+                "quake_term") CMD_STR="$CMD_STR, resize set width 100 ppt height 40 ppt, move position 0 0" ;;
             esac
             swaymsg "$CMD_STR"
         done
@@ -76,6 +77,7 @@ else
             "sys_dashboard"|"virt-manager") CMD_STR="$CMD_STR, resize set width 90 ppt height 80 ppt, move position center" ;;
             "scratchpad_nmtui") CMD_STR="$CMD_STR, resize set width 35 ppt height 60 ppt, move position center" ;;
             "scratchpad_pulsemixer"|"scratchpad_bluetui"|"scratchpad_rmpc") CMD_STR="$CMD_STR, resize set width 40 ppt height 50 ppt, move position center" ;;
+            "quake_term") CMD_STR="$CMD_STR, resize set width 100 ppt height 40 ppt, move position 0 0" ;;
         esac
         swaymsg "$CMD_STR"
     fi
