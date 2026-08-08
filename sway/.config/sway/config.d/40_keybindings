@@ -65,13 +65,13 @@ bindcode {
 bindsym $mod+Return exec bash $scripts/actions/focus_terminal.sh
 bindsym $mod+p      exec $window_switcher
 bindsym $mod+w      exec bash $scripts/actions/toggle_eww.sh
-bindsym $mod+t      exec bash $scripts/actions/toggle_status_hud.sh
+
 bindsym $mod+F1     exec $toggle_scratchpad scratchpad_nmtui    "footclient --app-id=scratchpad_nmtui -e nmtui"
 bindsym $mod+F2     exec $toggle_scratchpad scratchpad_pulsemixer "footclient --app-id=scratchpad_pulsemixer -e pulsemixer"
 bindsym $mod+F3     exec $toggle_scratchpad scratchpad_bluetui   "footclient --app-id=scratchpad_bluetui -e bluetui"
 bindsym $mod+F4     exec $toggle_scratchpad spotify "spotify"
 bindsym $mod+x exec eww close detail_popup
-bindsym $mod+v exec bash $scripts/clipmenu.sh
+bindsym $mod+v exec dms ipc call widget toggle clipboardPlus
 
 # --- DICTIONARY & TRANSLATION (SUBMAP) ---
 mode "Translate" {
@@ -106,16 +106,9 @@ for_window [app_id="zh_to_vi_input"]  floating enable, border pixel 2, move posi
 # Translation History
 bindsym $mod+Alt+e exec $toggle_scratchpad scratchpad_trans_history "foot --app-id=scratchpad_trans_history -e ~/.config/eww/scripts/trans_history.sh"
 
-# --- SYSTEM & POWER (SUBMAP) ---
-mode "Power" {
-    bindsym s exec eww close power_menu, exec systemctl poweroff
-    bindsym r exec eww close power_menu, exec systemctl reboot
-    bindsym l exec eww close power_menu, exec loginctl lock-session, mode "default"
-    bindsym o exec eww close power_menu, exec swaymsg exit
-    bindsym Escape exec eww close power_menu, mode "default"
-    bindsym Return exec eww close power_menu, mode "default"
-}
-bindsym $mod+Escape exec eww open power_menu, mode "Power"
+# --- SYSTEM & POWER ---
+bindsym $mod+Shift+p exec dms ipc call settings toggleWith plugins
+bindsym $mod+Escape exec dms ipc call powermenu toggle
 
 bindsym $mod+Shift+c   reload, exec notify-send "Sway" "Configuration reloaded!" -t 2000
 
@@ -176,6 +169,7 @@ bindsym --locked XF86MonBrightnessUp   exec swayosd-client --brightness raise
 bindsym --locked XF86MonBrightnessDown exec swayosd-client --brightness lower
 
 bindsym $mod+F11    exec $toggle_scratchpad ferdium "ferdium"
-bindsym $mod+F12    exec swaync-client -t -sw
+bindsym $mod+F12    exec dms ipc call dash toggle
+bindsym $mod+F9     exec dms ipc call notifications toggle
 
 bindsym --locked Caps_Lock exec swayosd-client --caps-lock

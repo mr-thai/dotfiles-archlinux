@@ -3,21 +3,21 @@
 # ==========================================
 
 # --- CORE SYSTEM (Wayland & Polkit) ---
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway XDG_SESSION_TYPE=wayland XDG_SESSION_ID XDG_VTNR
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE XDG_SESSION_ID XDG_VTNR
 exec bash -c 'sleep 1 && systemctl --user restart xdg-desktop-portal-wlr.service xdg-desktop-portal.service'
 exec gnome-keyring-daemon --start --components=secrets
 
 # --- POWER MANAGEMENT & LOCK SCREEN ---
-exec_always ~/.config/sway/scripts/start_swayidle.sh
+# exec_always ~/.config/sway/scripts/start_swayidle.sh
 
 # --- BACKGROUND DAEMONS ---
 exec udiskie
 exec kanshi
 
 exec ~/.config/sway/scripts/actions/sway_swallow.py &
-exec_always "pkill swaync; sleep 1 && swaync"
+# exec_always "pkill swaync; sleep 1 && swaync"
 exec_always bash -c "bash ~/.config/sway/scripts/workspace_osd.sh &"
 exec foot --server
 exec autotiling
@@ -27,6 +27,8 @@ exec wl-paste --type image --watch bash -c 'wl-paste -l | grep -q "x-kde-passwor
 exec xwaylandvideobridge
 
 exec bash -c "sleep 2 && eww open fcitx_hud && eww open status_hud"
+# --- DankMaterialShell ---
+exec_always dms kill; exec dms run
 exec valent --gapplication-service
 exec_always "pkill swayosd-server; swayosd-server"
 
