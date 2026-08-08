@@ -1,0 +1,108 @@
+{
+  "qrGenerator": {
+    "enabled": true
+  },
+  "dankTranslateAI": {
+    "enabled": true
+  },
+  "calculator": {
+    "enabled": true,
+    "trigger": "="
+  },
+  "dropdownMenu": {
+    "enabled": true,
+    "variants": [
+      {
+        "icon": "expand_circle_down",
+        "text": "",
+        "pillDisplay": "both",
+        "items": [
+          {
+            "type": "popout",
+            "icon": "",
+            "label": "",
+            "widgetId": "lutrisLauncher",
+            "display": "both"
+          }
+        ],
+        "id": "variant_1786163522649",
+        "name": "á"
+      }
+    ]
+  },
+  "githubNotifier": {
+    "enabled": true
+  },
+  "dankBitwarden": {
+    "enabled": true,
+    "trigger": "["
+  },
+  "wallpaperCarousel": {
+    "enabled": true
+  },
+  "sshConnections": {
+    "enabled": true
+  },
+  "githubHeatmapPlus": {
+    "enabled": true
+  },
+  "alarmClock": {
+    "enabled": true
+  },
+  "dockerManager": {
+    "enabled": true,
+    "groupByCompose": false
+  },
+  "quickCapture": {
+    "enabled": true
+  },
+  "lutrisLauncher": {
+    "enabled": true
+  },
+  "hiddenBar": {
+    "enabled": true
+  },
+  "bongoCat": {
+    "enabled": true
+  },
+  "networkIndicator": {
+    "enabled": true
+  },
+  "systemMonitorPlus": {
+    "enabled": true,
+    "cpuTempEnabled": false,
+    "ramUsageEnabled": true,
+    "networkSpeedEnabled": false
+  },
+  "clipboardPlus": {
+    "enabled": true,
+    "emojiUnicodeEnabled": false,
+    "tabOrder": "clipboard,search,category,pinned,todo,emoji",
+    "tabOrderEnabled": "clipboard,search,category,pinned,todo",
+    "notecardsEnabled": true,
+    "todoEnabled": false,
+    "emojiStandaloneLayoutOnIpc": true,
+    "backgroundOpacity": 15,
+    "panelOpacityClipboard": 95
+  },
+  "volumeMixer": {
+    "enabled": true
+  },
+  "tasks": {
+    "enabled": true
+  },
+  "dankKDEConnect": {
+    "enabled": true,
+    "selectedDeviceId": "9f3c251b2e464825955ff12d31dd5380",
+    "scanSubdirectories": true
+  },
+  "dankTranslate": {
+    "enabled": true
+  },
+  "dankActions": {
+    "enabled": true
+  },
+  "dankDesktopWeather": {
+    "enabled": false
+  }
+}

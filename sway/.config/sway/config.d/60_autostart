@@ -26,15 +26,17 @@ exec wl-paste --type text  --watch bash -c 'wl-paste -l | grep -q "x-kde-passwor
 exec wl-paste --type image --watch bash -c 'wl-paste -l | grep -q "x-kde-passwordManagerHint" || cliphist store'
 exec xwaylandvideobridge
 
-exec bash -c "sleep 2 && eww open fcitx_hud && eww open status_hud"
+exec bash -c "sleep 2 && eww open fcitx_hud"
 # --- DankMaterialShell ---
 exec_always dms kill; exec dms run
 exec valent --gapplication-service
-exec_always "pkill swayosd-server; swayosd-server"
+# exec_always "pkill swayosd-server; swayosd-server"
 
 # --- AUTOSTART APPS ---
 exec bash -c 'sleep 1.5 && swaymsg "workspace 1" && (footclient || foot)'
 exec ferdium
+exec spotify
 exec obsidian
 exec anki
 exec zen "zen-browser"
+
