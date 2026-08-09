@@ -633,6 +633,10 @@
       ],
       "rightWidgets": [
         {
+          "id": "network_speed_monitor",
+          "enabled": true
+        },
+        {
           "id": "systemMonitorPlus",
           "enabled": true
         },
