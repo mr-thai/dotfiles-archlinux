@@ -153,7 +153,7 @@ bindsym $mod+Alt+i           exec bash $scripts/actions/focus_or_launch.sh zen "
 # bindsym $mod+backslash exec $toggle_scratchpad obsidian "obsidian"
 bindsym $mod+backslash exec bash $scripts/actions/focus_or_launch.sh obsidian
 bindsym $mod+Alt+a     exec bash $scripts/actions/focus_or_launch.sh anki
-bindsym $mod+Alt+d     exec bash $scripts/actions/focus_or_launch.sh dbeaver
+bindsym $mod+Alt+d     exec bash $scripts/actions/focus_or_launch.sh beekeeper-studio
 bindsym $mod+Alt+b     exec bash $scripts/actions/focus_or_launch.sh bruno
 bindsym $mod+Alt+o     exec bash $scripts/actions/focus_or_launch.sh com.obsproject.Studio obs
 bindsym $mod+Alt+v     exec bash $scripts/actions/focus_or_launch.sh virt-manager
@@ -179,3 +179,7 @@ bindsym $mod+F11    exec bash $scripts/actions/focus_or_launch.sh ferdium
 bindsym $mod+F12    exec dms ipc call notifications toggle
 
 # bindsym --locked Caps_Lock exec swayosd-client --caps-lock
+
+# --- WARPD (Keyboard Mouse) ---
+bindsym Mod1+space       exec warpd --hint2
+bindsym Mod1+Shift+space exec warpd --normal

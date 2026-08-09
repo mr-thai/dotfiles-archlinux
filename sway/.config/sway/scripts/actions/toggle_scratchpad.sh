@@ -36,7 +36,7 @@ if [ "$WIN_JSON_ARRAY" != "[]" ]; then
             
             # Lưu ý: Việc resize sẽ áp dụng lên tất cả, nhưng nhờ Sway rules mới thêm, popup sẽ tự trồi lên
             case "$APP_ID" in
-                "zen"|"firefox-developer-edition"|"firefox"|"obsidian"|"dbeaver"|"bruno") CMD_STR="$CMD_STR, resize set width 90 ppt height 90 ppt, move position center" ;;
+                "zen"|"firefox-developer-edition"|"firefox"|"obsidian"|"beekeeper-studio"|"bruno") CMD_STR="$CMD_STR, resize set width 90 ppt height 90 ppt, move position center" ;;
                 "anki") CMD_STR="$CMD_STR, resize set width 75 ppt height 75 ppt, move position center" ;;
                 "sys_dashboard"|"virt-manager") CMD_STR="$CMD_STR, resize set width 90 ppt height 80 ppt, move position center" ;;
                 "scratchpad_nmtui") CMD_STR="$CMD_STR, resize set width 35 ppt height 60 ppt, move position center" ;;
@@ -72,7 +72,7 @@ else
         TARGET_WS="current"
         CMD_STR="[con_id=$CON_ID] move workspace $TARGET_WS, workspace $TARGET_WS, focus"
         case "$APP_ID" in
-            "zen"|"firefox-developer-edition"|"firefox"|"obsidian"|"dbeaver"|"bruno") CMD_STR="$CMD_STR, resize set width 90 ppt height 90 ppt, move position center" ;;
+            "zen"|"firefox-developer-edition"|"firefox"|"obsidian"|"beekeeper-studio"|"bruno") CMD_STR="$CMD_STR, resize set width 90 ppt height 90 ppt, move position center" ;;
             "anki") CMD_STR="$CMD_STR, resize set width 75 ppt height 75 ppt, move position center" ;;
             "sys_dashboard"|"virt-manager") CMD_STR="$CMD_STR, resize set width 90 ppt height 80 ppt, move position center" ;;
             "scratchpad_nmtui") CMD_STR="$CMD_STR, resize set width 35 ppt height 60 ppt, move position center" ;;

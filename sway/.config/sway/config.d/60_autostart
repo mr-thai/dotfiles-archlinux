@@ -8,6 +8,7 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSO
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE XDG_SESSION_ID XDG_VTNR
 exec bash -c 'sleep 1 && systemctl --user restart xdg-desktop-portal-wlr.service xdg-desktop-portal.service'
 exec gnome-keyring-daemon --start --components=secrets
+exec warpd
 
 # --- POWER MANAGEMENT & LOCK SCREEN ---
 # exec_always ~/.config/sway/scripts/start_swayidle.sh

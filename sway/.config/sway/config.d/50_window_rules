@@ -38,8 +38,8 @@ for_window [app_id="scratchpad_trans_history"] floating enable, border pixel 2, 
 
 assign [app_id="(?i).*obsidian.*"] workspace number 7
 assign [class="(?i).*obsidian.*"] workspace number 7
-assign [app_id="(?i)dbeaver"] workspace number 2
-assign [class="(?i)dbeaver"] workspace number 2
+assign [app_id="(?i)beekeeper-studio"] workspace number 2
+assign [class="(?i)beekeeper-studio"] workspace number 2
 assign [app_id="(?i)bruno"] workspace number 2
 assign [class="(?i)bruno"] workspace number 2
 
