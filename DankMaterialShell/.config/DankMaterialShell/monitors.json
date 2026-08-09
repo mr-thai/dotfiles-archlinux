@@ -84,6 +84,23 @@
           "disabled": false
         }
       }
+    },
+    {
+      "id": "auto_5af6115",
+      "name": "",
+      "outputs": {
+        "eDP-1": {
+          "mode": "1920x1080@59.977",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false
+        }
+      }
     }
   ]
 }

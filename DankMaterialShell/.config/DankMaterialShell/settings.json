@@ -608,6 +608,10 @@
           "enabled": true
         },
         {
+          "id": "alarmClock",
+          "enabled": true
+        },
+        {
           "id": "runningApps",
           "enabled": true,
           "runningAppsCompactMode": true,
@@ -632,10 +636,6 @@
         }
       ],
       "rightWidgets": [
-        {
-          "id": "network_speed_monitor",
-          "enabled": true
-        },
         {
           "id": "systemMonitorPlus",
           "enabled": true
@@ -814,7 +814,11 @@
     "edit",
     "delete"
   ],
-  "launcherPluginVisibility": {},
+  "launcherPluginVisibility": {
+    "obsidianSearch": {
+      "allowWithoutTrigger": false
+    }
+  },
   "launcherPluginOrder": [],
   "frameEnabled": false,
   "frameThickness": 16,
