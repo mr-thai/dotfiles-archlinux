@@ -38,6 +38,11 @@ for_window [app_id="scratchpad_trans_history"] floating enable, border pixel 2, 
 # for_window [app_id="(?i).*obsidian.*"]              floating enable, border pixel 2, resize set width 90 ppt height 90 ppt, move position center, move scratchpad, move output DP-1
 # for_window [class="(?i).*obsidian.*"]               floating enable, border pixel 2, resize set width 90 ppt height 90 ppt, move position center, move scratchpad, move output DP-1
 
+# --- STICKY FLOATING WINDOWS (PiP, Calculators) ---
+for_window [title="(?i)Picture-in-Picture"] floating enable, sticky enable, border pixel 2
+for_window [app_id="(?i).*calculator.*"] floating enable, sticky enable, resize set width 400 px height 600 px, move position center
+for_window [class="(?i).*calculator.*"] floating enable, sticky enable, resize set width 400 px height 600 px, move position center
+
 assign [app_id="(?i).*obsidian.*"] workspace number 7
 assign [class="(?i).*obsidian.*"] workspace number 7
 assign [app_id="(?i)beekeeper-studio"] workspace number 2

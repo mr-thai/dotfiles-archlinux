@@ -47,9 +47,9 @@ alias tiengviet="fcitx5-remote -s bamboo"
 
 
 # ls (unified, colored, icons with eza)
-alias ls='eza --icons=always --color=always'
-alias ll='eza -la --icons=always --group-directories-first --git --header --no-user'
-alias lt='eza --tree --level=2 --icons=always'
+alias ls='eza --icons=always --color=always --git --group-directories-first --hyperlink'
+alias ll='eza -la --icons=always --color=always --group-directories-first --git --header --no-user --hyperlink'
+alias lt='eza --tree --level=2 --icons=always --group-directories-first --hyperlink'
 
 
 # grep
@@ -183,7 +183,7 @@ alias mkd='mkdir -p'
 md() {
     mkdir -p "$1" && cd "$1"
 }
-alias tree='eza --tree --level=3 --icons=always --ignore-glob=".git"'
+alias tree='eza --tree --level=3 --icons=always --group-directories-first --ignore-glob=".git" --hyperlink'
 
 # paru package management
 alias psi='paru -S'

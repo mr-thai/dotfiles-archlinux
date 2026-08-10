@@ -37,7 +37,7 @@ exec valent --gapplication-service
 exec bash -c 'sleep 1.5 && swaymsg "workspace 1" && (footclient || foot)'
 # exec ferdium
 # exec spotify
-exec Zalo.AppImage --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations
+exec Zalo.AppImage
 exec Telegram
 exec obsidian
 exec anki

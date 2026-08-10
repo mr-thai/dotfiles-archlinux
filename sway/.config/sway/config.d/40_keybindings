@@ -74,7 +74,7 @@ bindsym $mod+F3     exec bash $scripts/actions/focus_or_launch.sh telegram "Tele
 bindsym $mod+F4     exec bash $scripts/actions/focus_or_launch.sh vesktop
 bindsym $mod+x exec eww close detail_popup
 bindsym $mod+v exec dms ipc call clipboard toggle
-
+bindsym $mod+m exec bash $scripts/actions/focus_or_launch.sh spotify
 # --- DICTIONARY & TRANSLATION (SUBMAP) ---
 mode "Translate" {
     bindsym e exec eww close trans_menu, exec bash ~/.config/eww/scripts/english_practice.sh, mode "default"
