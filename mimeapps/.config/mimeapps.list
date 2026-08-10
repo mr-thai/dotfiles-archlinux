@@ -47,3 +47,4 @@ image/webp=imv.desktop
 x-scheme-handler/magnet=aria2-magnet.desktop
 x-scheme-handler/antigravity=antigravity.desktop
 x-scheme-handler/bruno=bruno.desktop
+x-scheme-handler/discord=vesktop.desktop

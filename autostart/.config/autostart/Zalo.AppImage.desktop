@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Zalo.AppImage
+Comment=Zalo.AppImagestartup script
+Exec=/home/mr-thai/dotfiles/local-scripts/.local/bin/Zalo.AppImage
+StartupNotify=false
+Terminal=false

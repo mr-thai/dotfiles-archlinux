@@ -637,6 +637,11 @@
       ],
       "rightWidgets": [
         {
+          "id": "cpuUsage",
+          "enabled": true,
+          "minimumWidth": true
+        },
+        {
           "id": "systemMonitorPlus",
           "enabled": true
         },

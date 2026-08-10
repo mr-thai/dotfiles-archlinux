@@ -68,9 +68,10 @@ bindsym $mod+w      exec bash $scripts/actions/toggle_eww.sh
 
 bindsym $mod+F1     exec dms ipc call widget toggle clipboardPlus
 # bindsym $mod+F2     exec dms ipc call keybinds toggle
-bindsym $mod+F2     exec $toggle_scratchpad spotify "spotify"
+bindsym $mod+F2     exec bash $scripts/actions/focus_or_launch.sh zalo "gtk-launch zalo"
 # bindsym $mod+F3     exec dms ipc call processlist toggle
-# bindsym $mod+F4     exec $toggle_scratchpad spotify "spotify"
+bindsym $mod+F3     exec bash $scripts/actions/focus_or_launch.sh telegram "Telegram"
+bindsym $mod+F4     exec bash $scripts/actions/focus_or_launch.sh vesktop
 bindsym $mod+x exec eww close detail_popup
 bindsym $mod+v exec dms ipc call clipboard toggle
 
@@ -173,7 +174,7 @@ bindsym --locked XF86MonBrightnessDown exec dms ipc call brightness decrement 5 
 
 # bindsym $mod+F11    exec $toggle_scratchpad ferdium "ferdium"
 bindsym $mod+F10    exec dms ipc call dash open 0
-bindsym $mod+F11    exec bash $scripts/actions/focus_or_launch.sh ferdium
+# bindsym $mod+F11    exec bash $scripts/actions/focus_or_launch.sh ferdium
 # bindsym $mod+F9     exec dms ipc call notifications toggle
 # bindsym $mod+F12    exec dms ipc call dash toggle
 bindsym $mod+F12    exec dms ipc call notifications toggle

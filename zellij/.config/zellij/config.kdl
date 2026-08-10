@@ -51,11 +51,10 @@ keybinds clear-defaults=true {
 
         // Tính năng mở rộng & Hành động
         bind "Alt s" { ToggleActiveSyncTab; }
-        bind "Alt d" { Detach; }
+        bind "Alt q" { Detach; }
         bind "Alt /" { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "Alt e" { EditScrollback; SwitchToMode "normal"; }
         bind "Ctrl g" { SwitchToMode "locked"; }
-        bind "Alt q" { Quit; }
         bind "Alt c" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true

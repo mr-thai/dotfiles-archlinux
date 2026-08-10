@@ -19,9 +19,11 @@ for_window [app_id="kbptr"]            floating enable, border none, resize set 
 # for_window [app_id="ferdium"]          floating enable, move scratchpad, border pixel 1, resize set width 900 px height 1050 px, move position 1000 px 15 px
 # for_window [class="(?i)ferdium"]       floating enable, move scratchpad, border pixel 1, resize set width 900 px height 1050 px, move position 1000 px 15 px
 
-# Assign Ferdium to workspace 8
-assign [app_id="(?i)ferdium"] workspace number 8
-assign [class="(?i)ferdium"] workspace number 8
+# Assign Zalo and Telegram to workspace 8
+assign [app_id="(?i)zalo"] workspace number 8
+assign [class="(?i)zalo"] workspace number 8
+assign [app_id="(?i)org.telegram.desktop"] workspace number 8
+assign [class="(?i)telegramdesktop"] workspace number 8
 for_window [class="(?i)spotify"]       floating enable, move scratchpad, border pixel 2, resize set width 80 ppt height 80 ppt, move position center
 for_window [class="xwaylandvideobridge"] floating enable, move scratchpad, no_focus
 for_window [title="xwaylandvideobridge"] floating enable, move scratchpad, no_focus
