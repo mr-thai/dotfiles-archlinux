@@ -3,6 +3,11 @@
 --
 -- Add any additional autocmds here
 
+-- Ép tất cả các file .js nhận diện là React (javascriptreact) để bật tính năng Snippet của React
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.js",
+  command = "set filetype=javascriptreact",
+})
 
 -- with `vim.api.nvim_create_autocmd`
 --

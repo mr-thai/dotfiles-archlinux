@@ -1,0 +1,12 @@
+return {
+  {
+    "L3MON4D3/LuaSnip",
+    opts = function()
+      -- Mở rộng filetype để đảm bảo các file React (.jsx, .tsx) 
+      -- sẽ được nạp toàn bộ các Snippet từ bộ javascript/react của friendly-snippets
+      local ls = require("luasnip")
+      ls.filetype_extend("javascriptreact", { "javascript" })
+      ls.filetype_extend("typescriptreact", { "javascript" })
+    end,
+  },
+}

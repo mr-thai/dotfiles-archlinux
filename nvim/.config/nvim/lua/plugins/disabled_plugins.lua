@@ -1,6 +1,7 @@
 return {
 
-  -- Tắt plugin di chuyển nhảy cóc để ép học các lệnh f, t, /, ? của Base Vim
+  -- flash.nvim: BẬT lại - tính năng nhảy vị trí độc quyền của Neovim, VSCode không có
+  -- Config chi tiết ở lua/plugins/flash.lua
   { "folke/flash.nvim", enabled = true },
 
   -- Tắt bảng tìm kiếm & thay thế (grug-far) trong ảnh để học lệnh :%s của Base Vim

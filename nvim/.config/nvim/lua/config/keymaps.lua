@@ -31,6 +31,10 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Search Prev" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll Down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll Up" })
 
+-- VSCode-like Undo Breakpoints (Ngắt dòng thời gian Undo)
+-- Lưu lại lịch sử mỗi khi bấm Dấu Cách
+vim.keymap.set("i", "<Space>", "<Space><c-g>u", { desc = "Undo breakpoint on Space" })
+
 -- Better window navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Left Window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Lower Window" })

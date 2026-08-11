@@ -9,6 +9,7 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CU
 exec bash -c 'sleep 1 && systemctl --user restart xdg-desktop-portal-wlr.service xdg-desktop-portal.service'
 exec gnome-keyring-daemon --start --components=secrets
 exec warpd
+exec easyeffects --gapplication-service
 
 # --- POWER MANAGEMENT & LOCK SCREEN ---
 # exec_always ~/.config/sway/scripts/start_swayidle.sh
