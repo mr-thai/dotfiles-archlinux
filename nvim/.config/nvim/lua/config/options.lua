@@ -16,7 +16,7 @@ vim.opt.relativenumber = true -- Relative line numbers for easier movement
 vim.opt.expandtab = true   -- Use spaces instead of tabs
 vim.opt.shiftwidth = 4     -- Size of an indent
 vim.opt.tabstop = 4         -- Number of spaces tabs count for
-vim.opt.smartindent = true  -- Insert indents automatically
+vim.opt.smartindent = true
 vim.opt.autoindent = true   -- Copy indent from current line when starting a new one
 
 -- Search behavior

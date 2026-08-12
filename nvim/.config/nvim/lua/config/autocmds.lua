@@ -29,3 +29,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
   end,
 })
+
+-- SỬA LỖI THỤT LỀ JSX TRONG FILE .JS
+-- Neovim mặc định coi .js là JS thuần (không có JSX). Nếu code React trong file .js, 
+-- Treesitter sẽ bị "mù" và từ chối thụt lề khi ấn Enter ở return().
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.js",
+  command = "set filetype=javascriptreact",
+})

@@ -11,12 +11,14 @@
 return {
   {
     "saghen/blink.cmp",
-    -- Thêm blink-ripgrep làm dependency của blink.cmp
-    -- Theo đúng tài liệu gốc: https://github.com/mikavilpas/blink-ripgrep.nvim
+    -- Thêm blink-ripgrep và blink-cmp-copilot làm dependency
     dependencies = {
       {
         "mikavilpas/blink-ripgrep.nvim",
-        version = "*", -- dùng bản stable mới nhất
+        version = "*",
+      },
+      {
+        "giuxtaposition/blink-cmp-copilot",
       },
     },
     opts = {
@@ -93,17 +95,32 @@ return {
 
       -- -----------------------------------------------------------------------
       -- SOURCES - Nguồn cung cấp gợi ý
-      -- Source: config/sources.lua + README blink-ripgrep.nvim
+      -- Source: config/sources.lua + README blink-ripgrep.nvim + README lazydev.nvim
       -- -----------------------------------------------------------------------
       sources = {
-        -- Thêm "ripgrep" vào danh sách nguồn mặc định
-        -- Theo README gốc: phải khai báo cả ở `default` lẫn `providers`
-        default = { "lsp", "path", "snippets", "buffer", "ripgrep" },
+        -- Thêm "copilot" vào danh sách nguồn mặc định (nằm trên cùng)
+        default = { "copilot", "lazydev", "lsp", "path", "snippets", "buffer", "ripgrep" },
         providers = {
+          -- Copilot: Hiện trực tiếp trong menu blink, không dùng chữ mờ
+          copilot = {
+            name = "copilot",
+            module = "blink-cmp-copilot",
+            score_offset = 90, -- Ưu tiên thấp hơn LSP (100) để không làm mất chức năng tự động Import
+            async = true,
+          },
+          -- Lazydev: Hỗ trợ gợi ý code Neovim Lua API
+          -- Chỉ tự động kích hoạt khi bạn sửa các file .lua
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 100, -- Ưu tiên cao nhất khi code Lua
+          },
+
           supermaven = { enabled = false }, -- Tắt trong menu, dùng qua toggle riêng
           lsp        = { score_offset = 100 }, -- LSP luôn ưu tiên cao nhất
           buffer     = { score_offset = -5  }, -- Buffer ưu tiên thấp để không che LSP
           -- snippets: KHÔNG override, LazyVim đã kết nối với LuaSnip tự động
+
 
           -- Ripgrep: external provider - BẮT BUỘC có module + name theo tài liệu gốc
           -- Tìm kiếm từ khóa trong toàn bộ project, giúp không bị quên tên biến/hàm
