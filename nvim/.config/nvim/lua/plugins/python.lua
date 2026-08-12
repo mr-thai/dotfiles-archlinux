@@ -13,9 +13,6 @@ return {
     },
   },
 
-  -- python-import.nvim: Tự động thêm import Python khi gõ tên module chưa import
-  -- Hoạt động local qua Tree-sitter + LSP, không cần API hay server riêng
-  -- Dùng: <leader>i để thêm import cho symbol dưới cursor
   {
     "kiyoon/python-import.nvim",
     build = "pip3 install --user -r requirements.txt",

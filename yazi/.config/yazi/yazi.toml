@@ -51,14 +51,11 @@ rules = [
 ]
 
 [plugin]
-# Khôi phục toàn bộ Previewer và Opener của bạn
 prepend_previewers = [
-    # Ouch
     { mime = "application/x-tar", run = "ouch" },
     { mime = "application/zip", run = "ouch" },
     { mime = "application/x-7z-compressed", run = "ouch" },
     { mime = "application/x-rar", run = "ouch" },
-    # Mediainfo
     { mime = "video/*", run = "mediainfo" },
     { mime = "audio/*", run = "mediainfo" }
 ]

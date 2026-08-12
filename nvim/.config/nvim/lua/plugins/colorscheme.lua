@@ -1,5 +1,4 @@
 return {
-    -- Enable catppuccin with modern integrations
     {
         "catppuccin/nvim",
         name = "catppuccin",
@@ -38,14 +37,11 @@ return {
             color_overrides = {},
             custom_highlights = function(colors)
                 return {
-                    -- Inlay Hints: chữ nghiêng, màu xanh dương nhạt, nền mờ phía sau
                     LspInlayHint = {
                         fg = colors.blue,
                         bg = colors.surface0,
                         style = { "italic" },
                     },
-                    -- Màu cho các link trong Obsidian / Markdown
-                    -- Dùng màu xanh ngọc (sapphire) in đậm để nổi bật vừa phải, không chói
                     RenderMarkdownWikiLink = {
                         fg = colors.sapphire,
                         style = { "bold" },
@@ -62,7 +58,6 @@ return {
                         fg = colors.sapphire,
                         style = { "bold" },
                     },
-                    -- Highlight mờ và có nền tối cho code AI (Supermaven)
                     SupermavenSuggestion = {
                         fg = colors.surface2, -- Chữ xám mờ
                         bg = colors.crust,    -- Nền đen sẫm
@@ -115,7 +110,6 @@ return {
         },
     },
 
-    -- Configure LazyVim to use catppuccin
     {
         "LazyVim/LazyVim",
         opts = {

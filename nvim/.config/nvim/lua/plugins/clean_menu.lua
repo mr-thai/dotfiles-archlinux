@@ -3,7 +3,6 @@ return {
     "folke/which-key.nvim",
     opts = function(_, opts)
       opts.spec = opts.spec or {}
-      -- Ép Which-key phải ẩn đi các menu và phím tắt rác
       table.insert(opts.spec, {
         { "<leader>G", hidden = true },
         { "<leader>d", hidden = true },
@@ -16,7 +15,6 @@ return {
         { "<leader>fT", hidden = true },
         { "<C-/>", hidden = true },
         { "<c-_>", hidden = true },
-        -- Dọn dẹp menu Root siêu rác
         { "<leader>K", hidden = true }, -- Keywordprg
         { "<leader>E", hidden = true }, -- Explorer (cwd) (đã có e là đủ)
         { "<leader>,", hidden = true }, -- Switch Buffer (đã có [b ]b)
@@ -26,16 +24,13 @@ return {
         { "<leader>n", hidden = true }, -- Notification History
         { "<leader>w", hidden = true }, -- Windows menu
         
-        -- Dọn dẹp menu Buffer
         { "<leader>bD", hidden = true },
         { "<leader>bi", hidden = true },
         
-        -- Dọn dẹp menu Code
         { "<leader>cF", hidden = true },
         { "<leader>cf", hidden = true },
         { "<leader>ch", hidden = true },
 
-        -- Dọn dẹp menu Git
         { "<leader>gB", hidden = true },
         { "<leader>gc", hidden = true },
         { "<leader>gd", hidden = true },
@@ -48,13 +43,10 @@ return {
         { "<leader>gS", hidden = true },
         { "<leader>gY", hidden = true },
 
-        -- Dọn dẹp menu File
         { "<leader>f", hidden = true },
 
-        -- Xóa sổ hoàn toàn menu x (đã dời Trouble sang menu Code cx)
         { "<leader>x", hidden = true },
 
-        -- Dọn dẹp menu Search (giữ lại sw, ss, st, sp)
         { "<leader>sn", hidden = true },
         { "<leader>sa", hidden = true },
         { "<leader>sb", hidden = true },
@@ -82,7 +74,6 @@ return {
         { "<leader>s\"", hidden = true },
         { "<leader>s/", hidden = true },
 
-        -- Dọn dẹp menu UI (chỉ giữ lại z, w, d, f, F, h, c, s, b, C)
         { "<leader>uA", hidden = true },
         { "<leader>uD", hidden = true },
         { "<leader>ud", hidden = true },
@@ -103,23 +94,16 @@ return {
         { "<leader>uz", hidden = true },
         { "<leader>uZ", hidden = true },
 
-        -- Rút gọn tên hiển thị (ngắn gọn, xúc tích)
         { "<leader>e", hidden = true },
         { "<leader><space>", desc = "Files" },
         { "<leader>/", hidden = true },
         { "<leader>sw", desc = "Word" },
 
-        -- Đổi tên nhóm U thành System / Update
         { "<leader>u", group = "+System / Update", icon = "" },
         { "<leader>ud", group = "+DevDocs", icon = "󰠮" },
 
-
-        -- Nhóm Code
         { "<F2>", desc = "DevDocs", icon = "󰠮" },
 
-
-
-        -- Ẩn các phím thừa
         { "<leader>cm", hidden = true },
         { "<leader>cR", hidden = true },
         { "<leader>cS", hidden = true },
@@ -132,19 +116,16 @@ return {
         { "<leader>cd", hidden = true },
         { "<leader>sp", hidden = true },
         
-        -- Đổi tên nhóm Search
         { "<leader>ss", desc = "Symbol" },
         { "<leader>sS", desc = "Global Symbol" },
         { "<leader>fc", desc = "Config Files" },
         { "<leader>uC", hidden = true },
         { "<leader>uF", hidden = true },
 
-        -- Lazygit
         { "<F3>", desc = "Lazygit", icon = "󰊢" },
       })
     end,
   },
-  -- Vô hiệu hóa các phím mặc định của plugin mà bạn không muốn dùng
   {
     "folke/snacks.nvim",
     keys = {

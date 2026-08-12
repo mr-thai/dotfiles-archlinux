@@ -62,14 +62,12 @@ bindcode {
 }
 
 # --- QUICK APP SHORTCUTS ---
-bindsym $mod+Return exec bash $scripts/actions/focus_terminal.sh
+bindsym $mod+Return exec bash $scripts/actions/focus_or_launch.sh foot
 bindsym $mod+p      exec $window_switcher
 bindsym $mod+w      exec bash $scripts/actions/toggle_eww.sh
 
 bindsym $mod+F1     exec dms ipc call widget toggle clipboardPlus
-# bindsym $mod+F2     exec dms ipc call keybinds toggle
 bindsym $mod+F2     exec bash $scripts/actions/focus_or_launch.sh zalo "gtk-launch zalo"
-# bindsym $mod+F3     exec dms ipc call processlist toggle
 bindsym $mod+F3     exec bash $scripts/actions/focus_or_launch.sh telegram "Telegram"
 bindsym $mod+F4     exec bash $scripts/actions/focus_or_launch.sh vesktop
 bindsym $mod+x exec eww close detail_popup
@@ -77,25 +75,23 @@ bindsym $mod+v exec dms ipc call clipboard toggle
 bindsym $mod+m exec bash $scripts/actions/focus_or_launch.sh spotify
 # --- DICTIONARY & TRANSLATION (SUBMAP) ---
 mode "Translate" {
-    bindsym e exec eww close trans_menu, exec bash ~/.config/eww/scripts/english_practice.sh, mode "default"
-    bindsym Shift+e exec eww close trans_menu, exec bash ~/.config/eww/scripts/en_to_vi.sh, mode "default"
+    bindsym e exec eww close trans_menu, exec bash ~/.config/eww/scripts/prompt_translate.sh start VI EN-US "English Practice" practice_input bamboo "󰚩 VI → EN" "Vietnamese", mode "default"
+    bindsym Shift+e exec eww close trans_menu, exec bash ~/.config/eww/scripts/prompt_translate.sh start EN VI "English → Vietnamese" en_to_vi_input keyboard-us "󰚩 EN → VI" "English", mode "default"
     
-    bindsym n exec eww close trans_menu, exec bash ~/.config/eww/scripts/vi_to_ja.sh, mode "default"
-    bindsym Shift+n exec eww close trans_menu, exec bash ~/.config/eww/scripts/ja_to_vi.sh, mode "default"
+    bindsym n exec eww close trans_menu, exec bash ~/.config/eww/scripts/prompt_translate.sh start VI JA "Vietnamese → Japanese" vi_to_ja_input bamboo "󰚩 VI → JA" "Vietnamese", mode "default"
+    bindsym Shift+n exec eww close trans_menu, exec bash ~/.config/eww/scripts/prompt_translate.sh start JA VI "Japanese → Vietnamese" ja_to_vi_input mozc "󰚩 JA → VI" "Japanese", mode "default"
     
-    bindsym z exec eww close trans_menu, exec bash ~/.config/eww/scripts/vi_to_zh.sh, mode "default"
-    bindsym Shift+z exec eww close trans_menu, exec bash ~/.config/eww/scripts/zh_to_vi.sh, mode "default"
+    bindsym z exec eww close trans_menu, exec bash ~/.config/eww/scripts/prompt_translate.sh start VI ZH "Vietnamese → Chinese" vi_to_zh_input bamboo "󰚩 VI → ZH" "Vietnamese", mode "default"
+    bindsym Shift+z exec eww close trans_menu, exec bash ~/.config/eww/scripts/prompt_translate.sh start ZH VI "Chinese → Vietnamese" zh_to_vi_input pinyin "󰚩 ZH → VI" "Chinese", mode "default"
     
-    bindsym t exec eww close trans_menu, exec bash ~/.config/eww/scripts/translate.sh, mode "default"
-    bindsym o exec eww close trans_menu, exec bash ~/.config/eww/scripts/ocr_translate.sh, mode "default"
-    
+
     bindsym Escape exec eww close trans_menu, mode "default"
     bindsym Return exec eww close trans_menu, mode "default"
 }
 bindsym $mod+d exec eww open trans_menu, mode "Translate"
 
 # Giữ lại phím English theo yêu cầu
-bindsym $mod+e exec bash ~/.config/eww/scripts/english_practice.sh
+bindsym $mod+e exec bash ~/.config/eww/scripts/prompt_translate.sh start VI EN-US "English Practice" practice_input bamboo "󰚩 VI → EN" "Vietnamese"
 
 # Window rules for translation popups
 for_window [app_id="practice_input"]  floating enable, border pixel 2, move position center
@@ -132,14 +128,15 @@ mode "Capture" {
 bindsym $mod+s exec bash $scripts/actions/screenshot_mode_osd.sh, mode "Capture"
 bindsym $mod+Shift+r exec bash $scripts/actions/record_screen.sh stop
 
+
 # ==========================================
 # FCITX KEYBOARD LAYOUT MENU ($mod+space)
 # ==========================================
 mode "Fcitx" {
-    bindsym v exec bash -c 'fcitx5-remote -s bamboo || fcitx5-remote -s unikey || fcitx5-remote -s vni', exec eww close fcitx_menu, mode "default"
-    bindsym a exec bash -c 'fcitx5-remote -s keyboard-us || fcitx5-remote -s keyboard-us-intl', exec eww close fcitx_menu, mode "default"
-    bindsym t exec bash -c 'fcitx5-remote -s pinyin || fcitx5-remote -s rime || fcitx5-remote -s chewing', exec eww close fcitx_menu, mode "default"
-    bindsym n exec bash -c 'fcitx5-remote -s mozc || fcitx5-remote -s anthy', exec eww close fcitx_menu, mode "default"
+    bindsym v exec fcitx5-remote -s bamboo, exec eww close fcitx_menu, mode "default"
+    bindsym a exec fcitx5-remote -s keyboard-us, exec eww close fcitx_menu, mode "default"
+    bindsym t exec fcitx5-remote -s pinyin, exec eww close fcitx_menu, mode "default"
+    bindsym n exec fcitx5-remote -s mozc, exec eww close fcitx_menu, mode "default"
     
     bindsym Escape exec eww close fcitx_menu, mode "default"
     bindsym Return exec eww close fcitx_menu, mode "default"
@@ -151,7 +148,6 @@ bindsym $mod+space exec eww open fcitx_menu, mode "Fcitx"
 bindsym $mod+ctrl+s          move scratchpad
 bindsym $mod+Shift+Return    exec $toggle_scratchpad quake_term "foot --app-id=quake_term"
 bindsym $mod+Alt+i           exec bash $scripts/actions/focus_or_launch.sh zen "zen-browser"
-# bindsym $mod+backslash exec $toggle_scratchpad obsidian "obsidian"
 bindsym $mod+backslash exec bash $scripts/actions/focus_or_launch.sh obsidian
 bindsym $mod+Alt+a     exec bash $scripts/actions/focus_or_launch.sh anki
 bindsym $mod+Alt+d     exec bash $scripts/actions/focus_or_launch.sh beekeeper-studio
@@ -161,7 +157,7 @@ bindsym $mod+Alt+v     exec bash $scripts/actions/focus_or_launch.sh virt-manage
 bindsym $mod+Alt+t     exec $toggle_scratchpad twintaillauncher "env WINEFSYNC=1 WINEESYNC=1 DXVK_ASYNC=1 gamemoderun twintaillauncher"
 
 # --- MEDIA CONTROLS ---
-bindsym --locked XF86AudioRaiseVolume  exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioRaiseVolume  exec wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+
 bindsym --locked XF86AudioLowerVolume  exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 bindsym --locked XF86AudioMute         exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
@@ -172,14 +168,8 @@ bindsym --locked XF86AudioPrev         exec playerctl previous
 bindsym --locked XF86MonBrightnessUp   exec dms ipc call brightness increment 5 backlight:intel_backlight
 bindsym --locked XF86MonBrightnessDown exec dms ipc call brightness decrement 5 backlight:intel_backlight
 
-# bindsym $mod+F11    exec $toggle_scratchpad ferdium "ferdium"
 bindsym $mod+F10    exec dms ipc call dash open 0
-# bindsym $mod+F11    exec bash $scripts/actions/focus_or_launch.sh ferdium
-# bindsym $mod+F9     exec dms ipc call notifications toggle
-# bindsym $mod+F12    exec dms ipc call dash toggle
 bindsym $mod+F12    exec dms ipc call notifications toggle
-
-# bindsym --locked Caps_Lock exec swayosd-client --caps-lock
 
 # --- WARPD (Keyboard Mouse) ---
 bindsym Mod1+space       exec warpd --hint2

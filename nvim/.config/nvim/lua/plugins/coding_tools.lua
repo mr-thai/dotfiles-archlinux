@@ -1,5 +1,4 @@
 return {
-  -- Spider: Nhảy thông minh qua các từ camelCase
   {
     "chrisgrieser/nvim-spider",
     lazy = true,

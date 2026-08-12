@@ -1,7 +1,5 @@
 return {
-  -- Ép tắt tính năng con trỏ sao chổi (đuôi con trỏ)
   { "sphamba/smear-cursor.nvim", enabled = false },
-  -- Hiển thị màu thực tế cho các mã màu Hex/Tailwind
   {
     "brenoprata10/nvim-highlight-colors",
     event = { "BufReadPre", "BufNewFile" },
@@ -11,14 +9,12 @@ return {
       enable_named_colors = true,
     },
   },
-  -- Làm nổi bật từ giống nhau (Siêu nhẹ, thay thế illuminate)
   {
     "nvim-mini/mini.cursorword",
     version = false,
     event = { "BufReadPost", "BufNewFile" },
     opts = { delay = 200 },
   },
-  -- Đổi màu background con trỏ theo từng Mode (Insert, Visual...)
   {
     "mvllow/modes.nvim",
     event = "VeryLazy",
@@ -36,7 +32,6 @@ return {
         set_number = true,
         ignore = { "NvimTree", "TelescopePrompt", "lazy", "snacks_dashboard" },
       })
-      -- M1: Khối vuông tĩnh ở Normal, Vạch dọc NHẤP NHÁY LIÊN TỤC ở Insert
       vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25-blinkwait300-blinkon200-blinkoff150,r-cr-o:hor20"
     end,
   },

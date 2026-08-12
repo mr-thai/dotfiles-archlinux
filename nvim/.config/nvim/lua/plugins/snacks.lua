@@ -2,7 +2,6 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    ---@type snacks.Config
     opts = {
         bigfile = { enabled = true },
         dashboard = { enabled = false },
@@ -16,8 +15,6 @@ return {
         lazygit = { enabled = true }, -- Git UI trong floating window
         animate = { enabled = false }, -- TẮT HOÀN TOÀN HIỆU ỨNG ĐUÔI CON TRỎ
 
-
-        -- TỐI ƯU CÂY THƯ MỤC SNACKS EXPLORER
         picker = {
             enabled = true,
             ui_select = true,
@@ -37,15 +34,12 @@ return {
             enabled = true,
             replace_netrw = true,
         },
-        -- Smooth scroll: hiệu ứng cuộn mượt khi dùng Ctrl+D/U, PageUp/Down
-        -- Khác smear-cursor (trail theo con trỏ), đây là animation khi cuộn trang
         scroll = {
             enabled = true,
             animate = {
                 duration = { step = 12, total = 160 }, -- Duration ngắn, cảm giác nhanh
                 easing = "linear",
             },
-            -- Giữ smear-cursor (trail con trỏ), scroll chỉ phụ trách cuộn trang
             filter = function(buf)
                 return vim.g.snacks_scroll ~= false
                     and vim.b[buf].snacks_scroll ~= false
@@ -53,7 +47,6 @@ return {
             end,
         },
 
-        -- Notifier: gọn nhỏ, icon rõ theo level
         notifier = {
             enabled = true,
             timeout = 3500,

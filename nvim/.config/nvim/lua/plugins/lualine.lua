@@ -3,7 +3,6 @@ return {
         "nvim-lualine/lualine.nvim",
         opts = function(_, opts)
 
-
             local function supermaven_status()
                 local api = require("supermaven-nvim.api")
                 if api.is_running() then return "󰚩 AI" end
@@ -27,15 +26,12 @@ return {
                 return "󰛢 " .. table.concat(marks, " | ")
             end
 
-            -- Chèn Harpoon vào thanh trạng thái bên trái (lualine_c)
             opts.sections.lualine_c = opts.sections.lualine_c or {}
             table.insert(opts.sections.lualine_c, {
                 harpoon_component,
                 color = { fg = "#f9e2af", gui = "bold" },
             })
 
-
-            -- Khối Y: Đè lại hoàn toàn để nó không tự động dính thêm cái location (21:1) vào nữa
             opts.sections.lualine_y = {
                 {
                     supermaven_status,
@@ -44,7 +40,6 @@ return {
                 { "progress", padding = { left = 1, right = 1 } }
             }
 
-            -- Khối Z: Giữ nguyên Dòng:Cột (Line:Column) cơ bản không có text thừa
             opts.sections.lualine_z = { "location" }
         end,
     }

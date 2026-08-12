@@ -1,5 +1,4 @@
 return {
-  -- Cấu hình trọn gói cho Go (Gộp từ go.lua và go-extras.lua)
   {
     "ray-x/go.nvim",
     dependencies = {
@@ -32,7 +31,6 @@ return {
       { "<leader>gie", "<cmd>GoIfErr<cr>",       ft = "go", desc = "Go: Add if err != nil" },
     },
   },
-  -- Tool sinh interface nhanh
   {
     "edolphin-ydf/goimpl.nvim",
     dependencies = {
