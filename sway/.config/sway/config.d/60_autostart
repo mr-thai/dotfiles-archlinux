@@ -36,11 +36,7 @@ exec valent --gapplication-service
 
 # --- AUTOSTART APPS ---
 exec bash -c 'sleep 1.5 && swaymsg "workspace 1" && (footclient || foot)'
-# exec ferdium
-# exec spotify
 exec Zalo.AppImage
-exec Telegram
 exec obsidian
-exec anki
 exec zen "zen-browser"
 

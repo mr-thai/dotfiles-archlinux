@@ -326,7 +326,7 @@
       "enabled": false
     }
   ],
-  "networkPreference": "wifi",
+  "networkPreference": "ethernet",
   "iconThemeDark": "catppuccin-mocha-dark-cursors",
   "iconThemeLight": "System Default",
   "iconThemePerMode": false,
