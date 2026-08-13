@@ -17,10 +17,10 @@ while true; do
             eww open workspace_osd
             
             # Hủy tất cả các lệnh đóng đang chờ từ trước
-            pkill -f "sleep 0.8; eww close workspace_osd"
+            pkill -f "sleep 0.3; eww close workspace_osd"
             
-            # Đặt lịch đóng popup sau 0.8 giây
-            bash -c "sleep 0.8; eww close workspace_osd" &
+            # Đặt lịch đóng popup sau 0.3 giây
+            bash -c "sleep 0.3; eww close workspace_osd" &
         fi
     done
     

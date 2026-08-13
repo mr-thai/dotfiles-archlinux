@@ -22,3 +22,4 @@
   "~/.config/eww/scripts/battery_status.sh")
 
 (defvar current_workspace "1")
+(defvar current_app_icon "")

@@ -69,3 +69,18 @@
   (box :class "ws-osd-container"
        :orientation "v" :space-evenly false :halign "center" :valign "center"
        (label :class "ws-osd-text" :text "${current_workspace}")))
+
+;; ==============================================================================
+;; App Icon OSD HUD Window
+;; ==============================================================================
+(defwindow app_osd
+  :monitor 0
+  :geometry (geometry :x "20px" :y "80px" :anchor "top left" :width "48px" :height "48px")
+  :stacking "overlay"
+  :exclusive false
+  (app_osd_layout))
+
+(defwidget app_osd_layout []
+  (box :class "app-osd-container"
+       :orientation "v" :space-evenly false :halign "center" :valign "center"
+       (image :path current_app_icon :image-width 32 :image-height 32)))

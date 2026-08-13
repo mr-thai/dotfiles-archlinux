@@ -122,3 +122,14 @@
     font-size: 28px;
     font-weight: 800;
 }
+
+// ==============================================================================
+// App Icon OSD HUD
+// ==============================================================================
+.app-osd-container {
+    background-color: rgba(30, 30, 46, 0.85);
+    border: 2px solid $accent-color;
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}

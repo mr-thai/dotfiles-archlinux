@@ -21,6 +21,7 @@ exec kanshi
 exec ~/.config/sway/scripts/actions/sway_swallow.py &
 # exec_always "pkill swaync; sleep 1 && swaync"
 exec_always bash -c "bash ~/.config/sway/scripts/workspace_osd.sh &"
+exec_always bash -c "bash ~/.config/sway/scripts/app_osd.sh &"
 exec foot --server
 exec autotiling
 exec fcitx5 -d
