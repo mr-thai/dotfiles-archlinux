@@ -1,1 +1,19 @@
 local-scripts/.local/bin/agy
+# Security & Shell History
+**/.zsh_history
+**/.zcompcache/
+**/.zcompdump*
+
+# Runtime state
+**/aria2.session
+**/session.dat
+**/dht.dat
+**/dht6.dat
+
+# Large Binaries & Assets
+local-scripts/.local/bin/agy
+**/plugins/.repos/
+**/zjstatus.wasm
+**/ziggy-darwin
+**/ziggy-windows.exe
+sway/.config/sway/wallpaper/Wall-2.jpg

@@ -1,12 +1,6 @@
 ;; ==============================================================================
 ;; Hardware Monitor Variables
 ;; ==============================================================================
-(defpoll network_status :interval "3s" "~/.config/eww/scripts/network_status.sh")
-(deflisten active_window :initial "Desktop" "~/.config/eww/scripts/active_window.sh")
-
-(defpoll fcitx_status :interval "1s"
-                     :initial "{\"text\":\"🇺🇸 EN\",\"tooltip\":\"Keyboard Layout\",\"class\":\"lang-en\"}"
-  "~/.config/eww/scripts/fcitx_status.sh")
 
 (defvar trans_source "")
 (defvar trans_result "")
@@ -17,9 +11,5 @@
 (defvar detail_status "󰚩 Translate")
 
 (defpoll time_status :interval "10s" "date '+%H:%M'")
-(defpoll battery_status :interval "30s"
-                        :initial "{\"text\":\"󰁹 100%\",\"class\":\"normal\"}"
-  "~/.config/eww/scripts/battery_status.sh")
-
 (defvar current_workspace "1")
 (defvar current_app_icon "")

@@ -14,7 +14,6 @@ base
 base-devel
 bat
 bfs
-bluetui
 bluez
 bluez-utils
 brightnessctl
@@ -23,12 +22,13 @@ btrfs-progs
 cantarell-fonts
 ccache
 cliphist
+code
 cryptsetup
-dbeaver
 ddcutil
 device-mapper
 diffutils
 dmidecode
+dms-shell
 dnscrypt-proxy
 dnsmasq
 docker
@@ -43,6 +43,7 @@ efibootmgr
 efitools
 egl-wayland
 ethtool
+evtest
 exfatprogs
 eza
 f2fs-tools
@@ -57,7 +58,6 @@ fcitx5-qt
 fd
 ffmpegthumbnailer
 firefox-ublock-origin
-firewalld
 foot
 foot-terminfo
 fuzzel
@@ -68,6 +68,7 @@ gamescope
 git
 github-cli
 gnome-themes-extra
+go
 gpu-screen-recorder
 greetd
 greetd-tuigreet
@@ -94,7 +95,6 @@ intel-media-driver
 intel-ucode
 inter-font
 iptables
-iwd
 jdk17-openjdk
 jq
 kakasi
@@ -153,7 +153,6 @@ mesa-utils
 mkinitcpio
 modemmanager
 mpc
-mpd
 mpd-mpris
 mpv
 mpv-mpris
@@ -168,6 +167,7 @@ noto-fonts-cjk
 noto-fonts-emoji
 nss-mdns
 ntfs-3g
+ntfsprogs
 nvidia-open-dkms
 nvidia-prime
 nvidia-utils
@@ -201,6 +201,7 @@ reflector
 ripgrep
 rsync
 rtkit
+rustup
 scrcpy
 slurp
 smartmontools
@@ -211,15 +212,12 @@ sudo
 swappy
 sway
 sway-contrib
-swaybg
-swayidle
-swaync
-swayosd
 swtpm
 syncthing
 sysfsutils
 sysstat
 systemd-sysvcompat
+telegram-desktop
 tesseract-data-chi_sim
 tesseract-data-chi_tra
 tesseract-data-eng
@@ -244,7 +242,6 @@ virtiofsd
 vkd3d
 vulkan-intel
 vulkan-tools
-waybar
 wayland-protocols
 wayvnc
 wev
@@ -253,7 +250,6 @@ which
 wireless-regdb
 wireplumber
 wl-clipboard
-wlsunset
 wpa_supplicant
 xdg-desktop-portal-wlr
 xdg-user-dirs
