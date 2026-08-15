@@ -1,4 +1,0 @@
-installed_packages=( ${(Q)"${(z)$(<<\EO:installed_packages
-
-EO:installed_packages
-)}"} )

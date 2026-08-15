@@ -1,8 +1,10 @@
 [[ -o interactive ]] || return
 
 
-#----------- HISTORY ----------
-HISTFILE=$HOME/.config/zsh/.zsh_history
+# XDG Base Directory setup: Save history and cache to ~/.local/state/zsh
+[[ -d "$HOME/.local/state/zsh" ]] || mkdir -p "$HOME/.local/state/zsh"
+[[ -d "$HOME/.cache/zsh" ]] || mkdir -p "$HOME/.cache/zsh"
+HISTFILE="$HOME/.local/state/zsh/history"
 HISTSIZE=100000
 SAVEHIST=100000
 
@@ -191,78 +193,52 @@ alias psr='paru -Rns'
 alias psu='paru -Syu'
 alias pss='paru -Ss'
 
-#----------- Load Plugins -----------
-# zsh-completions
-if [[ -d $HOME/.config/zsh/plugins/zsh-completions/src ]]; then
+#----------- Unified Fast Plugin Loader -----------
+zsh_load_plugin() {
+    if [[ -f "/usr/share/zsh/plugins/$1/$2" ]]; then
+        source "/usr/share/zsh/plugins/$1/$2"
+    elif [[ -f "$HOME/.config/zsh/plugins/$1/$2" ]]; then
+        source "$HOME/.config/zsh/plugins/$1/$2"
+    fi
+}
+
+# 1. zsh-completions (Must be added to fpath before compinit)
+if [[ -d /usr/share/zsh/plugins/zsh-completions/src ]]; then
+  fpath=(/usr/share/zsh/plugins/zsh-completions/src $fpath)
+elif [[ -d $HOME/.config/zsh/plugins/zsh-completions/src ]]; then
   fpath=($HOME/.config/zsh/plugins/zsh-completions/src $fpath)
 fi
 
 autoload -Uz compinit
 zmodload zsh/complist
 
-COMPDUMP="$ZDOTDIR/.zcompdump"
-
-# Fast + safe
-if [[ ! -f $COMPDUMP || $COMPDUMP -ot /usr/share/zsh/functions ]]; then
+COMPDUMP="$HOME/.cache/zsh/zcompdump"
+if [[ ! -f "$COMPDUMP" || "$COMPDUMP" -ot /usr/share/zsh/functions ]]; then
   compinit -d "$COMPDUMP"
 else
   compinit -C -d "$COMPDUMP"
 fi
 
-# Menu
+# Completion Styles
 zstyle ':completion:*' menu select
 zstyle ':completion:*' auto-description 'specify: %d'
-
-# Case-insensitive + fuzzy
-zstyle ':completion:*' matcher-list \
-  'm:{a-z}={A-Z}' \
-  'r:|[._-]=* r:|=*'
-
-# smart cd
-zstyle ':completion:*:cd:*' tag-order \
-  local-directories \
-  directory-stack \
-  path-directories
-
-# Cache
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*'
+zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$ZDOTDIR/.zcompcache"
-
-# Colors
+zstyle ':completion:*' cache-path "$HOME/.cache/zsh/zcompcache"
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 
-# sudo completion
-zstyle ':completion:*:sudo:*' command-path \
-  /usr/local/sbin \
-  /usr/local/bin \
-  /usr/sbin \
-  /usr/bin \
-  /sbin \
-  /bin
+# 2. fzf-tab (Must be loaded AFTER compinit, but BEFORE syntax-highlighting)
+zsh_load_plugin "fzf-tab" "fzf-tab.plugin.zsh"
 
-# fzf-tab
-if [[ -f $HOME/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh ]]; then
-  source $HOME/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
-fi
+# 3. zsh-autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#565f89'
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(forward-char)
+zsh_load_plugin "zsh-autosuggestions" "zsh-autosuggestions.zsh"
 
-
-# autosuggestion (dimmed)
-
-if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  # Suggestion color (subtle, doesn't overpower prompt)
-  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#565f89'
-
-  # Suggestion source: prefer history
-  ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-
-  # Accept suggestion with Ctrl+F (doesn't conflict with TAB)
-  ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(forward-char)
-
-  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
-
-# fzf
+# fzf native completion & commands
 if [ -f /usr/share/fzf/completion.zsh ]; then
   source /usr/share/fzf/completion.zsh
 fi
@@ -274,123 +250,73 @@ else
   export FZF_DEFAULT_COMMAND='find . -type f -not -path "*/.git/*"'
 fi
 export FZF_DEFAULT_OPTS="
-  --height=60%
-  --layout=reverse
-  --border=rounded
-  --prompt='❯ '
-  --pointer='❯'
-  --marker='✓'
-  --info=inline
+  --height=60% --layout=reverse --border=rounded
+  --prompt='❯ ' --pointer='❯' --marker='✓' --info=inline
   --preview 'bat --style=numbers --color=always --line-range :300 {}'
   --preview-window=right:60%:wrap
   --color=bg+:#313244,bg:#1e1e2e,spinner:#f5c2e7,hl:#f38ba8
   --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5c2e7
   --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window=up:3:wrap"
 
-
 # zsh-you-should-use
-if [[ -f /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh ]]; then
-  source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
-fi
+zsh_load_plugin "zsh-you-should-use" "you-should-use.plugin.zsh"
 
+# 4. fast-syntax-highlighting (Must be loaded AFTER compinit and autosuggestions)
+typeset -gA ZSH_HIGHLIGHT_STYLES
+typeset -ga ZSH_HIGHLIGHT_PATTERNS
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+ZSH_HIGHLIGHT_STYLES[comment]='fg=#565f89'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#7aa2f7'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=#7aa2f7'
+ZSH_HIGHLIGHT_STYLES[function]='fg=#7aa2f7'
+ZSH_HIGHLIGHT_STYLES[command]='fg=#9ece6a'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=#9ece6a,italic'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#c0caf5'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f7768e'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=#bb9af7'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#e0af68'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#e0af68'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#e0af68'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=#e0af68'
+ZSH_HIGHLIGHT_STYLES[assign]='fg=#c0caf5'
+ZSH_HIGHLIGHT_STYLES[path]='fg=#7dcfff'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=#bb9af7'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=#f7768e'
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=#7aa2f7'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=#bb9af7'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=#9ece6a'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=#e0af68'
+ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=#f7768e,bold')
+zsh_load_plugin "fast-syntax-highlighting" "fast-syntax-highlighting.plugin.zsh" || zsh_load_plugin "zsh-syntax-highlighting" "zsh-syntax-highlighting.zsh"
 
-# syntax highlighting 
-if [ -f /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]; then
-  typeset -gA ZSH_HIGHLIGHT_STYLES
-  typeset -ga ZSH_HIGHLIGHT_PATTERNS
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-  ZSH_HIGHLIGHT_STYLES[comment]='fg=#565f89'
-  ZSH_HIGHLIGHT_STYLES[alias]='fg=#7aa2f7'
-  ZSH_HIGHLIGHT_STYLES[builtin]='fg=#7aa2f7'
-  ZSH_HIGHLIGHT_STYLES[function]='fg=#7aa2f7'
-  ZSH_HIGHLIGHT_STYLES[command]='fg=#9ece6a'
-  ZSH_HIGHLIGHT_STYLES[precommand]='fg=#9ece6a,italic'
-  ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#c0caf5'
-  ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f7768e'
-  ZSH_HIGHLIGHT_STYLES[redirection]='fg=#bb9af7'
-  ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#e0af68'
-  ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#e0af68'
-  ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#e0af68'
-  ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=#e0af68'
-  ZSH_HIGHLIGHT_STYLES[assign]='fg=#c0caf5'
-  ZSH_HIGHLIGHT_STYLES[path]='fg=#7dcfff'
-  ZSH_HIGHLIGHT_STYLES[globbing]='fg=#bb9af7'
-  ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=#f7768e'
-  ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=#7aa2f7'
-  ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=#bb9af7'
-  ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=#9ece6a'
-  ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=#e0af68'
-  ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=#f7768e,bold')
-  source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-elif [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  typeset -gA ZSH_HIGHLIGHT_STYLES
-  typeset -ga ZSH_HIGHLIGHT_PATTERNS
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-  ZSH_HIGHLIGHT_STYLES[comment]='fg=#565f89'
-  ZSH_HIGHLIGHT_STYLES[alias]='fg=#7aa2f7'
-  ZSH_HIGHLIGHT_STYLES[builtin]='fg=#7aa2f7'
-  ZSH_HIGHLIGHT_STYLES[function]='fg=#7aa2f7'
-  ZSH_HIGHLIGHT_STYLES[command]='fg=#9ece6a'
-  ZSH_HIGHLIGHT_STYLES[precommand]='fg=#9ece6a,italic'
-  ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#c0caf5'
-  ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f7768e'
-  ZSH_HIGHLIGHT_STYLES[redirection]='fg=#bb9af7'
-  ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#e0af68'
-  ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#e0af68'
-  ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#e0af68'
-  ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=#e0af68'
-  ZSH_HIGHLIGHT_STYLES[assign]='fg=#c0caf5'
-  ZSH_HIGHLIGHT_STYLES[path]='fg=#7dcfff'
-  ZSH_HIGHLIGHT_STYLES[globbing]='fg=#bb9af7'
-  ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=#f7768e'
-  ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=#7aa2f7'
-  ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=#bb9af7'
-  ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=#9ece6a'
-  ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=#e0af68'
-  ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=#f7768e,bold')
-  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+# 5. zsh-history-substring-search (Must be loaded AFTER syntax-highlighting)
+zsh_load_plugin "zsh-history-substring-search" "zsh-history-substring-search.zsh"
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
-# zsh-history-substring-search
-if [[ -f $HOME/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
-  source $HOME/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-  # Keybinds for substring search (Up/Down and j/k in Vi mode)
-  bindkey '^[[A' history-substring-search-up
-  bindkey '^[[B' history-substring-search-down
-  bindkey -M vicmd 'k' history-substring-search-up
-  bindkey -M vicmd 'j' history-substring-search-down
-fi
-
-# ---------- Starship prompt ----------
+# Extras (Starship, Zoxide, Mise)
 if command -v starship >/dev/null 2>&1; then
   export STARSHIP_CONFIG="$HOME/.config/zsh/starship.toml"
   eval "$(starship init zsh)"
 fi
-
-# zoxide (smart cd)
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh --cmd cd)"
 fi
-
-# mise-bin (Version Manager)
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
 fi
 
-
-# zsh-vi-mode
-if [[ -f $HOME/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]]; then
-  source $HOME/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-fi
+# 6. zsh-vi-mode (Must be loaded LAST)
+zsh_load_plugin "zsh-vi-mode" "zsh-vi-mode.plugin.zsh"
 
 # Fix Ctrl+R fzf keybinding being overwritten by vi-mode
 function zvm_after_init() {
   if [ -f /usr/share/fzf/key-bindings.zsh ]; then
     source /usr/share/fzf/key-bindings.zsh
   fi
-  # Ép buộc vi-mode trả lại phím Ctrl+R cho FZF
   zvm_bindkey viins '^R' fzf-history-widget
   zvm_bindkey vicmd '^R' fzf-history-widget
 }
@@ -399,22 +325,37 @@ alias paru='paru --builddir /tmp/paru'
 
 # --- TRASH MANAGEMENT (Trash-cli + FZF) ---
 trash() {
-    local selected=$(trash-list | fzf --reverse --prompt="Select file Restore (Enter) / Delete entirely (Del): " --bind 'delete:execute(trash-empty)+abort')
+    local selected=$(trash-list | fzf --reverse \
+        --prompt="   Restore [Enter] | Delete [Alt+D] | Exit [Esc] > " \
+        --header=" Trash Bin (trash-cli) " \
+        --preview="echo '📁 Original Path : ' \$(echo {} | sed -E 's/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} //'); echo '🕒 Deleted At    : ' \$(echo {} | awk '{print \$1, \$2}')" \
+        --preview-window="up:2:wrap" \
+        --color="prompt:#f38ba8,header:#f9e2af,info:#cba6f7" \
+        --bind 'alt-d:execute(trash-rm {3..})+reload(trash-list)')
     if [[ -n "$selected" ]]; then
-        local file_path=$(echo "$selected" | awk '{$1=""; $2=""; print substr($0,3)}')
-        trash-restore "$file_path"
+        # Safely extract the file path starting from the 3rd column
+        local file_path=$(echo "$selected" | sed -E 's/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} //')
+        if [[ -n "$file_path" ]]; then
+            trash-restore "$file_path"
+        fi
     fi
 }
 
-# Auto launch Zellij
-if [[ -z "$ZELLIJ" ]] && [[ "$TERM" != "linux" ]]; then
+# Auto launch Zellij (Multi-layer anti-trapping guard for Neovim & IDEs)
+if [[ -z "$ZELLIJ" ]] && \
+   [[ -z "$NVIM" ]] && \
+   [[ -z "$VSCODE_PID" ]] && \
+   [[ "$TERM_PROGRAM" != "vscode" ]] && \
+   [[ "$TERM" != "linux" ]] && \
+   [[ -z "$NO_ZELLIJ" ]] && \
+   [[ -o interactive ]]; then
     zellij attach -c main
 fi
 
-# Dễ dàng đưa 1 app mới vào dotfiles
+# Easily stow a new app into dotfiles
 function stow-app() {
     if [[ -z "$1" ]]; then
-        echo "Cách dùng: stow-app ~/.config/ten_app"
+        echo "Usage: stow-app ~/.config/app_name"
         return 1
     fi
     local src=$(realpath "$1")
@@ -422,20 +363,20 @@ function stow-app() {
     local dest="$HOME/dotfiles/$pkg/.config/$pkg"
     
     if [[ ! -e "$src" ]]; then
-        echo "Lỗi: Không tìm thấy $src"
+        echo "Error: $src not found"
         return 1
     fi
     if [[ -L "$src" ]]; then
-        echo "Lỗi: $src đã là một symlink!"
+        echo "Error: $src is already a symlink!"
         return 1
     fi
 
-    echo "Đang dọn nhà cho $pkg vào ~/dotfiles..."
+    echo "Moving $pkg to ~/dotfiles..."
     mkdir -p "$(dirname "$dest")"
     mv "$src" "$dest"
     
     cd ~/dotfiles
     stow "$pkg"
     cd - > /dev/null
-    echo "✅ Thành công! Bạn hãy cd ~/dotfiles và git commit nhé."
+    echo "✅ Success! Don't forget to cd ~/dotfiles and git commit."
 }

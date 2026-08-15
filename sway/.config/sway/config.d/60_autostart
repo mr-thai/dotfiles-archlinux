@@ -8,32 +8,26 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSO
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE XDG_SESSION_ID XDG_VTNR
 exec bash -c 'sleep 1 && systemctl --user restart xdg-desktop-portal-wlr.service xdg-desktop-portal.service'
 exec gnome-keyring-daemon --start --components=secrets
-exec warpd
+
 exec easyeffects --gapplication-service
 
-# --- POWER MANAGEMENT & LOCK SCREEN ---
-# exec_always ~/.config/sway/scripts/start_swayidle.sh
 
 # --- BACKGROUND DAEMONS ---
 exec udiskie
-exec kanshi
 
-exec ~/.config/sway/scripts/actions/sway_swallow.py &
-# exec_always "pkill swaync; sleep 1 && swaync"
+    
 exec bash -c "bash ~/.config/sway/scripts/workspace_osd.sh &"
 exec bash -c "bash ~/.config/sway/scripts/app_osd.sh &"
-exec foot --server
+# exec foot --server # Đã chuyển sang quản lý bằng systemd (foot-server.service)
 exec autotiling
 exec fcitx5 -d
-exec wl-paste --type text  --watch bash -c 'wl-paste -l | grep -q "x-kde-passwordManagerHint" || cliphist store'
-exec wl-paste --type image --watch bash -c 'wl-paste -l | grep -q "x-kde-passwordManagerHint" || cliphist store'
+
 exec xwaylandvideobridge
 
-exec bash -c "sleep 2 && eww open fcitx_hud"
 # --- DankMaterialShell ---
-exec_always dms kill; exec dms run
+exec_always sh -c 'dms kill; sleep 0.5; dms run'
 exec valent --gapplication-service
-# exec_always "pkill swayosd-server; swayosd-server"
+
 
 # --- AUTOSTART APPS ---
 exec bash -c 'sleep 1.5 && swaymsg "workspace 1" && (footclient || foot)'

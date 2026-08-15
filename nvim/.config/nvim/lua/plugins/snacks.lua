@@ -18,6 +18,34 @@ return {
         picker = {
             enabled = true,
             ui_select = true,
+            win = {
+                input = {
+                    keys = {
+                        ["J"] = { "preview_scroll_down", mode = { "n" } }, -- Scroll preview down (Cuộn tài liệu xuống)
+                        ["K"] = { "preview_scroll_up",   mode = { "n" } }, -- Scroll preview up (Cuộn tài liệu lên)
+                    },
+                },
+                list = {
+                    keys = {
+                        ["J"] = { "preview_scroll_down", mode = { "n" } }, -- Scroll preview down (Cuộn tài liệu xuống)
+                        ["K"] = { "preview_scroll_up",   mode = { "n" } }, -- Scroll preview up (Cuộn tài liệu lên)
+                    },
+                },
+            },
+            layouts = {
+                -- Override telescope layout to vertical for better reading (Đổi bố cục telescope thành dọc để đọc tài liệu dễ hơn)
+                telescope = {
+                    layout = {
+                        box = "vertical",
+                        backdrop = false,
+                        width = 0.9,  -- Chiều rộng chiếm 90% màn hình
+                        height = 0.95, -- Chiều cao chiếm 95% màn hình
+                        { win = "input", height = 1, border = "rounded", title = "{title} {live} {flags}", title_pos = "center" },
+                        { win = "list", border = "rounded", height = 10 }, -- Danh sách kết quả chỉ chiếm 10 dòng
+                        { win = "preview", title = "{preview}", border = "rounded" }, -- Nội dung chiếm toàn bộ phần còn lại
+                    },
+                },
+            },
             sources = {
                 explorer = {
                     hidden = false,  -- Ẩn file chấm ngầm định

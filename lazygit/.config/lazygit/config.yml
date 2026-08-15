@@ -1,4 +1,6 @@
 gui:
+  showIcons: true
+  nerdFontsVersion: "3"
   theme:
     activeBorderColor:
       - '#89b4fa'
@@ -25,6 +27,35 @@ gui:
       - '#f38ba8'
     defaultFgColor:
       - '#cdd6f4'
-
   authorColors:
     '*': '#b4befe'
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
+  commit:
+    autoWrapCommitMsg: true
+    autoWrapWidth: 72
+  merging:
+    manualCommit: false
+    args: "--no-ff"
+customCommands:
+  - key: '<c-a>'
+    description: 'Commit amend không sửa commit message (No Edit)'
+    context: 'files'
+    command: 'git commit --amend --no-edit'
+    loadingText: 'Đang amend commit gần nhất...'
+  - key: '<c-p>'
+    description: 'Push force-with-lease (An toàn cho nhánh cá nhân)'
+    context: 'global'
+    command: 'git push --force-with-lease'
+    loadingText: 'Đang đẩy force-with-lease lên remote...'
+  - key: 'P'
+    description: 'Checkout GitHub Pull Request qua GitHub CLI'
+    context: 'global'
+    prompts:
+      - type: 'input'
+        title: 'Nhập số Pull Request ID cần checkout:'
+        initialValue: ''
+    command: 'gh pr checkout {{index .PromptResponses 0}}'
+    loadingText: 'Đang checkout Pull Request...'

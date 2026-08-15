@@ -1,5 +1,5 @@
 # Starship prompt theme (Catppuccin Mocha with full Nerd Font icons)
-format = "$sudo$username$python$directory$git_branch$git_status$character"
+format = "$sudo$username$golang$nodejs$rust$java$c$cpp$python$directory$git_branch$git_status$character"
 right_format = "$cmd_duration$time"
 add_newline = true
 
@@ -64,4 +64,32 @@ style = "fg:#f38ba8"
 symbol = "🐍 "
 format = "[$symbol$virtualenv]($style) "
 style = "fg:#f9e2af"
+[golang]
+symbol = " "
+format = "[$symbol($version )]($style)"
+style = "fg:#89dceb"
 
+[nodejs]
+symbol = " "
+format = "[$symbol($version )]($style)"
+style = "fg:#a6e3a1"
+
+[rust]
+symbol = " "
+format = "[$symbol($version )]($style)"
+style = "fg:#f38ba8"
+
+[java]
+symbol = " "
+format = "[$symbol($version )]($style)"
+style = "fg:#fab387"
+
+[c]
+symbol = " "
+format = "[$symbol($version )]($style)"
+style = "fg:#89b4fa"
+
+[cpp]
+symbol = " "
+format = "[$symbol($version )]($style)"
+style = "fg:#89b4fa"

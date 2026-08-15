@@ -17,7 +17,7 @@ return {
         test_runner = "go",
         run_in_floaterm = false,
         dap_debug = false,
-        lsp_inlay_hints = { enable = false }, -- TẮT HOÀN TOÀN INLAY HINTS (Tránh hiện các chữ xám rối mắt)
+        lsp_inlay_hints = { enable = false }, -- Disable inlay hints completely (Tắt hoàn toàn inlay hints)
         icons = { breakpoint = "🔴", currentpos = "▶" },
       })
     end,
@@ -29,22 +29,7 @@ return {
       { "<leader>grt", "<cmd>GoRmTag<cr>",       ft = "go", desc = "Go: Remove struct tags" },
       { "<leader>gfs", "<cmd>GoFillStruct<cr>",  ft = "go", desc = "Go: Fill struct fields" },
       { "<leader>gie", "<cmd>GoIfErr<cr>",       ft = "go", desc = "Go: Add if err != nil" },
+      { "<leader>gim", "<cmd>GoImpl<cr>",        ft = "go", desc = "Go: Implement Interface" },
     },
   },
-  {
-    "edolphin-ydf/goimpl.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-lua/popup.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    ft = { "go" },
-    config = function()
-      require("telescope").load_extension("goimpl")
-    end,
-    keys = {
-      { "<leader>gim", "<cmd>Telescope goimpl<CR>", desc = "Go: Implement Interface" },
-    },
-  }
 }

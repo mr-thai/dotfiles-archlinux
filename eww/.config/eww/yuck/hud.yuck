@@ -19,21 +19,7 @@
          (label :class "record-icon" :text "󰑋")
          (label :class "record-text" :text " REC"))))
 
-;; ==============================================================================
-;; System Status HUD Window
-;; ==============================================================================
-(defwindow status_hud
-  :monitor 0
-  :geometry (geometry :x "0px" :y "16px" :anchor "top center" :width "280px" :height "46px")
-  :stacking "fg"
-  :exclusive false
-  (status_layout))
 
-(defwidget status_layout []
-  (box :class "status-container"
-       :orientation "h" :space-evenly false :spacing 12 :halign "center" :valign "center"
-       (box :class "status-pill time-pill"
-            (label :class "status-text" :text "󰅐 ${time_status}"))))
 
 ;; ==============================================================================
 ;; Workspace OSD HUD Window

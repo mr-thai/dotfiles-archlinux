@@ -1,15 +1,91 @@
 [user]
 	name = Đặng Ngọc Thái
 	email = mr.thai2k5@gmail.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = nvim
+	autocrlf = input
+	whitespace = trailing-space,space-before-tab
+	excludesfile = ~/.config/git/ignore
+	pager = delta
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+	followTags = true
+
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+
+[rebase]
+	autoStash = true
+	autoSquash = true
+	updateRefs = true
+
+[rerere]
+	enabled = true
+	autoupdate = true
+
+[column]
+	ui = auto
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = version:refname
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+	colorMovedWS = allow-indentation-change
+	renames = copies
+	mnemonicPrefix = true
+
+[merge]
+	conflictstyle = zdiff3
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	light = false
+	side-by-side = false
+	line-numbers = false
+	syntax-theme = Catppuccin Mocha
+	
+	# Hiển thị nền siêu mờ (gần như trong suốt) để chữ (syntax) nổi bật tối đa
+	minus-style = syntax "#2a151f"
+	plus-style = syntax "#15241b"
+	
+	# Chỉ làm sáng rực rỡ đúng cái từ/cụm từ bị sửa đổi (Word-diff)
+	minus-emph-style = "#f38ba8" "#4a1b26" bold
+	plus-emph-style = "#a6e3a1" "#1a3b26" bold
+	
+	# Trang trí phần Header gọn gàng tinh tế
+	commit-decoration-style = bold box ul "#89b4fa"
+	file-style = bold "#cdd6f4"
+	file-decoration-style = none
 [http]
 	sslVersion = tlsv1.2
 	postBuffer = 524288000
 	version = HTTP/1.1
+
 [url "https://"]
 	insteadOf = git://
+
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential

@@ -62,7 +62,7 @@ bindcode {
 }
 
 # --- QUICK APP SHORTCUTS ---
-bindsym $mod+Return exec bash $scripts/actions/focus_or_launch.sh foot
+bindsym $mod+Return exec bash $scripts/actions/focus_or_launch.sh foot "footclient || foot"
 bindsym $mod+p      exec $window_switcher
 bindsym $mod+w      exec bash $scripts/actions/toggle_eww.sh
 
@@ -102,7 +102,7 @@ for_window [app_id="vi_to_zh_input"]  floating enable, border pixel 2, move posi
 for_window [app_id="zh_to_vi_input"]  floating enable, border pixel 2, move position center
 
 # Translation History
-bindsym $mod+Alt+e exec $toggle_scratchpad scratchpad_trans_history "foot --app-id=scratchpad_trans_history -e ~/.config/eww/scripts/trans_history.sh"
+bindsym $mod+Alt+e exec $toggle_scratchpad scratchpad_trans_history "footclient --app-id=scratchpad_trans_history -e ~/.config/eww/scripts/trans_history.sh || foot --app-id=scratchpad_trans_history -e ~/.config/eww/scripts/trans_history.sh"
 
 # --- SYSTEM & POWER ---
 bindsym $mod+Shift+p exec dms ipc call settings toggleWith plugins
@@ -120,7 +120,8 @@ mode "Capture" {
     # 🎥 Record
     bindsym r exec eww close mode_indicator, exec bash $scripts/actions/record_screen.sh region, mode "default"
     bindsym v exec eww close mode_indicator, exec bash $scripts/actions/record_screen.sh display, mode "default"
-    
+   
+
     # Thoát chế độ
     bindsym Escape exec eww close mode_indicator, mode "default"
     bindsym Return exec eww close mode_indicator, mode "default"
@@ -146,7 +147,7 @@ bindsym $mod+space exec eww open fcitx_menu, mode "Fcitx"
 
 # --- SCRATCHPADS ---
 bindsym $mod+ctrl+s          move scratchpad
-bindsym $mod+Shift+Return    exec $toggle_scratchpad quake_term "foot --app-id=quake_term"
+bindsym $mod+Shift+Return    exec $toggle_scratchpad quake_term "footclient --app-id=quake_term || foot --app-id=quake_term"
 bindsym $mod+Alt+i           exec bash $scripts/actions/focus_or_launch.sh zen "zen-browser"
 bindsym $mod+backslash exec bash $scripts/actions/focus_or_launch.sh obsidian
 bindsym $mod+Alt+a     exec bash $scripts/actions/focus_or_launch.sh anki

@@ -154,3 +154,7 @@ vim.keymap.set("n", "<F12>", "oTODO: <Esc>gccA", { desc = "Insert TODO", remap =
 vim.keymap.set("n", "<F11>", "oFIXME: <Esc>gccA", { desc = "Insert FIXME", remap = true })
 
 vim.keymap.set("n", "<F1>", function() require("snacks").explorer() end, { desc = "Explorer" })
+
+-- Snacks Native Undo History (Lịch sử hoàn tác gốc của Snacks)
+vim.keymap.set("n", "<leader>su", function() Snacks.picker.undo() end, { desc = "Undo history" })
+vim.keymap.set("n", "<leader>U",  function() Snacks.picker.undo() end, { desc = "Undo history" })

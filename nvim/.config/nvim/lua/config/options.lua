@@ -36,4 +36,12 @@ vim.opt.swapfile = false       -- Do not use swap files
 
 vim.g.root_spec = { ".git", "lua", "cwd" }
 
-vim.g.python3_host_prog = vim.fn.expand("~/.conda/envs/neovim/bin/python")
+-- Auto-detect Python 3 Host safely (Tự động nhận diện Python 3 Host an toàn)
+local python_path = vim.fn.exepath("python3")
+if python_path == "" then
+    python_path = vim.fn.exepath("python")
+end
+
+if python_path ~= "" then
+    vim.g.python3_host_prog = python_path
+end

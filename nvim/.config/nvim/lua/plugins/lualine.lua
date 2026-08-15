@@ -3,41 +3,34 @@ return {
         "nvim-lualine/lualine.nvim",
         opts = function(_, opts)
 
-            local function supermaven_status()
-                local api = require("supermaven-nvim.api")
-                if api.is_running() then return "󰚩 AI" end
-                return "󱚧 AI"
-            end
-
-            local function harpoon_component()
-                local ok, harpoon = pcall(require, "harpoon")
-                if not ok then return "" end
-                local length = harpoon:list():length()
-                if length == 0 then return "" end
-                
-                local marks = {}
-                for i = 1, length do
-                    local item = harpoon:list():get(i)
-                    if item and item.value then
-                        local name = vim.fn.fnamemodify(item.value, ":t")
-                        table.insert(marks, string.format("%d:%s", i, name))
-                    end
+            -- Component hiển thị trạng thái GitHub Copilot an toàn 100%
+            local function copilot_status()
+                local ok, client = pcall(function()
+                    local clients = vim.lsp.get_clients({ name = "copilot" })
+                    return #clients > 0
+                end)
+                if ok and client then
+                    return " Copilot"
                 end
-                return "󰛢 " .. table.concat(marks, " | ")
+                return " Copilot"
             end
 
+            opts.sections = opts.sections or {}
             opts.sections.lualine_c = opts.sections.lualine_c or {}
-            table.insert(opts.sections.lualine_c, {
-                harpoon_component,
-                color = { fg = "#f9e2af", gui = "bold" },
-            })
-
+            
+            -- Xóa các chèn thừa Harpoon, giữ lualine_c sạch sẽ
             opts.sections.lualine_y = {
                 {
-                    supermaven_status,
-                    color = { fg = "#89b4fa", gui = "bold" },
+                    copilot_status,
+                    color = function()
+                        local clients = vim.lsp.get_clients({ name = "copilot" })
+                        if #clients > 0 then
+                            return { fg = "#a6e3a1", gui = "bold" } -- Xanh lá khi Copilot kết nối LSP
+                        end
+                        return { fg = "#6c7086", gui = "italic" } -- Xám khi tắt
+                    end,
                 },
-                { "progress", padding = { left = 1, right = 1 } }
+                { "progress", padding = { left = 1, right = 1 } },
             }
 
             opts.sections.lualine_z = { "location" }

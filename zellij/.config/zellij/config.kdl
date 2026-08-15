@@ -100,16 +100,16 @@ show_startup_tips false
 
 themes {
     default {
-        bg "#313244"
-        fg "#cdd6f4"
+        bg "#181825" // Mantle (Tạo độ chìm tinh tế so với Base của Terminal)
+        fg "#cdd6f4" // Text tiêu chuẩn
         red "#f38ba8"
         green "#a6e3a1"
         yellow "#f9e2af"
-        blue "#89b4fa"
+        blue "#89b4fa" // Màu nhấn chính (Blue)
         magenta "#cba6f7"
         cyan "#89dceb"
         orange "#fab387"
-        black "#181825"
+        black "#11111b" // Crust (Nền tab không hoạt động tối nhất)
         white "#cdd6f4"
     }
 }

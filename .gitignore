@@ -1,19 +1,33 @@
+# Executables & Large Binaries
 local-scripts/.local/bin/agy
-# Security & Shell History
+agy
+*.AppImage
+*.iso
+*.tar.gz
+*.zip
+*.bin
+*.wasm
+**/zjstatus.wasm
+**/ziggy-darwin
+**/ziggy-windows.exe
+
+# Security, Shell History & Cache
 **/.zsh_history
 **/.zcompcache/
 **/.zcompdump*
 
-# Runtime state
+# Runtime state & Databases
 **/aria2.session
 **/session.dat
 **/dht.dat
 **/dht6.dat
 
-# Large Binaries & Assets
-local-scripts/.local/bin/agy
+# Media Assets & Plugin Repos
 **/plugins/.repos/
-**/zjstatus.wasm
-**/ziggy-darwin
-**/ziggy-windows.exe
 sway/.config/sway/wallpaper/Wall-2.jpg
+
+# Chặn cache và file tạm
+__pycache__/
+*.swp
+*.bak
+.cache/

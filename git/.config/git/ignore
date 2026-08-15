@@ -1,0 +1,18 @@
+# Tệp tin rác của Editors & IDEs
+*.swp
+*.swo
+*~
+.netrwhist
+Session.vim
+.vscode/
+.idea/
+
+# Tệp tin rác của Hệ điều hành & Desktop
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Tệp tin rác của Shell & Runtime
+.zcompdump*
+.zsh_history
+*.wasm.bak

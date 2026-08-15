@@ -2,14 +2,10 @@
 ;; Hardware Monitor Variables
 ;; ==============================================================================
 
-(defvar trans_source "")
-(defvar trans_result "")
-(defvar trans_status "󰚩 Translate")
-
 (defvar detail_source "")
 (defvar detail_result "")
 (defvar detail_status "󰚩 Translate")
 
-(defpoll time_status :interval "10s" "date '+%H:%M'")
+
 (defvar current_workspace "1")
 (defvar current_app_icon "")

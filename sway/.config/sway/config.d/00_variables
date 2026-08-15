@@ -13,7 +13,6 @@ set $right l
 
 # --- SCRIPT PATHS ---
 set $scripts           ~/.config/sway/scripts
-set $powermenu         $scripts/power_menu.sh
 set $window_switcher   $scripts/window_switcher.sh
 set $toggle_scratchpad $scripts/actions/toggle_scratchpad.sh
 

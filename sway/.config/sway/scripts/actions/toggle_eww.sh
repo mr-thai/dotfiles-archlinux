@@ -1,25 +1,14 @@
 #!/bin/bash
 
-# Check if fcitx_hud OR practice_popup is open
-if eww active-windows | grep -E "(fcitx_hud|practice_popup)" > /dev/null 2>&1; then
-    eww close fcitx_hud practice_popup 2>/dev/null
+# Kiểm tra và khởi động Eww Daemon nếu chưa chạy
+if ! eww ping >/dev/null 2>&1; then
+    eww daemon &
+    sleep 0.5
+fi
+
+# Toggle popup chi tiết dịch thuật hoặc thông tin hệ thống
+if eww active-windows | grep -q "detail_popup"; then
+    eww close detail_popup
 else
-    if ! eww ping >/dev/null 2>&1; then
-        killall -q eww
-        eww daemon &
-        sleep 1
-    fi
-
-    eww open fcitx_hud
-    eww open practice_popup 2>/dev/null
-
-    sleep 0.2
-    if ! eww active-windows | grep -E "fcitx_hud" > /dev/null 2>&1; then
-        notify-send -t 2000 "Eww HUD" "UI error detected, auto-reloading..."
-        killall -q eww
-        eww daemon &
-        sleep 1
-        eww open fcitx_hud
-        eww open practice_popup 2>/dev/null
-    fi
+    notify-send -t 1500 "Eww Status" "Eww daemon is active & healthy"
 fi
