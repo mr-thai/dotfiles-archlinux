@@ -52,6 +52,8 @@ rules = [
 
 [plugin]
 prepend_previewers = [
+    { mime = "font/*", run = "fontimage" },
+    { mime = "application/x-bittorrent", run = "mediainfo" },
     { mime = "application/x-tar", run = "ouch" },
     { mime = "application/zip", run = "ouch" },
     { mime = "application/x-7z-compressed", run = "ouch" },

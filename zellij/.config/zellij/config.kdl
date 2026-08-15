@@ -18,6 +18,15 @@ keybinds clear-defaults=true {
         bind "Alt w" { CloseFocus; }
         bind "Alt z" { ToggleFocusFullscreen; }
         bind "Alt f" { ToggleFloatingPanes; }
+        bind "Alt Shift f" {
+            Run "zsh" {
+                floating true
+                x "10%"
+                y "10%"
+                width "80%"
+                height "80%"
+            }
+        }
         bind "Alt p" { TogglePaneEmbedOrFloating; }
         bind "Alt \\" { NewPane "Right"; }
         bind "Alt -" { NewPane "Down"; }

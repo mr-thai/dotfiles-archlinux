@@ -25,7 +25,7 @@ twintaillauncher-git
 ucl
 valent
 vesktop-git
-warpd-git
+
 wlrctl
 wlrobs
 zen-browser-bin

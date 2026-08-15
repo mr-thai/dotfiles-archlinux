@@ -1,98 +1,82 @@
 # ==============================================================================
-# PREMIUM ZATHURA CONFIGURATION - CATPPUCCIN MOCHA THEME
+# PREMIUM ZATHURA CONFIGURATION - CATPPUCCIN MOCHA THEME (DARK MODE)
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
-# 1. GENERAL SETTINGS & PERFORMANCE
+# 1. GENERAL SETTINGS & WAYLAND CLIPBOARD
 # ------------------------------------------------------------------------------
-# Copy text to primary clipboard (highlighting)
-set selection-clipboard primary
+# Sử dụng clipboard hệ thống để tương thích hoàn toàn với wl-copy và các ứng dụng khác
+set selection-clipboard clipboard
 
-# Smooth scrolling (Scroll step)
+# Cuộn mượt từng bước (Smooth scrolling step)
 set scroll-step 60
-
-# Page padding for an elegant UI
 set page-padding 12
-
-# Show Home directory path as ~ in statusbar
 set statusbar-home-tilde true
-
-# Auto fit document width to screen on open
 set adjust-open "width"
 
 # ------------------------------------------------------------------------------
 # 2. DARK MODE & RECOLOR
 # ------------------------------------------------------------------------------
-# Auto-switch document (PDF) to dark mode for eye protection
 set recolor                   "true"
-# Keep original hue of images in PDF instead of fully inverting colors
 set recolor-keephue           "true"
 
 # ------------------------------------------------------------------------------
-# 3. COLOR PALETTE - CATPPUCCIN LATTE (LIGHT MODE)
+# 3. COLOR PALETTE - AUTHENTIC CATPPUCCIN MOCHA
 # ------------------------------------------------------------------------------
-# Base & Text
-set default-fg                rgba(76,79,105,1)
-set default-bg                rgba(251,240,217,1)
+# Base & Text (Mocha Base #1e1e2e, Text #cdd6f4)
+set default-fg                rgba(205,214,244,1)
+set default-bg                rgba(30,30,46,1)
 
-# Completion Menu
-set completion-bg             rgba(204,208,218,1)
-set completion-fg             rgba(76,79,105,1)
-set completion-highlight-bg   rgba(136,57,239,1)
-set completion-highlight-fg   rgba(239,241,245,1)
-set completion-group-bg       rgba(188,192,204,1)
-set completion-group-fg       rgba(136,57,239,1)
+# Completion Menu (Surface0 #313244, Mauve #cba6f7)
+set completion-bg             rgba(49,50,68,1)
+set completion-fg             rgba(205,214,244,1)
+set completion-highlight-bg   rgba(203,166,247,1)
+set completion-highlight-fg   rgba(17,17,27,1)
+set completion-group-bg       rgba(69,71,90,1)
+set completion-group-fg       rgba(203,166,247,1)
 
-# Status bar
-set statusbar-fg              rgba(76,79,105,1)
-set statusbar-bg              rgba(204,208,218,1)
+# Status bar & Input bar (Crust #11111b, Surface0 #313244)
+set statusbar-fg              rgba(205,214,244,1)
+set statusbar-bg              rgba(24,24,37,1)
+set inputbar-fg               rgba(205,214,244,1)
+set inputbar-bg               rgba(24,24,37,1)
 
-# Input bar
-set inputbar-fg               rgba(76,79,105,1)
-set inputbar-bg               rgba(204,208,218,1)
+# Notifications (Red #f38ba8, Yellow #f9e2af)
+set notification-bg           rgba(49,50,68,1)
+set notification-fg           rgba(205,214,244,1)
+set notification-error-bg     rgba(49,50,68,1)
+set notification-error-fg     rgba(243,139,168,1)
+set notification-warning-bg   rgba(49,50,68,1)
+set notification-warning-fg   rgba(249,226,175,1)
 
-# Notification Area
-set notification-bg           rgba(204,208,218,1)
-set notification-fg           rgba(76,79,105,1)
-set notification-error-bg     rgba(204,208,218,1)
-set notification-error-fg     rgba(210,15,57,1)
-set notification-warning-bg   rgba(204,208,218,1)
-set notification-warning-fg   rgba(223,142,29,1)
+# Recolor Dark Mode (Base #1e1e2e, Text #cdd6f4)
+set recolor-lightcolor        rgba(30,30,46,1)
+set recolor-darkcolor         rgba(205,214,244,1)
 
-# Recolor Base & Text (Sepia Reading Mode)
-set recolor-lightcolor        rgba(251,240,217,1)
-set recolor-darkcolor         rgba(20,20,20,1)
-
-# Index Mode
-set index-fg                  rgba(76,79,105,1)
-set index-bg                  rgba(239,241,245,1)
-set index-active-fg           rgba(76,79,105,1)
-set index-active-bg           rgba(204,208,218,1)
-
-# Render Loading
-set render-loading-bg         rgba(239,241,245,1)
-set render-loading-fg         rgba(76,79,105,1)
-
-# Search Highlights
-set highlight-color           rgba(114,135,253,0.5)
-set highlight-fg              rgba(114,135,253,1)
-set highlight-active-color    rgba(136,57,239,0.5)
+# Highlights & Index
+set highlight-color           rgba(137,180,250,0.4)
+set highlight-active-color    rgba(203,166,247,0.5)
+set index-fg                  rgba(205,214,244,1)
+set index-bg                  rgba(30,30,46,1)
+set index-active-fg           rgba(17,17,27,1)
+set index-active-bg           rgba(203,166,247,1)
 
 # ------------------------------------------------------------------------------
-# 4. CUSTOM KEYBINDINGS
+# 4. KEYBINDINGS (ERGONOMIC VIM SCROLLING)
 # ------------------------------------------------------------------------------
-# Press 'r' to toggle Recolor mode quickly to view original colors
 map r recolor
-
-# Press 'd' to toggle Double-page mode
 map d toggle_page_mode
-
-# Zoom in / out quickly with '+' and '-'
 map + zoom in
 map - zoom out
 
-# Scroll / Arrow keys to turn pages instead of smooth scrolling
-map <ScrollUp> navigate previous
-map <ScrollDown> navigate next
-map <Up> navigate previous
-map <Down> navigate next
+# Khôi phục cuộn mượt cho con lăn chuột và phím điều hướng
+map <ScrollUp>   scroll up
+map <ScrollDown> scroll down
+map <Up>         scroll up
+map <Down>       scroll down
+
+# Gán phím nhảy trang riêng biệt
+map J navigate next
+map K navigate previous
+map <Space> navigate next
+map <BackSpace> navigate previous

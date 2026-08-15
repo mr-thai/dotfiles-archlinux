@@ -14,9 +14,9 @@ run  = "plugin fg"
 desc = "Find text with ripgrep"
 
 [[manager.prepend_keymap]]
-on   = [ "<C-n>" ]
-run  = 'shell -- ripdrag "$@" -x 2>/dev/null &'
-desc = "Drag and drop with ripdrag"
+on   = [ "W" ]
+run  = 'shell -- ripdrag "$@" -x &'
+desc = "Drag and drop with ripdrag (Shift+W)"
 
 [[manager.prepend_keymap]]
 on   = [ "c", "a" ]
@@ -29,10 +29,6 @@ run  = "plugin zoxide"
 desc = "Jump to a directory using zoxide"
 
 # Disable dangerous built-ins
-[[manager.prepend_keymap]]
-on   = [ "D" ]
-run  = "noop"
-desc = "Disabled: permanent delete"
 
 [[manager.prepend_keymap]]
 on   = [ "-" ]

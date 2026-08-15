@@ -66,12 +66,11 @@ bindsym $mod+Return exec bash $scripts/actions/focus_or_launch.sh foot "footclie
 bindsym $mod+p      exec $window_switcher
 bindsym $mod+w      exec bash $scripts/actions/toggle_eww.sh
 
-bindsym $mod+F1     exec dms ipc call widget toggle clipboardPlus
+bindsym $mod+v     exec dms ipc call widget toggle clipboardPlus
 bindsym $mod+F2     exec bash $scripts/actions/focus_or_launch.sh zalo "gtk-launch zalo"
 bindsym $mod+F3     exec bash $scripts/actions/focus_or_launch.sh telegram "Telegram"
 bindsym $mod+F4     exec bash $scripts/actions/focus_or_launch.sh vesktop
 bindsym $mod+x exec eww close detail_popup
-bindsym $mod+v exec dms ipc call clipboard toggle
 bindsym $mod+m exec bash $scripts/actions/focus_or_launch.sh spotify
 # --- DICTIONARY & TRANSLATION (SUBMAP) ---
 mode "Translate" {
@@ -147,7 +146,6 @@ bindsym $mod+space exec eww open fcitx_menu, mode "Fcitx"
 
 # --- SCRATCHPADS ---
 bindsym $mod+ctrl+s          move scratchpad
-bindsym $mod+Shift+Return    exec $toggle_scratchpad quake_term "footclient --app-id=quake_term || foot --app-id=quake_term"
 bindsym $mod+Alt+i           exec bash $scripts/actions/focus_or_launch.sh zen "zen-browser"
 bindsym $mod+backslash exec bash $scripts/actions/focus_or_launch.sh obsidian
 bindsym $mod+Alt+a     exec bash $scripts/actions/focus_or_launch.sh anki
@@ -172,6 +170,3 @@ bindsym --locked XF86MonBrightnessDown exec dms ipc call brightness decrement 5 
 bindsym $mod+F10    exec dms ipc call dash open 0
 bindsym $mod+F12    exec dms ipc call notifications toggle
 
-# --- WARPD (Keyboard Mouse) ---
-bindsym Mod1+space       exec warpd --hint2
-bindsym Mod1+Shift+space exec warpd --normal

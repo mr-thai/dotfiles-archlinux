@@ -147,11 +147,13 @@ alias free='free -h'
 # yazi
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	trap 'command rm -f -- "$tmp"' EXIT INT TERM
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
 		builtin cd -- "$cwd"
 	fi
-	rm -f -- "$tmp"
+	command rm -f -- "$tmp"
+	trap - EXIT INT TERM
 }
 
 # zellij
@@ -297,7 +299,10 @@ bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-# Extras (Starship, Zoxide, Mise)
+# 6. zsh-vi-mode (Must be loaded BEFORE Starship)
+zsh_load_plugin "zsh-vi-mode" "zsh-vi-mode.plugin.zsh"
+
+# Extras (Starship, Zoxide, Mise) - MUST BE LOADED ABSOLUTELY LAST
 if command -v starship >/dev/null 2>&1; then
   export STARSHIP_CONFIG="$HOME/.config/zsh/starship.toml"
   eval "$(starship init zsh)"
@@ -308,9 +313,6 @@ fi
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
 fi
-
-# 6. zsh-vi-mode (Must be loaded LAST)
-zsh_load_plugin "zsh-vi-mode" "zsh-vi-mode.plugin.zsh"
 
 # Fix Ctrl+R fzf keybinding being overwritten by vi-mode
 function zvm_after_init() {

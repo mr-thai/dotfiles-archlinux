@@ -1,3 +1,33 @@
+[settings]
+idiomatic_version_file = true
+auto_install = true
+experimental = true
+not_found_auto_install = true
+jobs = 4
+
 [tools]
+# ==========================================
+# 1. CORE RUNTIMES (Ngôn ngữ lập trình chính)
+# ==========================================
 go = "latest"
 node = "lts"
+python = "3.12"
+rust = "stable"
+lua = "latest"
+java = "latest"
+
+# ==========================================
+# 2. PACKAGE MANAGERS & VIRTUAL ENVs
+# ==========================================
+pnpm = "latest"
+bun = "latest"
+uv = "latest"
+
+[env]
+# Thiết lập biến môi trường chuẩn
+GOPATH = "{{config_root}}/../../.local/share/go"
+GOBIN = "{{config_root}}/../../.local/share/go/bin"
+_.path = [
+    "{{config_root}}/../../.local/share/go/bin",
+    "{{config_root}}/../../.local/bin",
+]
