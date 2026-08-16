@@ -81,6 +81,7 @@ for_window [app_id="code" title="Open Folder"] floating enable, resize set width
 for_window [title="File Operation Progress"]   floating enable, sticky enable, border pixel 1, resize set width 45 ppt height 25 ppt, move position 52 ppt 5 ppt
 for_window [app_id="fuzzel"]           floating enable, border pixel 2, move position center
 for_window [app_id="clipmenu"]         floating enable, border pixel 2, resize set width 800 px height 600 px, move position center, focus
+for_window [app_id="timelog_input"]   floating enable, border pixel 2, resize set width 50 ppt height 22 ppt, move position center, focus
 for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 45 ppt height 70 ppt
 
 # --- INHIBIT IDLE ---

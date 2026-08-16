@@ -1,0 +1,7 @@
+[Unit]
+Description=Timeline hour prompt (log current activity)
+After=sway-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash %h/.local/bin/timelog_prompt.sh open
