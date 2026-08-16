@@ -43,7 +43,7 @@
 (defwidget fcitx_menu_layout []
   (box :class "power-menu-container mode-osd-container"
        :orientation "h" :space-evenly false :halign "center" :valign "center"
-       (label :class "power-keys mode-osd-keys" :text "󰌌 Bàn phím:  🇻🇳 [V]iệt  |  🇺🇸 [A]nh  |  🇨🇳 [T]rung  |  🇯🇵 [N]hật")))
+       (label :class "power-keys mode-osd-keys" :text "󰌌 Bàn phím:  🇻🇳 [V]iệt  |  🇺🇸 [A]nh  |  🇨🇳 [Z]ung  |  🇯🇵 [N]hật")))
 
 
 ;; ==============================================================================
@@ -61,6 +61,8 @@
   (box :class "detail-card" :orientation "v" :space-evenly false :spacing 6
     (box :class "detail-header" :orientation "h" :space-evenly false :spacing 4
       (label :class "detail-title" :halign "start" :hexpand true :text detail_status)
+      (button :class "detail-icon-btn" :onclick "~/.config/eww/scripts/translator/tts.sh '${detail_result}' '${detail_lang}'" "󰕾")
+      (button :class "detail-icon-btn" :onclick "~/.config/eww/scripts/translator/open_dict.sh '${detail_lang}' '${detail_source}' '${detail_result}'" "󱔗")
       (button :class "detail-icon-btn" :onclick "wl-copy '${detail_source}' && eww update detail_status='󰄬 src'" "󰋊")
       (button :class "detail-icon-btn" :onclick "wl-copy '${detail_result}' && eww update detail_status='󰄬 copied'" "󰆏")
       (button :class "detail-icon-btn detail-icon-close" :onclick "eww close detail_popup" "󰅖"))
@@ -68,4 +70,4 @@
       (label :class "detail-source-text" :wrap true :show-truncated false :xalign 0 :yalign 0 :text detail_source))
     (box :halign "center" (label :class "detail-divider" :text "▼"))
     (box :class "detail-result-box"
-      (label :class "detail-result-text" :wrap true :show-truncated false :xalign 0 :yalign 0 :text detail_result))))
+      (label :class "detail-result-text" :wrap true :markup false :show-truncated false :xalign 0 :yalign 0 :text detail_result))))

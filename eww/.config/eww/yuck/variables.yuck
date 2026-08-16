@@ -4,6 +4,7 @@
 
 (defvar detail_source "")
 (defvar detail_result "")
+(defvar detail_lang "en")
 (defvar detail_status "󰚩 Translate")
 
 

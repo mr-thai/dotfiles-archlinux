@@ -1,0 +1,47 @@
+gui:
+  theme:
+    activeBorderColor:
+      - '#89b4fa'
+      - bold
+    inactiveBorderColor:
+      - '#6c7086'
+    optionsTextColor:
+      - '#89b4fa'
+    selectedLineBgColor:
+      - '#313244'
+    inactiveViewSelectedLineBgColor:
+      - '#45475a'
+    defaultFgColor:
+      - '#cdd6f4'
+  authorColors:
+    '*': '#b4befe'
+  # Lazydocker follows the same Catppuccin Mocha palette as the rest of the system
+docker:
+  commandTemplates:
+    dockerCompose: "docker compose"
+keybinding:
+  universal:
+    quit: q
+    quitWithoutSaving: Q
+    return: esc
+    prevItem: k
+    nextItem: j
+    prevPage: ctrl-b
+    nextPage: ctrl-f
+    scrollUpMain: ctrl-u
+    scrollDownMain: ctrl-d
+    gotoParent: h
+    openMenu: l
+    openHelp: '?'
+  containers:
+    start: s
+    stop: x
+    restart: r
+    remove: d
+    inspect: i
+  services:
+    start: s
+    stop: x
+    restart: r
+    remove: d
+    viewLogs: l

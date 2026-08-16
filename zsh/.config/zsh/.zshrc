@@ -167,6 +167,7 @@ alias a='aria2p'
 # git & dev TUI tools
 alias g='git'
 alias lg='lazygit'
+alias ldk='lazydocker'
 
 
 # utilities
@@ -261,6 +262,18 @@ export FZF_DEFAULT_OPTS="
   --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window=up:3:wrap"
 
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh --disable-up-arrow --disable-ctrl-r)"
+  bindkey '^R' atuin-search
+fi
+
+if [[ -o vi ]]; then
+  bindkey -M vicmd 'k' history-substring-search-up
+  bindkey -M vicmd 'j' history-substring-search-down
+  bindkey -M vicmd 'H' beginning-of-line
+  bindkey -M vicmd 'L' end-of-line
+fi
+
 # zsh-you-should-use
 zsh_load_plugin "zsh-you-should-use" "you-should-use.plugin.zsh"
 
@@ -314,13 +327,23 @@ if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
 fi
 
-# Fix Ctrl+R fzf keybinding being overwritten by vi-mode
+export CATPPUCCIN_FLAVOR="mocha"
+export BAT_THEME="Catppuccin Mocha"
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=fg:#cdd6f4,bg:#1e1e2e,hl:#f38ba8,fg+:#cdd6f4,bg+:#313244,hl+:#f38ba8,pointer:#f5c2e7,marker:#f5e0dc,spinner:#f5c2e7,header:#f38ba8"
+
+# Fix Ctrl+R history search being overwritten by vi-mode
 function zvm_after_init() {
   if [ -f /usr/share/fzf/key-bindings.zsh ]; then
     source /usr/share/fzf/key-bindings.zsh
   fi
-  zvm_bindkey viins '^R' fzf-history-widget
-  zvm_bindkey vicmd '^R' fzf-history-widget
+  if command -v atuin >/dev/null 2>&1; then
+    zvm_bindkey viins '^R' atuin-search
+    zvm_bindkey vicmd '^R' atuin-search
+  fi
+  zvm_bindkey vicmd 'k' history-substring-search-up
+  zvm_bindkey vicmd 'j' history-substring-search-down
+  zvm_bindkey vicmd 'H' beginning-of-line
+  zvm_bindkey vicmd 'L' end-of-line
 }
 # Compile AUR packages directly in RAM-disk (tmpfs) to protect and extend SSD life
 alias paru='paru --builddir /tmp/paru'

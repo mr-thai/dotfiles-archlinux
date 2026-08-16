@@ -16,6 +16,7 @@ lib32-gstreamer
 mise-bin
 ngrok
 paru
+lazydocker
 python-asciimatics
 simple-mtpfs
 sway-systemd-git

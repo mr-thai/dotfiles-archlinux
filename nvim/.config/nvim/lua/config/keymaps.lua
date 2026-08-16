@@ -115,6 +115,14 @@ vim.keymap.set("n", "<F3>", function()
     require("snacks").lazygit()
 end, { desc = "Lazygit" })
 
+vim.keymap.set("n", "<leader>gd", function()
+    vim.cmd("vert Git")
+end, { desc = "Git diff" })
+
+vim.keymap.set("n", "<leader>gD", function()
+    vim.cmd("Git")
+end, { desc = "Git status" })
+
 local function set_global_opt(opt_name, state)
     vim.opt[opt_name] = state
     for _, win in ipairs(vim.api.nvim_list_wins()) do

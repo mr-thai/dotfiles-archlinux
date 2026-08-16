@@ -9,6 +9,7 @@ android-tools
 anki
 appmenu-gtk-module
 aria2
+atuin
 autotiling
 base
 base-devel

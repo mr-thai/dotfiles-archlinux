@@ -14,11 +14,6 @@ run  = "plugin fg"
 desc = "Find text with ripgrep"
 
 [[manager.prepend_keymap]]
-on   = [ "W" ]
-run  = 'shell -- ripdrag "$@" -x &'
-desc = "Drag and drop with ripdrag (Shift+W)"
-
-[[manager.prepend_keymap]]
 on   = [ "c", "a" ]
 run  = "plugin compress"
 desc = "Archive selected files"

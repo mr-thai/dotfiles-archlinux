@@ -11,7 +11,7 @@ if [ "$ACTION" = "start" ]; then
     STATUS_LBL=$7
     PROMPT_TEXT=$8
     
-    foot --app-id="$APP_ID" -T "$TITLE" -W 60x3 ~/.config/eww/scripts/prompt_translate.sh run "$TARGET_LANG" "$KBD_LAYOUT" "$STATUS_LBL" "$PROMPT_TEXT"
+    foot --app-id="$APP_ID" -T "$TITLE" -W 60x3 ~/.config/eww/scripts/translator/prompt_translate.sh run "$TARGET_LANG" "$KBD_LAYOUT" "$STATUS_LBL" "$PROMPT_TEXT"
     exit 0
 fi
 
@@ -37,7 +37,7 @@ if [ "$ACTION" = "run" ]; then
         rm -f "$TIMER_PID"
     fi
 
-    eww update detail_source="$INPUT_TEXT" detail_result="⏳ Translating..." detail_status="$STATUS_LBL"
+    eww update detail_source="$INPUT_TEXT" detail_result="⏳ Translating..." detail_status="$STATUS_LBL" detail_lang="$TARGET_LANG"
     eww open detail_popup 2>/dev/null || true
 
     # Đọc API Key bảo mật từ file cục bộ hoặc biến môi trường

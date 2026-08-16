@@ -64,33 +64,28 @@ bindcode {
 # --- QUICK APP SHORTCUTS ---
 bindsym $mod+Return exec bash $scripts/actions/focus_or_launch.sh foot "footclient || foot"
 bindsym $mod+p      exec $window_switcher
-bindsym $mod+w      exec bash $scripts/actions/toggle_eww.sh
-
 bindsym $mod+v     exec dms ipc call widget toggle clipboardPlus
 bindsym $mod+F2     exec bash $scripts/actions/focus_or_launch.sh zalo "gtk-launch zalo"
 bindsym $mod+F3     exec bash $scripts/actions/focus_or_launch.sh telegram "Telegram"
 bindsym $mod+F4     exec bash $scripts/actions/focus_or_launch.sh vesktop
-bindsym $mod+x exec eww close detail_popup
+bindsym $mod+x exec --no-startup-id sh -c "eww close detail_popup; bash $scripts/actions/toggle_eww.sh"
 bindsym $mod+m exec bash $scripts/actions/focus_or_launch.sh spotify
 # --- DICTIONARY & TRANSLATION (SUBMAP) ---
 mode "Translate" {
-    bindsym e exec eww close trans_menu, exec bash ~/.config/eww/scripts/prompt_translate.sh start VI EN-US "English Practice" practice_input bamboo "󰚩 VI → EN" "Vietnamese", mode "default"
-    bindsym Shift+e exec eww close trans_menu, exec bash ~/.config/eww/scripts/prompt_translate.sh start EN VI "English → Vietnamese" en_to_vi_input keyboard-us "󰚩 EN → VI" "English", mode "default"
+    bindsym e exec eww close trans_menu, exec bash ~/.config/eww/scripts/translator/prompt_translate.sh start VI EN-US "English Practice" practice_input bamboo "󰚩 VI → EN" "Vietnamese", mode "default"
+    bindsym Shift+e exec eww close trans_menu, exec bash ~/.config/eww/scripts/translator/prompt_translate.sh start EN VI "English → Vietnamese" en_to_vi_input keyboard-us "󰚩 EN → VI" "English", mode "default"
     
-    bindsym n exec eww close trans_menu, exec bash ~/.config/eww/scripts/prompt_translate.sh start VI JA "Vietnamese → Japanese" vi_to_ja_input bamboo "󰚩 VI → JA" "Vietnamese", mode "default"
-    bindsym Shift+n exec eww close trans_menu, exec bash ~/.config/eww/scripts/prompt_translate.sh start JA VI "Japanese → Vietnamese" ja_to_vi_input mozc "󰚩 JA → VI" "Japanese", mode "default"
+    bindsym n exec eww close trans_menu, exec bash ~/.config/eww/scripts/translator/prompt_translate.sh start VI JA "Vietnamese → Japanese" vi_to_ja_input bamboo "󰚩 VI → JA" "Vietnamese", mode "default"
+    bindsym Shift+n exec eww close trans_menu, exec bash ~/.config/eww/scripts/translator/prompt_translate.sh start JA VI "Japanese → Vietnamese" ja_to_vi_input mozc "󰚩 JA → VI" "Japanese", mode "default"
     
-    bindsym z exec eww close trans_menu, exec bash ~/.config/eww/scripts/prompt_translate.sh start VI ZH "Vietnamese → Chinese" vi_to_zh_input bamboo "󰚩 VI → ZH" "Vietnamese", mode "default"
-    bindsym Shift+z exec eww close trans_menu, exec bash ~/.config/eww/scripts/prompt_translate.sh start ZH VI "Chinese → Vietnamese" zh_to_vi_input pinyin "󰚩 ZH → VI" "Chinese", mode "default"
+    bindsym z exec eww close trans_menu, exec bash ~/.config/eww/scripts/translator/prompt_translate.sh start VI ZH "Vietnamese → Chinese" vi_to_zh_input bamboo "󰚩 VI → ZH" "Vietnamese", mode "default"
+    bindsym Shift+z exec eww close trans_menu, exec bash ~/.config/eww/scripts/translator/prompt_translate.sh start ZH VI "Chinese → Vietnamese" zh_to_vi_input pinyin "󰚩 ZH → VI" "Chinese", mode "default"
     
 
     bindsym Escape exec eww close trans_menu, mode "default"
     bindsym Return exec eww close trans_menu, mode "default"
 }
 bindsym $mod+d exec eww open trans_menu, mode "Translate"
-
-# Giữ lại phím English theo yêu cầu
-bindsym $mod+e exec bash ~/.config/eww/scripts/prompt_translate.sh start VI EN-US "English Practice" practice_input bamboo "󰚩 VI → EN" "Vietnamese"
 
 # Window rules for translation popups
 for_window [app_id="practice_input"]  floating enable, border pixel 2, move position center
@@ -135,7 +130,7 @@ bindsym $mod+Shift+r exec bash $scripts/actions/record_screen.sh stop
 mode "Fcitx" {
     bindsym v exec fcitx5-remote -s bamboo, exec eww close fcitx_menu, mode "default"
     bindsym a exec fcitx5-remote -s keyboard-us, exec eww close fcitx_menu, mode "default"
-    bindsym t exec fcitx5-remote -s pinyin, exec eww close fcitx_menu, mode "default"
+    bindsym z exec fcitx5-remote -s pinyin, exec eww close fcitx_menu, mode "default"
     bindsym n exec fcitx5-remote -s mozc, exec eww close fcitx_menu, mode "default"
     
     bindsym Escape exec eww close fcitx_menu, mode "default"
@@ -169,4 +164,3 @@ bindsym --locked XF86MonBrightnessDown exec dms ipc call brightness decrement 5 
 
 bindsym $mod+F10    exec dms ipc call dash open 0
 bindsym $mod+F12    exec dms ipc call notifications toggle
-
