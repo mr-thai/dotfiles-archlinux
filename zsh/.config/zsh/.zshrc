@@ -52,6 +52,8 @@ alias tiengviet="fcitx5-remote -s bamboo"
 alias ls='eza --icons=always --color=always --git --group-directories-first --hyperlink'
 alias ll='eza -la --icons=always --color=always --group-directories-first --git --header --no-user --hyperlink'
 alias lt='eza --tree --level=2 --icons=always --group-directories-first --hyperlink'
+# Catppuccin Mocha colors for eza + zsh completion (bg bright = lavender, fg = text)
+export EXA_COLORS="di=38;5;110:fi=38;5;250:ln=38;5;175:ex=38;5;114:*.so=38;5;242:*.o=38;5;242:*.py=38;5;110:*.js=38;5;107:*.ts=38;5;107"
 
 
 # grep
@@ -236,7 +238,7 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 zsh_load_plugin "fzf-tab" "fzf-tab.plugin.zsh"
 
 # 3. zsh-autosuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#565f89'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#6c7086'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(forward-char)
 zsh_load_plugin "zsh-autosuggestions" "zsh-autosuggestions.zsh"
@@ -281,28 +283,28 @@ zsh_load_plugin "zsh-you-should-use" "you-should-use.plugin.zsh"
 typeset -gA ZSH_HIGHLIGHT_STYLES
 typeset -ga ZSH_HIGHLIGHT_PATTERNS
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-ZSH_HIGHLIGHT_STYLES[comment]='fg=#565f89'
-ZSH_HIGHLIGHT_STYLES[alias]='fg=#7aa2f7'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=#7aa2f7'
-ZSH_HIGHLIGHT_STYLES[function]='fg=#7aa2f7'
-ZSH_HIGHLIGHT_STYLES[command]='fg=#9ece6a'
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=#9ece6a,italic'
-ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#c0caf5'
-ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f7768e'
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=#bb9af7'
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#e0af68'
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#e0af68'
-ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#e0af68'
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=#e0af68'
-ZSH_HIGHLIGHT_STYLES[assign]='fg=#c0caf5'
-ZSH_HIGHLIGHT_STYLES[path]='fg=#7dcfff'
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=#bb9af7'
-ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=#f7768e'
-ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=#7aa2f7'
-ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=#bb9af7'
-ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=#9ece6a'
-ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=#e0af68'
-ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=#f7768e,bold')
+ZSH_HIGHLIGHT_STYLES[comment]='fg=#6c7086'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#89b4fa'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=#89b4fa'
+ZSH_HIGHLIGHT_STYLES[function]='fg=#89b4fa'
+ZSH_HIGHLIGHT_STYLES[command]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=#a6e3a1,italic'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f38ba8'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=#cba6f7'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#f9e2af'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#f9e2af'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#f9e2af'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=#f9e2af'
+ZSH_HIGHLIGHT_STYLES[assign]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[path]='fg=#89dceb'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=#cba6f7'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=#f38ba8'
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=#89b4fa'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=#cba6f7'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=#f9e2af'
+ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=#f38ba8,bold')
 zsh_load_plugin "fast-syntax-highlighting" "fast-syntax-highlighting.plugin.zsh" || zsh_load_plugin "zsh-syntax-highlighting" "zsh-syntax-highlighting.zsh"
 
 # 5. zsh-history-substring-search (Must be loaded AFTER syntax-highlighting)
