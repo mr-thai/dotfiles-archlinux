@@ -1,4 +1,8 @@
-# Executables & Large Binaries
+# ============================================================
+# DOTFILES .gitignore — Bảo mật & Dọn dẹp
+# ============================================================
+
+# --- EXECUTABLES & LARGE BINARIES ---
 local-scripts/.local/bin/agy
 agy
 *.AppImage
@@ -11,23 +15,69 @@ agy
 **/ziggy-darwin
 **/ziggy-windows.exe
 
-# Security, Shell History & Cache
+# --- BẢO MẬT — TUYỆT ĐỐI KHÔNG commit ---
+# SSH Keys & Known Hosts
+**/.ssh/
+**/id_rsa
+**/id_ed25519
+**/id_ecdsa
+**/known_hosts
+**/authorized_keys
+
+# GPG Keyring
+**/.gnupg/
+
+# Authentication Tokens
+**/gh/hosts.yml
+**/gh/config.yml
+**/rclone/rclone.conf
+**/ngrok/ngrok.yml
+**/atuin/config.toml
+**/github-copilot/
+**/supermaven/
+
+# Browser Profiles (session, passwords, history)
+**/mozilla/
+**/zen/
+**/chromium/
+**/vesktop/
+
+# Messaging Data (session, chat history)
+**/ZaloData/
+
+# Password & Secrets
+**/keepassxc/
+**/Cryptomator/
+
+# Cloud Sync Credentials
+**/syncthing/
+
+# PKI & Certificates
+**/.pki/
+
+# --- SHELL HISTORY & CACHE ---
 **/.zsh_history
 **/.zcompcache/
 **/.zcompdump*
+**/.bash_history
 
-# Runtime state & Databases
+# --- RUNTIME STATE & DATABASES ---
 **/aria2.session
 **/session.dat
 **/dht.dat
 **/dht6.dat
 
-# Media Assets & Plugin Repos
+# --- MEDIA ASSETS & PLUGIN REPOS ---
 **/plugins/.repos/
 sway/.config/sway/wallpaper/Wall-2.jpg
 
-# Chặn cache và file tạm
+# --- CACHE & TEMP ---
 __pycache__/
 *.swp
 *.bak
 .cache/
+**/node_modules/
+**/.DS_Store
+
+# --- NEOVIM LAZY LOCK (optional: uncomment nếu muốn lock versions) ---
+# nvim/.config/nvim/lazy-lock.json

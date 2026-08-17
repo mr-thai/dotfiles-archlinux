@@ -9,8 +9,6 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CU
 exec bash -c 'sleep 1 && systemctl --user restart xdg-desktop-portal-wlr.service xdg-desktop-portal.service'
 exec gnome-keyring-daemon --start --components=secrets
 
-exec easyeffects --gapplication-service
-
 
 # --- BACKGROUND DAEMONS ---
 exec udiskie
@@ -22,7 +20,6 @@ exec bash -c "bash ~/.config/sway/scripts/app_osd.sh &"
 exec autotiling
 exec fcitx5 -d
 
-exec xwaylandvideobridge
 
 # --- DankMaterialShell ---
 exec_always sh -c 'dms kill; sleep 0.5; dms run'

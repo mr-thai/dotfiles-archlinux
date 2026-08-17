@@ -377,31 +377,335 @@ if [[ -z "$ZELLIJ" ]] && \
     zellij attach -c main
 fi
 
-# Easily stow a new app into dotfiles
+# ============================================================
+# DOTFILES MANAGEMENT TOOLKIT
+# ============================================================
+
+# Danh sách đen bảo mật — KHÔNG BAO GIỜ stow các thư mục này
+_DOTFILES_BLACKLIST=(
+    ".ssh"
+    ".gnupg"
+    "gh"
+    "rclone"
+    "ngrok"
+    "ZaloData"
+    "keepassxc"
+    "syncthing"
+    "Cryptomator"
+    "github-copilot"
+    "supermaven" 
+    "vesktop"
+    "zen"
+    "mozilla"
+    "chromium"
+    "atuin"
+)
+
+# Kiểm tra xem app có trong danh sách đen không
+_stow_is_blacklisted() {
+    local pkg="$1"
+    for blocked in "${_DOTFILES_BLACKLIST[@]}"; do
+        if [[ "${pkg:l}" == "${blocked:l}" ]]; then
+            return 0  # true = is blacklisted
+        fi
+    done
+    return 1  # false = safe
+}
+
+# Kiểm tra nội dung có chứa data nhạy cảm không
+_stow_check_sensitive() {
+    local dir="$1"
+    local hits
+    hits=$(grep -rl "token\|secret\|password\|api_key\|auth_token\|private_key\|credential" \
+        "$dir" 2>/dev/null | head -5)
+    if [[ -n "$hits" ]]; then
+        echo "⚠️  Phát hiện dữ liệu có thể nhạy cảm trong:"
+        echo "$hits" | sed 's/^/   /'
+        return 0  # true = sensitive found
+    fi
+    return 1
+}
+
+# stow-app: Thêm app config mới vào dotfiles với kiểm tra bảo mật
+# Usage: stow-app ~/.config/app_name [--force]
 function stow-app() {
-    if [[ -z "$1" ]]; then
-        echo "Usage: stow-app ~/.config/app_name"
-        return 1
-    fi
-    local src=$(realpath "$1")
-    local pkg=$(basename "$src")
-    local dest="$HOME/dotfiles/$pkg/.config/$pkg"
-    
-    if [[ ! -e "$src" ]]; then
-        echo "Error: $src not found"
-        return 1
-    fi
-    if [[ -L "$src" ]]; then
-        echo "Error: $src is already a symlink!"
+    local force=0
+    local src_arg=""
+
+    # Parse arguments
+    for arg in "$@"; do
+        case "$arg" in
+            --force) force=1 ;;
+            *)       src_arg="$arg" ;;
+        esac
+    done
+
+    if [[ -z "$src_arg" ]]; then
+        echo "╔══════════════════════════════════════════╗"
+        echo "║   stow-app — Thêm app vào dotfiles       ║"
+        echo "╚══════════════════════════════════════════╝"
+        echo ""
+        echo "Usage: stow-app ~/.config/<app_name> [--force]"
+        echo ""
+        echo "Flags:"
+        echo "  --force    Bỏ qua cảnh báo nội dung nhạy cảm (nguy hiểm!)"
+        echo ""
+        echo "Ví dụ:"
+        echo "  stow-app ~/.config/btop"
+        echo "  stow-app ~/.config/mpv"
         return 1
     fi
 
-    echo "Moving $pkg to ~/dotfiles..."
+    local src
+    src=$(realpath "$src_arg" 2>/dev/null)
+    if [[ ! -e "$src" ]]; then
+        echo "❌ Lỗi: Không tìm thấy '$src_arg'"
+        return 1
+    fi
+
+    local pkg
+    pkg=$(basename "$src")
+
+    # --- Kiểm tra 1: Danh sách đen bảo mật ---
+    if _stow_is_blacklisted "$pkg"; then
+        echo "🔒 TỪ CHỐI: '$pkg' nằm trong danh sách đen bảo mật."
+        echo "   Lý do: Thư mục này có thể chứa token, key, hoặc session data."
+        echo "   Không an toàn để đưa lên Git."
+        echo ""
+        echo "   Nếu bạn chắc chắn muốn bỏ qua, dùng: stow-app $src_arg --force"
+        return 1
+    fi
+
+    # --- Kiểm tra 2: Đã là symlink chưa ---
+    if [[ -L "$src" ]]; then
+        echo "ℹ️  '$pkg' đã là symlink — có thể đã được stow rồi."
+        echo "   Symlink trỏ đến: $(readlink -f "$src")"
+        return 0
+    fi
+
+    # --- Kiểm tra 3: Nội dung nhạy cảm ---
+    if (( force == 0 )); then
+        if _stow_check_sensitive "$src"; then
+            echo ""
+            echo "   Dùng --force để bỏ qua (NGUY HIỂM)."
+            echo "   Hoặc xem xét thêm file/dir này vào .gitignore của dotfiles."
+            return 1
+        fi
+    fi
+
+    # --- Kiểm tra 4: Đã có trong dotfiles chưa ---
+    local dotfiles_dir="$HOME/dotfiles"
+    local dest="$dotfiles_dir/$pkg/.config/$pkg"
+
+    if [[ -e "$dest" ]]; then
+        echo "⚠️  '$pkg' đã tồn tại trong dotfiles tại: $dest"
+        echo "   Dùng 'stow-restow $pkg' nếu muốn re-link."
+        return 1
+    fi
+
+    # --- Dry run: Kiểm tra conflict với stow --simulate ---
+    echo "🔍 Đang kiểm tra conflict với stow --simulate..."
+    mkdir -p "$(dirname "$dest")"
+
+    # Tạm thời copy để test stow
+    cp -r "$src" "$dest"
+    local simulate_output
+    simulate_output=$(cd "$dotfiles_dir" && stow --simulate "$pkg" 2>&1)
+    local simulate_status=$?
+    rm -rf "$dest"
+
+    if (( simulate_status != 0 )); then
+        echo "❌ Stow phát hiện conflict:"
+        echo "$simulate_output" | sed 's/^/   /'
+        echo ""
+        echo "   Giải quyết conflict trước khi stow."
+        return 1
+    fi
+
+    # --- Thực hiện stow ---
+    echo ""
+    echo "📦 Đang stow '$pkg'..."
     mkdir -p "$(dirname "$dest")"
     mv "$src" "$dest"
-    
-    cd ~/dotfiles
-    stow "$pkg"
-    cd - > /dev/null
-    echo "✅ Success! Don't forget to cd ~/dotfiles and git commit."
+
+    (cd "$dotfiles_dir" && stow "$pkg")
+    local stow_status=$?
+
+    if (( stow_status != 0 )); then
+        echo "❌ Stow thất bại! Đang hoàn tác..."
+        mv "$dest" "$src"
+        return 1
+    fi
+
+    # --- Xác minh symlink ---
+    local symlink_target
+    symlink_target=$(readlink -f "$src" 2>/dev/null)
+    if [[ "$symlink_target" != "$dest" ]]; then
+        echo "⚠️  Symlink chưa đúng. Kiểm tra lại thủ công."
+    fi
+
+    # --- Tóm tắt kết quả ---
+    echo ""
+    echo "✅ THÀNH CÔNG!"
+    echo "   📁 Config gốc  : $dest"
+    echo "   🔗 Symlink      : $src → $dest"
+    echo ""
+    echo "📝 Bước tiếp theo:"
+    echo "   1. Kiểm tra app vẫn hoạt động bình thường"
+    echo "   2. cd ~/dotfiles && git add $pkg/ && git commit -m 'feat: add $pkg config'"
+    echo "   3. Chạy 'stow-doc $pkg' để tạo tài liệu vào Obsidian"
 }
+
+# stow-remove: Gỡ app khỏi dotfiles, trả config về vị trí gốc
+# Usage: stow-remove <app_name>
+function stow-remove() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: stow-remove <app_name>"
+        echo "Ví dụ: stow-remove btop"
+        return 1
+    fi
+
+    local pkg="$1"
+    local dotfiles_dir="$HOME/dotfiles"
+    local dest="$dotfiles_dir/$pkg/.config/$pkg"
+    local symlink="$HOME/.config/$pkg"
+
+    if [[ ! -d "$dest" ]]; then
+        echo "❌ Không tìm thấy '$pkg' trong dotfiles."
+        return 1
+    fi
+
+    echo "🗑️  Đang gỡ '$pkg' khỏi dotfiles..."
+
+    # Xóa symlink bằng stow -D
+    (cd "$dotfiles_dir" && stow -D "$pkg")
+
+    # Di chuyển config về lại vị trí gốc
+    if [[ -d "$dest" ]]; then
+        mv "$dest" "$symlink"
+        echo "✅ Config đã được trả về: $symlink"
+    fi
+
+    echo ""
+    echo "📝 Bước tiếp theo:"
+    echo "   cd ~/dotfiles && git rm -r $pkg/ && git commit -m 'remove: $pkg config from dotfiles'"
+}
+
+# stow-list: Liệt kê tất cả packages đang được quản lý bởi stow
+function stow-list() {
+    local dotfiles_dir="$HOME/dotfiles"
+    echo "📦 Packages đang được quản lý trong ~/dotfiles:"
+    echo ""
+    for pkg_dir in "$dotfiles_dir"/*/; do
+        local pkg
+        pkg=$(basename "$pkg_dir")
+        # Bỏ qua các thư mục không phải package stow
+        [[ "$pkg" == ".git" ]] && continue
+        [[ "$pkg" == "profile-root" ]] && continue
+
+        local symlink="$HOME/.config/$pkg"
+        if [[ -L "$symlink" ]]; then
+            echo "  ✅ $pkg  →  $(readlink -f "$symlink")"
+        else
+            echo "  ⚠️  $pkg  (symlink chưa được tạo — chạy 'stow $pkg')"
+        fi
+    done
+    echo ""
+    echo "Tổng: $(ls -d "$dotfiles_dir"/*/ 2>/dev/null | wc -l) packages"
+}
+
+# stow-restow: Re-apply stow sau khi cấu trúc dotfiles thay đổi
+function stow-restow() {
+    local pkg="${1:-}"
+    local dotfiles_dir="$HOME/dotfiles"
+
+    if [[ -n "$pkg" ]]; then
+        echo "🔄 Re-stow '$pkg'..."
+        (cd "$dotfiles_dir" && stow --restow "$pkg")
+    else
+        echo "🔄 Re-stow tất cả packages..."
+        (cd "$dotfiles_dir" && stow --restow */)
+    fi
+    echo "✅ Xong!"
+}
+
+# stow-doc: Tạo tài liệu vào Obsidian mô tả việc thêm app vào dotfiles
+# Usage: stow-doc <app_name> [mô tả ngắn]
+function stow-doc() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: stow-doc <app_name> [mô tả ngắn]"
+        return 1
+    fi
+
+    local pkg="$1"
+    local desc="${2:-Không có mô tả}"
+    local date_str
+    date_str=$(date "+%Y-%m-%d %H:%M")
+    local date_file
+    date_file=$(date "+%Y-%m-%d")
+    local obsidian_inbox="$HOME/ObsidianDrive/Obsidian_Backup/00 Inbox"
+    local note_file="$obsidian_inbox/dotfiles - add $pkg ($date_file).md"
+
+    mkdir -p "$obsidian_inbox"
+
+    cat > "$note_file" << OBSIDIAN_NOTE
+---
+cards-deck:
+tags:
+  - dotfiles
+  - system
+aliases:
+status: Work
+---
+
+# Dotfiles: Thêm $pkg vào GNU Stow — $date_str
+
+## Bối cảnh
+$desc
+
+App **$pkg** đã được thêm vào hệ thống dotfiles để quản lý cấu hình qua Git.
+
+## Những gì đã làm
+
+1. Kiểm tra bảo mật: Xác nhận \`~/.config/$pkg\` không chứa token/credential nhạy cảm.
+2. Di chuyển config: \`mv ~/.config/$pkg ~/dotfiles/$pkg/.config/$pkg\`
+3. Tạo symlink bằng GNU Stow: \`cd ~/dotfiles && stow $pkg\`
+4. Xác minh: \`readlink -f ~/.config/$pkg\` → trỏ đúng vào dotfiles.
+5. Commit vào Git.
+
+## Cơ chế GNU Stow
+
+GNU Stow là tool tạo symlinks theo cấu trúc thư mục mirror:
+
+\`\`\`
+~/dotfiles/$pkg/.config/$pkg/   ← File thực (lưu trong Git)
+          ↓ stow tạo symlink
+~/.config/$pkg/                 ← Symlink (app đọc từ đây)
+\`\`\`
+
+Lợi ích: Chỉnh sửa file trong \`~/dotfiles/$pkg/\` là chỉnh sửa trực tiếp, không cần copy/sync thủ công.
+
+## Kết quả
+
+- Config được version control trong Git.
+- App hoạt động bình thường (đọc config qua symlink).
+- Khi restore máy mới: \`cd ~/dotfiles && stow $pkg\` là đủ.
+
+## Cách hoàn tác (Rollback)
+
+\`\`\`bash
+stow-remove $pkg
+# hoặc thủ công:
+cd ~/dotfiles && stow -D $pkg
+mv ~/dotfiles/$pkg/.config/$pkg ~/.config/$pkg
+\`\`\`
+
+## Tham khảo
+- [GNU Stow Manual](https://www.gnu.org/software/stow/manual/)
+- Dotfiles repo: \`~/dotfiles/\`
+OBSIDIAN_NOTE
+
+    echo "📄 Đã tạo tài liệu Obsidian:"
+    echo "   $note_file"
+}
+

@@ -21,8 +21,6 @@ assign [class="(?i)zalo"] workspace number 8
 assign [app_id="(?i)org.telegram.desktop"] workspace number 8
 assign [class="(?i)telegramdesktop"] workspace number 8
 for_window [class="(?i)spotify"]       floating enable, move scratchpad, border pixel 2, resize set width 80 ppt height 80 ppt, move position center
-for_window [class="xwaylandvideobridge"] floating enable, move scratchpad, no_focus
-for_window [title="xwaylandvideobridge"] floating enable, move scratchpad, no_focus
 
 # --- FLOATING SCRATCHPAD TOOLS ---
 for_window [app_id="scratchpad_nmtui"]      floating enable, border pixel 2, resize set width 35 ppt height 60 ppt, move position center
