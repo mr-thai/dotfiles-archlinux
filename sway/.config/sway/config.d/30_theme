@@ -18,7 +18,7 @@ smart_borders on
 smart_gaps off
 
 # --- SYSTEM FONTS ---
-font pango:Inter Medium, JetBrains Mono, Symbols Nerd Font 14
+font pango:JetBrainsMono Nerd Font, Symbols Nerd Font 14
 
 # --- CURSOR THEME ---
 seat * xcursor_theme $cursor_theme $cursor_size

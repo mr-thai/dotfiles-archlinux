@@ -72,7 +72,7 @@ fi
 row=$(printf "%s" "$output" | fuzzel --dmenu \
     --width=55 \
     --lines=8 \
-    --font="JetBrains Mono:size=10" \
+    --font="JetBrainsMono Nerd Font:size=10" \
     --prompt="󰖯  Window: " \
     --placeholder="Search by app name or title…")
 exit_code=$?
