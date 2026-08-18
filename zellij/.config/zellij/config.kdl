@@ -7,37 +7,29 @@ keybinds clear-defaults=true {
         bind "esc" { UndoRenameTab; SwitchToMode "normal"; }
     }
     shared_except "locked" {
-        // Điều hướng Focus (Vim-style)
+        // Focus navigation (Vim-style)
         bind "Alt h" { MoveFocusOrTab "left"; }
         bind "Alt j" { MoveFocus "down"; }
         bind "Alt k" { MoveFocus "up"; }
         bind "Alt l" { MoveFocusOrTab "right"; }
 
-        // Quản lý Pane
+        // Pane management
         bind "Alt n" { NewPane; }
         bind "Alt w" { CloseFocus; }
         bind "Alt z" { ToggleFocusFullscreen; }
         bind "Alt f" { ToggleFloatingPanes; }
-        bind "Alt Shift f" {
-            Run "zsh" {
-                floating true
-                x "10%"
-                y "10%"
-                width "80%"
-                height "80%"
-            }
-        }
         bind "Alt p" { TogglePaneEmbedOrFloating; }
         bind "Alt \\" { NewPane "Right"; }
         bind "Alt -" { NewPane "Down"; }
 
-        // Quản lý Tab
+        // Tab management
         bind "Alt t" { NewTab; }
         bind "Alt i" { MoveTab "left"; }
         bind "Alt o" { MoveTab "right"; }
         bind "Alt r" { SwitchToMode "renametab"; TabNameInput 0; }
+        bind "Alt Shift w" { CloseTab; }
 
-        // Chuyển Tab (1-9)
+        // Switch tab (1-9)
         bind "Alt 1" { GoToTab 1; }
         bind "Alt 2" { GoToTab 2; }
         bind "Alt 3" { GoToTab 3; }
@@ -47,21 +39,20 @@ keybinds clear-defaults=true {
         bind "Alt 7" { GoToTab 7; }
         bind "Alt 8" { GoToTab 8; }
         bind "Alt 9" { GoToTab 9; }
-        
-        // Điều chỉnh kích thước (Resize)
+
+        // Resize
         bind "Alt Shift h" { Resize "Increase left"; }
         bind "Alt Shift j" { Resize "Increase down"; }
         bind "Alt Shift k" { Resize "Increase up"; }
         bind "Alt Shift l" { Resize "Increase right"; }
 
-        // Điều hướng Pane nhanh
+        // Quick pane navigation
         bind "Alt [" { FocusPreviousPane; }
         bind "Alt ]" { FocusNextPane; }
 
-        // Tính năng mở rộng & Hành động
+        // Extras & actions
         bind "Alt s" { ToggleActiveSyncTab; }
         bind "Alt q" { Detach; }
-        bind "Alt /" { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "Alt e" { EditScrollback; SwitchToMode "normal"; }
         bind "Ctrl g" { SwitchToMode "locked"; }
         bind "Alt c" {
@@ -70,7 +61,7 @@ keybinds clear-defaults=true {
                 move_to_focused_tab true
             }
             SwitchToMode "normal"
-        } 
+        }
     }
 }
 
@@ -99,26 +90,27 @@ web_client {
     font "JetBrainsMono Nerd Font"
 }
 
-// Cấu hình môi trường và giao diện
+// Environment & appearance
 theme "default"
 default_layout "default"
 pane_frames false
 copy_command "wl-copy"
+copy_on_select true
 session_serialization true
 show_startup_tips false
 
 themes {
     default {
-        bg "#181825" // Mantle (Tạo độ chìm tinh tế so với Base của Terminal)
-        fg "#cdd6f4" // Text tiêu chuẩn
+        bg "#181825"
+        fg "#cdd6f4"
         red "#f38ba8"
         green "#a6e3a1"
         yellow "#f9e2af"
-        blue "#89b4fa" // Màu nhấn chính (Blue)
+        blue "#89b4fa"
         magenta "#cba6f7"
         cyan "#89dceb"
         orange "#fab387"
-        black "#11111b" // Crust (Nền tab không hoạt động tối nhất)
+        black "#11111b"
         white "#cdd6f4"
     }
 }

@@ -2,29 +2,6 @@
 # OUTPUT — Monitor layout & workspace routing
 # ==========================================
 
-# --- EXTERNAL MONITOR (DP-1) ---
-output "DP-1" {
-    mode 1920x1080@60.0Hz
-    pos 0 1080
-    transform 180
-    scale 1.0
-    scale_filter smart
-    adaptive_sync on
-    dpms on
-}
-
-# --- LAPTOP MONITOR (eDP-1) ---
-output "eDP-1" {
-    # Refresh rate (59.977Hz) optimized for smoothness
-    mode 1920x1080@59.977Hz
-    pos 0 0
-    transform normal
-    scale 1.0
-    scale_filter smart
-    adaptive_sync on
-    dpms on
-}
-
 # --- DEFAULT / UNKNOWN MONITORS ---
 output * {
     resolution 1920x1080
@@ -35,8 +12,7 @@ output * {
     render_bit_depth 10
 }
 
-# --- WORKSPACE ROUTING (PURE SYNTAX) ---
-# Sway tự động fallback nếu màn hình ưu tiên bị rút ra
+# --- WORKSPACE ROUTING ---
 workspace 1 output eDP-1 DP-1
 workspace 2 output DP-1 eDP-1
 workspace 3 output DP-1 eDP-1

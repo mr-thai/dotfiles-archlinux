@@ -1,13 +1,11 @@
 # ==========================================
 # THEME — Visual appearance
-# Colors & cursor vars → see 00_variables
 # ==========================================
 
 # --- GTK INTEGRATION ---
 exec_always ~/.config/sway/scripts/actions/import-gsettings
 
 # --- GAPS & BORDERS ---
-# No gaps, no border — maximize screen space for 1920x1080 laptop
 gaps inner 0
 gaps outer 0
 
@@ -22,9 +20,6 @@ font pango:JetBrainsMono Nerd Font, Symbols Nerd Font 14
 
 # --- CURSOR THEME ---
 seat * xcursor_theme $cursor_theme $cursor_size
-
-# --- WALLPAPER ---
-# output * bg $HOME/.config/sway/wallpaper/Wall-1.jpg fill
 
 # --- WINDOW COLORS ---
 #                         border    background  text       indicator  child_border

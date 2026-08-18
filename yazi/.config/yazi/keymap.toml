@@ -9,7 +9,7 @@ run  = "plugin max-preview"
 desc = "Maximize or restore preview"
 
 [[manager.prepend_keymap]]
-on   = [ "f", "g" ]
+on   = [ "<C-g>" ]
 run  = "plugin fg"
 desc = "Find text with ripgrep"
 
@@ -23,15 +23,8 @@ on   = [ "z" ]
 run  = "plugin zoxide"
 desc = "Jump to a directory using zoxide"
 
-# Disable dangerous built-ins
-
 [[manager.prepend_keymap]]
-on   = [ "-" ]
-run  = "noop"
-desc = "Disabled: go to previous dir (use zoxide instead)"
-
-[[manager.prepend_keymap]]
-on   = [ "s", "l" ]
+on   = [ "\\" ]
 run  = 'shell -- localsend "$@" &'
 desc = "Send via LocalSend"
 
@@ -40,7 +33,7 @@ on   = [ "g", "s" ]
 run  = 'shell --block --confirm -- git status'
 desc = "Git status in current directory"
 
-# Lô 3: Custom Plugins & Shell extensions
+# Custom plugins & shell extensions
 [[manager.prepend_keymap]]
 on   = [ "M" ]
 run  = "plugin mediainfo"
@@ -57,12 +50,12 @@ run  = 'shell -- echo -n "$@" | wl-copy'
 desc = "Copy absolute path to clipboard"
 
 [[manager.prepend_keymap]]
-on   = [ "d", "s" ]
+on   = [ ",", "d" ]
 run  = 'shell --block --confirm -- dust "$@" || du -sh "$@"'
 desc = "Directory size"
 
 [[manager.prepend_keymap]]
-on   = [ "x" ]
+on   = [ ",", "x" ]
 run  = 'shell --block --confirm -- ./"$@"'
 desc = "Execute file"
 

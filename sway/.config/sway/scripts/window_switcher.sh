@@ -16,7 +16,6 @@ trunc() {
 }
 
 # --- Fetch all windows from Sway tree via jq ---
-# Output TSV: focused_sort  ws_sort  ws_label  app_id  title  con_id
 raw=$(swaymsg -t get_tree | jq -r '
     def get_app:
         (.app_id // .window_properties.class // "xwayland");

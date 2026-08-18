@@ -16,7 +16,6 @@ case "$1" in
             exit 0
         fi
         
-        # Get list of active monitors
         MONITORS=$(swaymsg -t get_outputs | jq -r '.[].name')
         MONITOR=$(echo "$MONITORS" | fuzzel --dmenu -a center -l 2 -w 20 -p "Select Monitor: ")
         

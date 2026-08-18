@@ -16,7 +16,6 @@ exec udiskie
     
 exec bash -c "bash ~/.config/sway/scripts/workspace_osd.sh &"
 exec bash -c "bash ~/.config/sway/scripts/app_osd.sh &"
-# exec foot --server # Đã chuyển sang quản lý bằng systemd (foot-server.service)
 exec autotiling
 exec fcitx5 -d
 

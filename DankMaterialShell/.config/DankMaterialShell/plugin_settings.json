@@ -51,7 +51,7 @@
   },
   "dockerManager": {
     "enabled": true,
-    "groupByCompose": false,
+    "groupByCompose": true,
     "terminalApp": "foot --hold"
   },
   "quickCapture": {

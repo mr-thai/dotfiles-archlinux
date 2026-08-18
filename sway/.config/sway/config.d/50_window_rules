@@ -3,29 +3,23 @@
 # ==========================================
 
 # --- WORKSPACE ASSIGNMENTS ---
-
-# Always assign foot to workspace 1
 assign [app_id="(?i)foot"]       workspace 1
 assign [class="(?i)foot"]        workspace 1
 assign [app_id="(?i)footclient"] workspace 1
 
 # --- SCRATCHPAD APPLICATIONS ---
-for_window [app_id="quake_term"]       floating enable, move scratchpad, border pixel 1, resize set width 100 ppt height 40 ppt, move position 0 0
 for_window [app_id="scrcpy"]           floating enable, move scratchpad, border pixel 1, resize set width 360 px height 800 px, move position 20 px 260 px
 for_window [app_id="fcitx5-config-qt"] floating enable, border pixel 1, resize set width 600 px height 400 px, move position center
-for_window [app_id="kbptr"]            floating enable, border none, resize set width 1 px height 1 px, move position 0 0, move scratchpad
 
-# Assign Zalo and Telegram to workspace 8
+# --- ZALO & TELEGRAM (WORKSPACE 8) ---
 assign [app_id="(?i)zalo"] workspace number 8
 assign [class="(?i)zalo"] workspace number 8
 assign [app_id="(?i)org.telegram.desktop"] workspace number 8
 assign [class="(?i)telegramdesktop"] workspace number 8
-for_window [class="(?i)spotify"]       floating enable, move scratchpad, border pixel 2, resize set width 80 ppt height 80 ppt, move position center
 
 # --- FLOATING SCRATCHPAD TOOLS ---
 for_window [app_id="scratchpad_nmtui"]      floating enable, border pixel 2, resize set width 35 ppt height 60 ppt, move position center
 for_window [app_id="scratchpad_pulsemixer"] floating enable, border pixel 2, resize set width 40 ppt height 50 ppt, move position center
-for_window [app_id="scratchpad_bluetui"]    floating enable, border pixel 2, resize set width 40 ppt height 50 ppt, move position center
 for_window [app_id="scratchpad_trans_history"] floating enable, border pixel 2, resize set width 60 ppt height 70 ppt, move position center, move scratchpad
 
 # --- STICKY FLOATING WINDOWS (PiP, Calculators) ---
@@ -48,7 +42,6 @@ assign [class="(?i)anki"] workspace number 4
 
 assign [app_id="(?i)zen"] workspace number 5
 assign [class="(?i)zen"] workspace number 5
-for_window [app_id="sys_dashboard"]             floating enable, resize set width 90 ppt height 80 ppt, move position center
 for_window [class="TwintailLauncher"]           floating enable, border pixel 1, resize set width 1200 px height 600 px, move position center
 for_window [app_id="(?i)twintaillauncher"]      floating enable, border pixel 1, resize set width 1200 px height 600 px, move position center
 for_window [app_id="valent"]                    floating enable, border pixel 1, resize set width 800 px height 500 px, move position center
@@ -56,15 +49,12 @@ for_window [app_id="valent"]                    floating enable, border pixel 1,
 # --- MEDIA / VIEWERS ---
 for_window [app_id="mpv"]             floating enable, move position center
 for_window [app_id="imv"]             floating enable, move position center
-for_window [app_id="org.pwmt.zathura"] floating enable, border pixel 1, resize set width 720 px height 1020 px, move position center
+for_window [app_id="org.pwmt.zathura"] floating enable, border pixel 1, resize set width 720 px height 1018 px, move position center
 for_window [title="Picture in picture"]  move workspace current, floating enable, sticky enable, border pixel 0, resize set width 300 px height 168 px, move position 1600 px 20 px
 for_window [title="Picture-in-Picture"]  move workspace current, floating enable, sticky enable, border pixel 0, resize set width 300 px height 168 px, move position 1600 px 20 px
 
 # --- SYSTEM WIDGETS & DIALOGS ---
-for_window [class="Eww" title="Eww - fcitx_hud"]  floating enable, border none, sticky enable, move output eDP-1
 for_window [class="Eww" title="Eww - record_hud"] floating enable, border none, sticky enable, move output eDP-1
-for_window [class="Eww" title="Eww - translate_hud"] floating enable, border none, sticky enable, move output eDP-1
-for_window [class="Eww" title="Eww - status_hud"] floating enable, border none, sticky enable, move output eDP-1
 for_window [class="Eww" title="Eww - detail_popup"] floating enable, border none, sticky enable, move output eDP-1
 no_focus   [class="Eww"]
 for_window [window_type="dialog"]      floating enable, border pixel 2, move position center, focus
@@ -78,9 +68,7 @@ for_window [title="Save File"]         floating enable, border pixel 1, sticky e
 for_window [app_id="code" title="Open Folder"] floating enable, resize set width 75 ppt height 75 ppt, move position center
 for_window [title="File Operation Progress"]   floating enable, sticky enable, border pixel 1, resize set width 45 ppt height 25 ppt, move position 52 ppt 5 ppt
 for_window [app_id="fuzzel"]           floating enable, border pixel 2, move position center
-for_window [app_id="clipmenu"]         floating enable, border pixel 2, resize set width 800 px height 600 px, move position center, focus
 for_window [app_id="timelog_input"]   floating enable, border pixel 2, resize set width 50 ppt height 22 ppt, move position center, focus
-for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 45 ppt height 70 ppt
 
 # --- INHIBIT IDLE ---
 for_window [class=".*"]    inhibit_idle fullscreen
@@ -93,4 +81,3 @@ for_window [app_id="com.obsproject.Studio" title=".*Projector.*"] floating enabl
 for_window [class="obs" title=".*Projector.*"]                    floating enable, border pixel 1, sticky enable
 for_window [app_id="gamescope"]           floating enable
 for_window [class="gamescope"]            floating enable
-for_window [class="(?i)genshinimpact.exe"] floating enable, move position center

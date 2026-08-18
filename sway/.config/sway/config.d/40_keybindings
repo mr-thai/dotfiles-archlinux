@@ -1,6 +1,5 @@
 # ==========================================
 # KEYBINDINGS
-# Variables → see 00_variables
 # ==========================================
 
 # --- WINDOW MANAGEMENT ---
@@ -36,7 +35,7 @@ bindsym {
 bindsym $mod+Tab workspace back_and_forth
 
 bindcode {
-    # --- Chuyển hướng đến Workspace ---
+    # --- JUMP TO WORKSPACE ---
     $mod+10 workspace number 1
     $mod+11 workspace number 2
     $mod+12 workspace number 3
@@ -48,7 +47,7 @@ bindcode {
     $mod+18 workspace number 9
     $mod+19 workspace number 10
 
-    # --- Di chuyển Cửa sổ sang Workspace ---
+    # --- MOVE WINDOW TO WORKSPACE ---
     $mod+Shift+10 move container to workspace number 1
     $mod+Shift+11 move container to workspace number 2
     $mod+Shift+12 move container to workspace number 3
@@ -69,7 +68,6 @@ bindsym $mod+F2     exec bash $scripts/actions/focus_or_launch.sh zalo "gtk-laun
 bindsym $mod+F3     exec bash $scripts/actions/focus_or_launch.sh telegram "Telegram"
 bindsym $mod+F4     exec bash $scripts/actions/focus_or_launch.sh vesktop
 bindsym $mod+x exec --no-startup-id sh -c "eww close detail_popup; bash $scripts/actions/toggle_eww.sh"
-bindsym $mod+m exec bash $scripts/actions/focus_or_launch.sh spotify
 # --- DICTIONARY & TRANSLATION (SUBMAP) ---
 mode "Translate" {
     bindsym e exec eww close trans_menu, exec bash ~/.config/eww/scripts/translator/prompt_translate.sh start VI EN-US "English Practice" practice_input bamboo "󰚩 VI → EN" "Vietnamese", mode "default"
@@ -87,7 +85,6 @@ mode "Translate" {
 }
 bindsym $mod+d exec eww open trans_menu, mode "Translate"
 
-# Window rules for translation popups
 for_window [app_id="practice_input"]  floating enable, border pixel 2, move position center
 for_window [app_id="en_to_vi_input"] floating enable, border pixel 2, move position center
 for_window [app_id="vi_to_ja_input"]  floating enable, border pixel 2, move position center
@@ -95,8 +92,8 @@ for_window [app_id="ja_to_vi_input"]  floating enable, border pixel 2, move posi
 for_window [app_id="vi_to_zh_input"]  floating enable, border pixel 2, move position center
 for_window [app_id="zh_to_vi_input"]  floating enable, border pixel 2, move position center
 
-# Translation History
-bindsym $mod+Alt+e exec $toggle_scratchpad scratchpad_trans_history "footclient --app-id=scratchpad_trans_history -e ~/.config/eww/scripts/trans_history.sh || foot --app-id=scratchpad_trans_history -e ~/.config/eww/scripts/trans_history.sh"
+# --- TRANSLATION HISTORY ---
+bindsym $mod+shift+e exec $toggle_scratchpad scratchpad_trans_history "footclient --app-id=scratchpad_trans_history -e ~/.config/eww/scripts/trans_history.sh || foot --app-id=scratchpad_trans_history -e ~/.config/eww/scripts/trans_history.sh"
 
 # --- SYSTEM & POWER ---
 bindsym $mod+Shift+p exec dms ipc call settings toggleWith plugins
@@ -116,7 +113,6 @@ mode "Capture" {
     bindsym v exec eww close mode_indicator, exec bash $scripts/actions/record_screen.sh display, mode "default"
    
 
-    # Thoát chế độ
     bindsym Escape exec eww close mode_indicator, mode "default"
     bindsym Return exec eww close mode_indicator, mode "default"
 }
@@ -162,5 +158,5 @@ bindsym --locked XF86AudioPrev         exec playerctl previous
 bindsym --locked XF86MonBrightnessUp   exec dms ipc call brightness increment 5 backlight:intel_backlight
 bindsym --locked XF86MonBrightnessDown exec dms ipc call brightness decrement 5 backlight:intel_backlight
 
-bindsym $mod+F10    exec dms ipc call dash open 0
+bindsym $mod+F11   exec dms ipc call dash open 0
 bindsym $mod+F12    exec dms ipc call notifications toggle

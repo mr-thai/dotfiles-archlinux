@@ -5,12 +5,13 @@
 # ------------------------------------------------------------------------------
 # 1. GENERAL SETTINGS & WAYLAND CLIPBOARD
 # ------------------------------------------------------------------------------
-# Sử dụng clipboard hệ thống để tương thích hoàn toàn với wl-copy và các ứng dụng khác
+# System clipboard for full compatibility with wl-copy and other apps
 set selection-clipboard clipboard
 
-# Cuộn mượt từng bước (Smooth scrolling step)
+# Smooth scrolling step
 set scroll-step 60
-set page-padding 12
+set page-v-padding 12
+set page-h-padding 12
 set statusbar-home-tilde true
 set adjust-open "width"
 
@@ -19,6 +20,7 @@ set adjust-open "width"
 # ------------------------------------------------------------------------------
 set recolor                   "true"
 set recolor-keephue           "true"
+set recolor-reverse-video     "true"
 
 # ------------------------------------------------------------------------------
 # 3. COLOR PALETTE - AUTHENTIC CATPPUCCIN MOCHA
@@ -69,13 +71,11 @@ map d toggle_page_mode
 map + zoom in
 map - zoom out
 
-# Khôi phục cuộn mượt cho con lăn chuột và phím điều hướng
-map <ScrollUp>   scroll up
-map <ScrollDown> scroll down
+# Smooth scrolling for arrow keys; mouse wheel already scrolls by default
 map <Up>         scroll up
 map <Down>       scroll down
 
-# Gán phím nhảy trang riêng biệt
+# Dedicated page-flip keys
 map J navigate next
 map K navigate previous
 map <Space> navigate next

@@ -6,7 +6,6 @@
 input "type:keyboard" {
     xkb_layout us
     xkb_numlock enabled
-    # Đã xóa xkb_options caps:escape vì Keyd đã đảm nhận ở tầng Kernel
     repeat_delay 350
     repeat_rate 40
 }

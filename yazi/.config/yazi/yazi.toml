@@ -10,7 +10,6 @@ max_height = 800
 cache_dir = ""
 image_filter = "triangle"
 image_quality = 75
-sixel_fraction = 15
 
 [opener]
 edit = [
@@ -71,11 +70,18 @@ rules = [
     { mime = "application/vnd.oasis.opendocument.spreadsheet-template", use = [ "office", "open" ] },
     { mime = "application/vnd.oasis.opendocument.presentation-template", use = [ "office", "open" ] },
     { mime = "application/x-hwp", use = [ "office", "open" ] },
+    { mime = "application/{json,ndjson,javascript,wine-extension-ini}", use = "edit" },
+    { mime = "inode/empty", use = "edit" },
+    { url = "*", use = "open" },
 ]
 
 [plugin]
+prepend_fetchers = [
+    { url = "*", run = "git", group = "git" },
+    { url = "*/", run = "git", group = "git" },
+]
 prepend_previewers = [
-    { mime = "font/*", run = "fontimage" },
+    { mime = "font/*", run = "font" },
     { mime = "application/x-bittorrent", run = "mediainfo" },
     { mime = "application/x-tar", run = "ouch" },
     { mime = "application/zip", run = "ouch" },

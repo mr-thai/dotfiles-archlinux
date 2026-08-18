@@ -9,11 +9,6 @@ rev = "be524fb"
 hash = "c887903a63a2ff520081b6d90a4b3392"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:chmod"
-rev = "be524fb"
-hash = "f0c8c378184d5f8abd1b095a443d336d"
-
-[[plugin.deps]]
 use = "DreamMaoMao/fg"
 rev = "b9fb819"
 hash = "7d62f2eae04f77d13a21917c169b151b"
@@ -27,11 +22,6 @@ hash = "daf12bd7eb26044a8a5f41eeb369c27a"
 use = "Rolv-Apneseth/starship"
 rev = "a837101"
 hash = "635b0feb9215772d22020eb0abf0bb34"
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:zoxide"
-rev = "38efe09"
-hash = "99aa06d3014798d86001c324468d497f"
 
 [[plugin.deps]]
 use = "uhs-robert/recycle-bin"
