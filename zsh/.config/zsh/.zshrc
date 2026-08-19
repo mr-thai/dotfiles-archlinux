@@ -44,10 +44,6 @@ setopt notify
 
 #----------- alias ----------- 
 
-alias en="fcitx5-remote -s keyboard-us"
-alias tiengviet="fcitx5-remote -s bamboo"
-
-
 # ls (unified, colored, icons with eza)
 alias ls='eza --icons=always --color=always --git --group-directories-first --hyperlink=always'
 alias ll='eza -la --icons=always --color=always --group-directories-first --git --header --no-user --hyperlink=always'
@@ -300,8 +296,6 @@ zsh_load_plugin "fast-syntax-highlighting" "fast-syntax-highlighting.plugin.zsh"
 
 # 5. zsh-history-substring-search (Must be loaded AFTER syntax-highlighting)
 zsh_load_plugin "zsh-history-substring-search" "zsh-history-substring-search.zsh"
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
