@@ -71,7 +71,7 @@ local keys_to_delete = {
     { "n", "<leader>cg" },
     { "n", "<leader>cd" },
     { "n", "<leader>sp" },
-    { "n", "<leader>bb" }, -- Dư thừa vì đã dùng Harpoon
+    { "n", "<leader>bb" }, -- Không dùng Harpoon/Bufferline, buffer switching qua [b ]b
     { "n", "<leader>sn" }, -- Không cần xem lịch sử thông báo
     { "n", "<leader>uS" }, -- Smooth scroll (Set & Forget)
     { "n", "<leader>up" }, -- Mini pairs (Luôn bật)
@@ -95,8 +95,22 @@ pcall(vim.keymap.del, "n", "<leader>xX")
 vim.keymap.set("n", "<leader>cx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Errors" })
 vim.keymap.set("n", "<leader>cs", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", { desc = "Usages" })
 
+vim.keymap.set("n", "<leader>ua", function()
+    local cmd = require("copilot.command")
+    if require("copilot.client").is_disabled() then
+        cmd.enable()
+        vim.notify("Copilot enabled", vim.log.levels.INFO)
+    else
+        cmd.disable()
+        vim.notify("Copilot disabled", vim.log.levels.WARN)
+    end
+    pcall(function()
+        require("lualine").refresh()
+    end)
+end, { desc = "Toggle AI (Copilot)" })
+
 vim.keymap.set("n", "<leader>st", function()
-    require("todo-comments.fzf").todo({ keywords = { "TODO", "FIX", "FIXME" } })
+    require("todo-comments.snacks").pick({ keywords = { "TODO", "FIX", "FIXME" } })
 end, { desc = "Todos" })
 
 vim.keymap.set("n", "<leader>sg", function()
@@ -109,18 +123,12 @@ end, { desc = "Colorscheme" })
 
 pcall(vim.keymap.del, "n", "<leader>gB")
 pcall(vim.keymap.del, "n", "<leader>gb")
+pcall(vim.keymap.del, "n", "<leader>gd")
+pcall(vim.keymap.del, "n", "<leader>gD")
 
 vim.keymap.set("n", "<F3>", function()
     require("snacks").lazygit()
 end, { desc = "Lazygit" })
-
-vim.keymap.set("n", "<leader>gd", function()
-    vim.cmd("vert Git")
-end, { desc = "Git diff" })
-
-vim.keymap.set("n", "<leader>gD", function()
-    vim.cmd("Git")
-end, { desc = "Git status" })
 
 local function set_global_opt(opt_name, state)
     vim.opt[opt_name] = state
@@ -151,6 +159,8 @@ Snacks.toggle({
 
 vim.keymap.set("n", "[b", ":bprevious<CR>", { desc = "Prev Buffer", silent = true })
 vim.keymap.set("n", "]b", ":bnext<CR>", { desc = "Next Buffer", silent = true })
+vim.keymap.set("n", "H", ":bprevious<CR>", { desc = "Prev Buffer (2-hand)", silent = true })
+vim.keymap.set("n", "L", ":bnext<CR>", { desc = "Next Buffer (2-hand)", silent = true })
 
 vim.keymap.set("n", "<leader>?", function()
     require("which-key").show({ global = false })

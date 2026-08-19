@@ -70,15 +70,12 @@ return {
                 blink_cmp = true,          -- Đồng bộ màu xịn xò cho menu AI và gợi ý code
                 render_markdown = true,    -- Tối ưu màu sắc cho tài liệu Markdown
                 gitsigns = true,
-                nvimtree = true,
                 treesitter = true,
                 notify = true,
                 mini = {
                     enabled = true,
                     indentscope_color = "",
                 },
-                aerial = true,
-                fzf = true,
                 mason = true,
                 noice = true,
                 snacks = true,
@@ -101,10 +98,6 @@ return {
                     },
                 },
                 semantic_tokens = true,
-                telescope = {
-                    enabled = true,
-                },
-                treesitter_context = true,
                 which_key = true,
             },
         },

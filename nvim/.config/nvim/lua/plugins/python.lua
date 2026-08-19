@@ -1,16 +1,7 @@
 return {
   {
     "linux-cultist/venv-selector.nvim",
-    opts = {
-      anaconda_base_path = "/opt/miniconda3",
-      anaconda_envs_path = "~/.conda/envs",
-      settings = {
-        options = {
-          anaconda_base_path = "/opt/miniconda3",
-          anaconda_envs_path = "~/.conda/envs",
-        },
-      },
-    },
+    opts = {},
   },
 
   {

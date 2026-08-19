@@ -134,11 +134,4 @@ return {
       { "<leader>/", false }, -- Tắt phím Grep mặc định
     }
   },
-
-  {
-    "ibhagwan/fzf-lua",
-    keys = {
-      { "<leader>/", false }, -- Tắt phím Grep mặc định
-    },
-  }
 }

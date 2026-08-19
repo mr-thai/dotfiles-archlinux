@@ -60,6 +60,10 @@ return {
             score_offset = 100,
           },
           lsp        = { score_offset = 100 },
+          snippets   = {
+            module = "blink.cmp.sources.snippets",
+            score_offset = 95,
+          },
           buffer     = { score_offset = -5  },
           ripgrep = {
             module = "blink-ripgrep",

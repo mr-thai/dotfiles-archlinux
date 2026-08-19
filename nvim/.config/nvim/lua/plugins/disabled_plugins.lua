@@ -19,5 +19,8 @@ return {
   { "dstein64/vim-startuptime", enabled = false },
 
   { "nvim-mini/mini.comment", enabled = false },
+
+  { "mvllow/modes.nvim", enabled = false },
+  { "nvim-mini/mini.cursorword", enabled = false },
 }
 

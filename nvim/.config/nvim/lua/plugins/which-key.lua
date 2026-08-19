@@ -15,23 +15,23 @@ return {
         spacing = 4,         -- Giãn cách cột vừa phải
       },
       spec = {
-        { 
-          "<leader>ua", 
+        {
+          "<leader>ua",
           function()
-            -- Get running Copilot clients (Lấy danh sách client Copilot đang chạy)
-            local clients = vim.lsp.get_clients({ name = "copilot" })
-            if #clients > 0 then
-              -- Disable Copilot completely (Tắt hoàn toàn Copilot)
-              vim.cmd("Copilot disable")
-              vim.notify("Copilot disabled", vim.log.levels.WARN)
-            else
-              -- Enable Copilot (Bật lại Copilot)
-              vim.cmd("Copilot enable")
+            local cmd = require("copilot.command")
+            if require("copilot.client").is_disabled() then
+              cmd.enable()
               vim.notify("Copilot enabled", vim.log.levels.INFO)
+            else
+              cmd.disable()
+              vim.notify("Copilot disabled", vim.log.levels.WARN)
             end
-          end, 
-          desc = "Toggle AI (Copilot)", 
-          icon = " " -- Toggle switch icon (Icon dạng gạt)
+            pcall(function()
+              require("lualine").refresh()
+            end)
+          end,
+          desc = "Toggle AI (Copilot)",
+          icon = "󰚩",
         },
       },
     },

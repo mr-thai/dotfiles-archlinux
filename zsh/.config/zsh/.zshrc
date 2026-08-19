@@ -49,9 +49,9 @@ alias tiengviet="fcitx5-remote -s bamboo"
 
 
 # ls (unified, colored, icons with eza)
-alias ls='eza --icons=always --color=always --git --group-directories-first --hyperlink'
-alias ll='eza -la --icons=always --color=always --group-directories-first --git --header --no-user --hyperlink'
-alias lt='eza --tree --level=2 --icons=always --group-directories-first --hyperlink'
+alias ls='eza --icons=always --color=always --git --group-directories-first --hyperlink=always'
+alias ll='eza -la --icons=always --color=always --group-directories-first --git --header --no-user --hyperlink=always'
+alias lt='eza --tree --level=2 --icons=always --group-directories-first --hyperlink=always'
 # Catppuccin Mocha colors for eza + zsh completion (bg bright = lavender, fg = text)
 export EXA_COLORS="di=38;5;110:fi=38;5;250:ln=38;5;175:ex=38;5;114:*.so=38;5;242:*.o=38;5;242:*.py=38;5;110:*.js=38;5;107:*.ts=38;5;107"
 
@@ -167,30 +167,28 @@ alias v='nvim'
 alias a='aria2p'
 
 # git & dev TUI tools
-alias g='git'
 alias lg='lazygit'
 alias ldk='lazydocker'
+alias d='docker'
+alias m='mise'
 
 
 # utilities
-alias myip='curl -s ifconfig.me'
-alias path='echo $PATH | tr ":" "\n" | nl'
 alias reload='source ~/.config/zsh/.zshrc'
-alias ip='ip -color=auto'
 alias diff='diff --color=auto'
 alias sudo='sudo '
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # navigation shortcuts
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ~='cd ~'
-alias mkd='mkdir -p'
 md() {
     mkdir -p "$1" && cd "$1"
 }
-alias tree='eza --tree --level=3 --icons=always --group-directories-first --ignore-glob=".git" --hyperlink'
+alias fd='fd --hidden --follow --exclude .git'
+alias rg='rg --hidden -g "!.git"'
+alias tree='eza --tree --level=3 --icons=always --group-directories-first --ignore-glob=".git" --hyperlink=always'
 
 # paru package management
 alias psi='paru -S'
@@ -202,9 +200,12 @@ alias pss='paru -Ss'
 zsh_load_plugin() {
     if [[ -f "/usr/share/zsh/plugins/$1/$2" ]]; then
         source "/usr/share/zsh/plugins/$1/$2"
+        return 0
     elif [[ -f "$HOME/.config/zsh/plugins/$1/$2" ]]; then
         source "$HOME/.config/zsh/plugins/$1/$2"
+        return 0
     fi
+    return 1
 }
 
 # 1. zsh-completions (Must be added to fpath before compinit)
@@ -243,10 +244,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(forward-char)
 zsh_load_plugin "zsh-autosuggestions" "zsh-autosuggestions.zsh"
 
-# fzf native completion & commands
-if [ -f /usr/share/fzf/completion.zsh ]; then
-  source /usr/share/fzf/completion.zsh
-fi
+# fzf native commands (completion.zsh is redundant: fzf-tab handles tab, atuin handles ^R)
 if command -v fd >/dev/null 2>&1; then
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 elif command -v rg >/dev/null 2>&1; then
@@ -267,13 +265,6 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window=up:3:wrap"
 if command -v atuin >/dev/null 2>&1; then
   eval "$(atuin init zsh --disable-up-arrow --disable-ctrl-r)"
   bindkey '^R' atuin-search
-fi
-
-if [[ -o vi ]]; then
-  bindkey -M vicmd 'k' history-substring-search-up
-  bindkey -M vicmd 'j' history-substring-search-down
-  bindkey -M vicmd 'H' beginning-of-line
-  bindkey -M vicmd 'L' end-of-line
 fi
 
 # zsh-you-should-use
@@ -330,8 +321,6 @@ if command -v mise >/dev/null 2>&1; then
 fi
 
 export CATPPUCCIN_FLAVOR="mocha"
-export BAT_THEME="Catppuccin Mocha"
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=fg:#cdd6f4,bg:#1e1e2e,hl:#f38ba8,fg+:#cdd6f4,bg+:#313244,hl+:#f38ba8,pointer:#f5c2e7,marker:#f5e0dc,spinner:#f5c2e7,header:#f38ba8"
 
 # Fix Ctrl+R history search being overwritten by vi-mode
 function zvm_after_init() {

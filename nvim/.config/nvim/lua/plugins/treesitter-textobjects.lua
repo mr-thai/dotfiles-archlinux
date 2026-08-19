@@ -34,12 +34,12 @@ return {
       
       opts.move.keys.goto_next_start = vim.tbl_deep_extend("force", opts.move.keys.goto_next_start or {}, {
         ["]m"] = "@function.outer",    -- nhảy đến điểm bắt đầu của function tiếp theo
-        ["]d"] = "@conditional.outer", -- nhảy đến điểm bắt đầu của câu lệnh điều kiện (if) tiếp theo
+        ["]p"] = "@conditional.outer", -- nhảy đến điểm bắt đầu của câu lệnh điều kiện (if) tiếp theo
       })
       
       opts.move.keys.goto_previous_start = vim.tbl_deep_extend("force", opts.move.keys.goto_previous_start or {}, {
         ["[m"] = "@function.outer",    -- nhảy về điểm bắt đầu của function trước đó
-        ["[d"] = "@conditional.outer", -- nhảy về điểm bắt đầu của câu lệnh điều kiện (if) trước đó
+        ["[p"] = "@conditional.outer", -- nhảy về điểm bắt đầu của câu lệnh điều kiện (if) trước đó
       })
 
       opts.swap = vim.tbl_deep_extend("force", opts.swap or {}, {
