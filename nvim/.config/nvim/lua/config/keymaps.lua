@@ -6,7 +6,6 @@ vim.diagnostic.config({
 
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape Terminal" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move Down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move Up" })
@@ -32,6 +31,29 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent Left" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent Right" })
 
 local keys_to_delete = {
+    { "n", "]w" },
+    { "n", "[w" },
+    { "n", "<A-j>" },
+    { "n", "<A-k>" },
+    { "v", "<A-j>" },
+    { "v", "<A-k>" },
+    { "i", "<A-j>" },
+    { "i", "<A-k>" },
+    { "n", "<C-s>" },
+    { "i", "<C-s>" },
+    { "x", "<C-s>" },
+    { "s", "<C-s>" },
+    { "n", "<leader>wd" },
+    { "n", "<leader>wm" },
+    { "t", "<esc><esc>" },
+    { "n", "<leader>st" },
+    { "n", "<leader>nh" },
+    { "n", "<leader>nd" },
+    { "n", "<leader>dC" },
+    { "n", "<leader>cs" },
+    { "n", "<leader>xq" },
+    { "n", "]q" },
+    { "n", "[q" },
     { "n", "<leader>L" },
     { "n", "<leader>S" },
     { "n", "<leader>." },
@@ -84,6 +106,16 @@ local keys_to_delete = {
     { "n", "<leader>uZ" }, -- Zoom Mode
 }
 
+-- Auto-kill tất cả các phím trong sổ đen (Kể cả phím của Plugin)
+vim.api.nvim_create_autocmd("User", {
+    pattern = "LazyDone",
+    callback = function()
+        for _, map in ipairs(keys_to_delete) do
+            pcall(vim.keymap.del, map[1], map[2])
+        end
+    end,
+})
+-- Dự phòng xoá ngay lập tức cho các phím không thuộc plugin
 for _, map in ipairs(keys_to_delete) do
     pcall(vim.keymap.del, map[1], map[2])
 end
@@ -93,7 +125,6 @@ pcall(vim.keymap.del, "n", "<leader>l")
 pcall(vim.keymap.del, "n", "<leader>xx")
 pcall(vim.keymap.del, "n", "<leader>xX")
 vim.keymap.set("n", "<leader>cx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Errors" })
-vim.keymap.set("n", "<leader>cs", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", { desc = "Usages" })
 
 vim.keymap.set("n", "<leader>ua", function()
     local cmd = require("copilot.command")
@@ -109,9 +140,6 @@ vim.keymap.set("n", "<leader>ua", function()
     end)
 end, { desc = "Toggle AI (Copilot)" })
 
-vim.keymap.set("n", "<leader>st", function()
-    require("todo-comments.snacks").pick({ keywords = { "TODO", "FIX", "FIXME" } })
-end, { desc = "Todos" })
 
 vim.keymap.set("n", "<leader>sg", function()
     require("snacks").picker.grep()
@@ -169,8 +197,6 @@ end, { desc = "Keymaps" })
 vim.keymap.set("i", "<C-l>", "<Right>", { noremap = true, desc = "Move Right" })
 vim.keymap.set("i", "<C-h>", "<Left>", { noremap = true, desc = "Move Left" })
 
-vim.keymap.set("n", "<F12>", "oTODO: <Esc>gccA", { desc = "Insert TODO", remap = true })
-vim.keymap.set("n", "<F11>", "oFIXME: <Esc>gccA", { desc = "Insert FIXME", remap = true })
 
 vim.keymap.set("n", "<F1>", function()
     require("snacks").explorer()

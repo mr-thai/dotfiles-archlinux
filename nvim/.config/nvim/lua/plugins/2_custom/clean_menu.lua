@@ -55,7 +55,6 @@ return {
         { "<leader>sC", hidden = true },
         { "<leader>sD", hidden = true },
         { "<leader>sd", hidden = true },
-        { "<leader>sg", hidden = true },
         { "<leader>sG", hidden = true },
         { "<leader>sh", hidden = true },
         { "<leader>sH", hidden = true },
@@ -100,9 +99,6 @@ return {
         { "<leader>sw", desc = "Word" },
 
         { "<leader>u", group = "+System / Update", icon = "" },
-        { "<leader>ud", group = "+DevDocs", icon = "󰠮" },
-
-        { "<F2>", desc = "DevDocs", icon = "󰠮" },
 
         { "<leader>cm", hidden = true },
         { "<leader>cR", hidden = true },
@@ -134,4 +130,11 @@ return {
       { "<leader>/", false }, -- Tắt phím Grep mặc định
     }
   },
+
+  {
+    "ibhagwan/fzf-lua",
+    keys = {
+      { "<leader>/", false }, -- Tắt phím Grep mặc định
+    },
+  }
 }

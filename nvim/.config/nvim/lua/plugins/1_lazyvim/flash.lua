@@ -61,11 +61,13 @@ return {
     },
 
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash Jump" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-      { "r", mode = "o",               function() require("flash").remote() end,             desc = "Flash Remote" },
+      { "s", mode = { "n", "x" }, function() require("flash").jump() end,              desc = "Flash Jump" },
+      { "s", mode = "o", false },
+      { "S", mode = { "n" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+      { "S", mode = { "o", "x" }, false },
+      { "r", mode = "o", false },
       { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Flash Treesitter Search" },
-      { "<c-s>", mode = { "c" },       function() require("flash").toggle() end,             desc = "Toggle Flash Search" },
+      { "<c-s>", mode = { "c" }, false },
     },
   },
 
@@ -77,7 +79,6 @@ return {
         win = {
           input = {
             keys = {
-              ["<a-s>"] = { "flash", mode = { "n", "i" } },
               ["s"] = { "flash" },
             },
           },

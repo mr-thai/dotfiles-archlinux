@@ -19,7 +19,8 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "lazyvim.plugins.extras.editor.snacks_picker" },
     { import = "lazyvim.plugins.extras.lang.python" },
-    { import = "plugins" },
+    { import = "plugins.1_lazyvim" },
+    { import = "plugins.2_custom" },
   },
   defaults = {
     lazy = false,

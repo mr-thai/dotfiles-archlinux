@@ -1,5 +1,4 @@
 return {
-  { "sphamba/smear-cursor.nvim", enabled = false },
   {
     "brenoprata10/nvim-highlight-colors",
     event = { "BufReadPre", "BufNewFile" },
