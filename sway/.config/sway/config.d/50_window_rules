@@ -81,3 +81,4 @@ for_window [app_id="com.obsproject.Studio" title=".*Projector.*"] floating enabl
 for_window [class="obs" title=".*Projector.*"]                    floating enable, border pixel 1, sticky enable
 for_window [app_id="gamescope"]           floating enable
 for_window [class="gamescope"]            floating enable
+for_window [app_id="timelog_input"] floating enable, border pixel 2, resize set width 50 ppt height 30 ppt, move position center

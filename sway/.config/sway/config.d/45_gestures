@@ -1,0 +1,17 @@
+# ==========================================
+# TOUCHPAD GESTURES
+# ==========================================
+
+# Vuốt 3 ngón sang trái/phải để chuyển Workspace (giống MacOS)
+bindgesture swipe:3:right workspace prev
+bindgesture swipe:3:left workspace next
+
+# Vuốt 3 ngón xuống để thu cửa sổ lại dạng Nổi (Floating Toggle) - An toàn hơn Kill
+bindgesture swipe:3:down floating toggle
+
+# Vuốt 3 ngón lên để phóng to toàn màn hình (Fullscreen)
+bindgesture swipe:3:up fullscreen toggle
+
+
+# Vuốt 4 ngón lên để mở App Launcher (DMS Dash)
+bindgesture swipe:4:up exec dms ipc call dash open 0

@@ -66,7 +66,6 @@ bindsym $mod+p      exec $window_switcher
 bindsym $mod+v     exec dms ipc call widget toggle clipboardPlus
 bindsym $mod+F2     exec bash $scripts/actions/focus_or_launch.sh zalo "gtk-launch zalo"
 bindsym $mod+F3     exec bash $scripts/actions/focus_or_launch.sh telegram "Telegram"
-bindsym $mod+F4     exec bash $scripts/actions/focus_or_launch.sh vesktop
 bindsym $mod+x exec --no-startup-id killall -9 eww
 # --- DICTIONARY & TRANSLATION (SUBMAP) ---
 mode "Translate" {
@@ -160,3 +159,4 @@ bindsym --locked XF86MonBrightnessDown exec dms ipc call brightness decrement 5 
 
 bindsym $mod+F11   exec dms ipc call dash open 0
 bindsym $mod+F12    exec dms ipc call notifications toggle
+bindsym $mod+t exec ~/.local/bin/timelog-handler prompt

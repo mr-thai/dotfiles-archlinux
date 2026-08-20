@@ -1,0 +1,12 @@
+(defpoll timelog_status :interval "10s" "/home/mr-thai/.local/bin/timelog-handler status")
+
+(defwindow timelog_hud
+    :monitor 0
+    :geometry (geometry :x "-20px" :y "50px" :width "300px" :anchor "top right")
+    :stacking "fg"
+    :exclusive false
+    :namespace "timelog"
+    (box :class "timelog-box" :space-evenly false :halign "center"
+        (label :class "timelog-text" :text timelog_status :show-truncated false)
+    )
+)

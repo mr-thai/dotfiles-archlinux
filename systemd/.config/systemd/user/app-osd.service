@@ -1,10 +1,10 @@
 [Unit]
-Description=Foot Terminal Server
+Description=Sway App OSD
 After=graphical-session-pre.target
 PartOf=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/foot --server
+ExecStart=/bin/bash /home/mr-thai/.config/sway/scripts/app_osd.sh
 Restart=always
 RestartSec=2
 

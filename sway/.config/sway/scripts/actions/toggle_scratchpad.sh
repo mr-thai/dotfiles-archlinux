@@ -56,10 +56,16 @@ else
     swaymsg "focus output $TARGET_OUTPUT"
     eval "$CMD" &
     
-    timeout 15 swaymsg -t subscribe -m '["window"]' | jq --unbuffered -e --arg app "$APP_ID" --arg title "$TITLE_MATCH" '. | select(.change == "new") | select(((.container.app_id != null and (.container.app_id | ascii_downcase | endswith($app | ascii_downcase))) or (.container.window_properties.class != null and (.container.window_properties.class | ascii_downcase | endswith($app | ascii_downcase)))) and ($title == "" or (.container.name != null and (.container.name | contains($title)))) and (.container.name != "Picture-in-Picture") and (.container.name != "Picture in picture"))' | head -n 1 >/dev/null
-    
+    # Try to find it immediately (for fast-launching apps like foot)
+    sleep 0.1
     TREE=$(swaymsg -t get_tree)
     CON_ID=$(echo "$TREE" | jq -r --arg app "$APP_ID" --arg title "$TITLE_MATCH" '[.. | objects | select(((.app_id != null and (.app_id | ascii_downcase | endswith($app | ascii_downcase))) or (.window_properties.class != null and (.window_properties.class | ascii_downcase | endswith($app | ascii_downcase)))) and ($title == "" or (.name != null and (.name | contains($title)))) and (.name != "Picture-in-Picture") and (.name != "Picture in picture"))] | .[0].id // empty')
+    
+    if [ -z "$CON_ID" ]; then
+        timeout 5 swaymsg -t subscribe -m '["window"]' | jq --unbuffered -e --arg app "$APP_ID" --arg title "$TITLE_MATCH" '. | select(.change == "new") | select(((.container.app_id != null and (.container.app_id | ascii_downcase | endswith($app | ascii_downcase))) or (.container.window_properties.class != null and (.container.window_properties.class | ascii_downcase | endswith($app | ascii_downcase)))) and ($title == "" or (.container.name != null and (.container.name | contains($title)))) and (.container.name != "Picture-in-Picture") and (.container.name != "Picture in picture"))' | head -n 1 >/dev/null
+        TREE=$(swaymsg -t get_tree)
+        CON_ID=$(echo "$TREE" | jq -r --arg app "$APP_ID" --arg title "$TITLE_MATCH" '[.. | objects | select(((.app_id != null and (.app_id | ascii_downcase | endswith($app | ascii_downcase))) or (.window_properties.class != null and (.window_properties.class | ascii_downcase | endswith($app | ascii_downcase)))) and ($title == "" or (.name != null and (.name | contains($title)))) and (.name != "Picture-in-Picture") and (.name != "Picture in picture"))] | .[0].id // empty')
+    fi
     
     if [ -n "$CON_ID" ]; then
         TARGET_WS="current"
@@ -70,6 +76,7 @@ else
             "virt-manager") CMD_STR="$CMD_STR, resize set width 90 ppt height 80 ppt, move position center" ;;
             "scratchpad_nmtui") CMD_STR="$CMD_STR, resize set width 35 ppt height 60 ppt, move position center" ;;
             "scratchpad_pulsemixer") CMD_STR="$CMD_STR, resize set width 40 ppt height 50 ppt, move position center" ;;
+            "scratchpad_term") CMD_STR="$CMD_STR, resize set width 100 ppt height 35 ppt, move position 0 0" ;;
         esac
         swaymsg "$CMD_STR"
     fi

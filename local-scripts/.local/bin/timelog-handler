@@ -1,0 +1,152 @@
+#!/bin/bash
+# Smart Timelog Handler for Sway/Eww
+
+STATE_DIR="$HOME/.local/state/timelog"
+TASK_FILE="$STATE_DIR/current_task"
+START_FILE="$STATE_DIR/start_time"
+LOG_FILE="$HOME/ObsidianDrive/Obsidian_Backup/90 System/TimeLine.md"
+DATE=$(date '+%Y-%m-%d')
+
+mkdir -p "$STATE_DIR"
+
+log_duration() {
+    local task="$1"
+    local start_time="$2"
+    local end_time="$3"
+    
+    local start_fmt=$(date -d "@$start_time" '+%H:%M')
+    local end_fmt=$(date -d "@$end_time" '+%H:%M')
+    
+    local duration=$((end_time - start_time))
+    local dur_m=$((duration / 60))
+    local dur_h=$((dur_m / 60))
+    local dur_m=$((dur_m % 60))
+    
+    local dur_str=""
+    if [ $dur_h -gt 0 ]; then
+        dur_str="${dur_h}h${dur_m}m"
+    else
+        dur_str="${dur_m}m"
+    fi
+    
+    if [ ! -s "$LOG_FILE" ]; then
+        mkdir -p "$(dirname "$LOG_FILE")"
+        printf '| Time | công việc đang làm tại thời gian đó chi tiết |\n| ---- | -------------------------------------------- |\n' > "$LOG_FILE"
+    fi
+    
+    printf '| %s %s - %s | %s (%s) |\n' "$DATE" "$start_fmt" "$end_fmt" "$task" "$dur_str" >> "$LOG_FILE"
+}
+
+case "$1" in
+    start)
+        shift
+        new_task="$*"
+        if [ -z "$new_task" ]; then exit 1; fi
+        
+        # If there's an existing task, end it now
+        if [ -f "$TASK_FILE" ] && [ -f "$START_FILE" ]; then
+            old_task=$(cat "$TASK_FILE")
+            old_start=$(cat "$START_FILE")
+            if [ -n "$old_task" ]; then
+                log_duration "$old_task" "$old_start" "$(date +%s)"
+            fi
+        fi
+        
+        echo "$new_task" > "$TASK_FILE"
+        date +%s > "$START_FILE"
+        
+        eww open timelog_hud 2>/dev/null || true
+        systemctl --user restart timelog-checkin.timer
+        ;;
+        
+    pause)
+        # Called by swayidle after 10 secs of inactivity (DEBUG MODE)
+        if [ -f "$TASK_FILE" ] && [ -f "$START_FILE" ]; then
+            task=$(cat "$TASK_FILE")
+            start=$(cat "$START_FILE")
+            if [ -n "$task" ]; then
+                # End time is NOW minus 10 seconds
+                end=$(( $(date +%s) - 10 ))
+                if [ $end -gt $start ]; then
+                    log_duration "$task" "$start" "$end"
+                fi
+            fi
+        fi
+        
+        # Clear state
+        rm -f "$TASK_FILE" "$START_FILE"
+        eww close timelog_hud 2>/dev/null || true
+        systemctl --user stop timelog-checkin.timer
+        ;;
+        
+    prompt)
+        # Called when resuming from idle, or manually to change task
+        footclient --app-id="timelog_input" -T "Timeline" -W 90x4 env NO_ZELLIJ=1 bash "$0" _ask 2>/dev/null \
+            || foot --app-id="timelog_input" -T "Timeline" -W 90x4 env NO_ZELLIJ=1 bash "$0" _ask
+        ;;
+        
+    checkin)
+        # Called by 40-minute timer
+        if [ -f "$TASK_FILE" ]; then
+            task=$(cat "$TASK_FILE")
+            footclient --app-id="timelog_input" -T "Timeline Check-in" -W 90x4 env NO_ZELLIJ=1 bash "$0" _checkin "$task" 2>/dev/null \
+                || foot --app-id="timelog_input" -T "Timeline Check-in" -W 90x4 env NO_ZELLIJ=1 bash "$0" _checkin "$task"
+        fi
+        ;;
+        
+    status)
+        if [ -f "$TASK_FILE" ] && [ -f "$START_FILE" ]; then
+            task=$(cat "$TASK_FILE")
+            start=$(cat "$START_FILE")
+            if [ -n "$task" ]; then
+                now=$(date +%s)
+                diff=$((now - start))
+                m=$((diff / 60))
+                h=$((m / 60))
+                m=$((m % 60))
+                if [ $h -gt 0 ]; then
+                    printf "󰔟 %s (%02d:%02d)" "$task" "$h" "$m"
+                else
+                    printf "󰔟 %s (%02dm)" "$task" "$m"
+                fi
+                exit 0
+            fi
+        fi
+        echo ""
+        ;;
+        
+    _ask)
+        echo ""
+        echo "  What are you working on right now?"
+        echo ""
+        read -e -p "  > " ACTIVITY
+        if [ -n "$ACTIVITY" ]; then
+            "$0" start "$ACTIVITY"
+            echo "  Started tracking: $ACTIVITY"
+            sleep 0.5
+        fi
+        ;;
+        
+    _checkin)
+        task="$2"
+        echo ""
+        echo "  40 minutes passed. Are you still working on: \"$task\"?"
+        echo "  (Press Enter to continue, or type a new task)"
+        echo ""
+        read -e -p "  > " ACTIVITY
+        if [ -n "$ACTIVITY" ]; then
+            "$0" start "$ACTIVITY"
+            echo "  Switched to: $ACTIVITY"
+        else
+            # Reset the 40m timer since they are still on it
+            systemctl --user restart timelog-checkin.timer
+            echo "  Continuing with: $task"
+        fi
+        sleep 0.5
+        ;;
+        
+    *)
+        echo "Usage: $0 {start <task>|pause|prompt|checkin|status}"
+        exit 1
+        ;;
+esac

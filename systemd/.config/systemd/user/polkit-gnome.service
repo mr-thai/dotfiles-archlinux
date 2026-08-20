@@ -1,11 +1,11 @@
 [Unit]
-Description=Foot Terminal Server
+Description=Polkit GNOME Authentication Agent
 After=graphical-session-pre.target
 PartOf=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/foot --server
-Restart=always
+ExecStart=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+Restart=on-failure
 RestartSec=2
 
 [Install]

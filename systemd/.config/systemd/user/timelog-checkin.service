@@ -1,0 +1,6 @@
+[Unit]
+Description=Timelog 40m Check-in
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash %h/.local/bin/timelog-handler checkin

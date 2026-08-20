@@ -123,36 +123,35 @@ local keys_to_delete = {
     -- ⚙️ Hệ thống & Giao diện
     -- { "n", "<leader>?" }, -- Xem phím tắt của file hiện tại
     -- { "n", "<leader>dps" }, -- Xem hiệu năng (Profiler)
-    -- { "n", "<leader>sa" }, -- Danh sách Autocmd
-    -- { "n", "<leader>sh" }, -- Tìm trang trợ giúp (Help)
+    -- { "n", "<leader>sa" }, -- Danh sách Autocmd (đã đổi sang Noice All)
+    { "n", "<leader>sh" }, -- Tìm trang trợ giúp (Help)
     -- { "n", "<leader>si" }, -- Bảng chọn Icon
     -- { "n", "<leader>sk" }, -- Xem tất cả phím tắt
     -- { "n", "<leader>sM" }, -- Tìm trang Man
     -- { "n", "<leader>uC" }, -- Đổi giao diện (Theme)
 
     -- 📁 File & Buffer
-    -- { "n", "<leader> " }, -- Tìm file (Gốc dự án)
-    -- { "n", "<leader>bd" }, -- Đóng Tab hiện tại
-    -- { "n", "<leader>cR" }, -- Đổi tên file
-    -- { "n", "<leader>fB" }, -- Tất cả Tab
-    -- { "n", "<leader>fb" }, -- Danh sách Tab đang mở
-    -- { "n", "<leader>fc" }, -- Tìm file cấu hình (Neovim)
-    -- { "n", "<leader>fE" }, -- Mở thanh quản lý File (Thư mục hiện tại)
-    -- { "n", "<leader>fe" }, -- Mở thanh quản lý File (Gốc dự án)
-    -- { "n", "<leader>fF" }, -- Tìm file (Thư mục hiện tại)
-    -- { "n", "<leader>ff" }, -- Tìm file (Gốc dự án)
-    -- { "n", "<leader>fg" }, -- Tìm file trong Git
-    -- { "n", "<leader>fp" }, -- Quản lý dự án (Projects)
-    -- { "n", "<leader>fR" }, -- File gần đây (Thư mục hiện tại)
-    -- { "n", "<leader>fr" }, -- File gần đây
-    -- { "n", "<leader>sb" }, -- Tìm dòng trong file hiện tại
+    { "n", "<leader>bd" }, -- Đóng Tab hiện tại
+    { "n", "<leader>cR" }, -- Đổi tên file
+    { "n", "<leader>fB" }, -- Tất cả Tab
+    { "n", "<leader>fb" }, -- Danh sách Tab đang mở
+    -- { "n", "<leader>fc" }, -- Tìm file cấu hình (Neovim) (đã xoá ở trên)
+    { "n", "<leader>fE" }, -- Mở thanh quản lý File (Thư mục hiện tại)
+    { "n", "<leader>fe" }, -- Mở thanh quản lý File (Gốc dự án)
+    { "n", "<leader>fF" }, -- Tìm file (Thư mục hiện tại)
+    { "n", "<leader>ff" }, -- Tìm file (Gốc dự án)
+    { "n", "<leader>fg" }, -- Tìm file trong Git
+    -- { "n", "<leader>fp" }, -- Quản lý dự án (Projects) (đã xoá ở trên)
+    { "n", "<leader>fR" }, -- File gần đây (Thư mục hiện tại)
+    -- { "n", "<leader>fr" }, -- File gần đây (đã xoá ở trên)
+    { "n", "<leader>sb" }, -- Tìm dòng trong file hiện tại
     -- { "n", "[ " }, -- Thêm dòng trống bên trên
     -- { "n", "] " }, -- Thêm dòng trống bên dưới
 
     -- 📝 Soạn thảo
     -- { { "n", "v" }, "<C-B>" }, -- Cuộn trang lên
     -- { { "n", "v" }, "<C-F>" }, -- Cuộn trang xuống
-    -- { { "n", "v", "x" }, "<leader>cF" }, -- Auto Format code nhúng
+    { { "n", "v", "x" }, "<leader>cF" }, -- Auto Format code nhúng
     -- { { "n", "v", "x" }, "b" }, -- Lùi 1 từ (nhảy qua camelCase)
     -- { { "n", "v", "x" }, "e" }, -- Tới cuối 1 từ (nhảy qua camelCase)
     -- { { "n", "v", "x" }, "gc" }, -- Bật/Tắt Comment (Visual/Normal)
@@ -162,26 +161,26 @@ local keys_to_delete = {
     -- { { "n", "v", "x" }, "w" }, -- Tới 1 từ (nhảy qua camelCase)
 
     -- 🔍 Tìm kiếm & Grep
-    -- { "n", "<leader>s"" }, -- Danh sách Clipboard (Registers)
-    -- { "n", "<leader>s/" }, -- Lịch sử tìm kiếm
-    -- { "n", "<leader>sB" }, -- Grep trong các file đang mở
-    -- { "n", "<leader>sC" }, -- Danh sách lệnh
-    -- { "n", "<leader>sc" }, -- Lịch sử lệnh
-    -- { "n", "<leader>sG" }, -- Grep thư mục hiện tại
+    { "n", "<leader>s\"" }, -- Danh sách Clipboard (Registers)
+    { "n", "<leader>s/" }, -- Lịch sử tìm kiếm
+    -- { "n", "<leader>sB" }, -- Grep trong các file đang mở (đã xoá ở trên)
+    { "n", "<leader>sC" }, -- Danh sách lệnh
+    { "n", "<leader>sc" }, -- Lịch sử lệnh
+    { "n", "<leader>sG" }, -- Grep thư mục hiện tại
     -- { "n", "<leader>sg" }, -- Grep toàn dự án (Gốc)
-    -- { "n", "<leader>sH" }, -- Tìm màu sắc/Highlight
-    -- { "n", "<leader>sj" }, -- Lịch sử con trỏ (Jumps)
-    -- { "n", "<leader>sl" }, -- Danh sách vị trí (Location List)
-    -- { "n", "<leader>sm" }, -- Danh sách đánh dấu (Marks)
-    -- { "n", "<leader>sp" }, -- Tìm code cấu hình của Plugin
-    -- { "n", "<leader>sq" }, -- Danh sách sửa nhanh (Quickfix)
-    -- { "n", "<leader>sR" }, -- Mở lại kết quả tìm kiếm gần nhất
+    { "n", "<leader>sH" }, -- Tìm màu sắc/Highlight
+    { "n", "<leader>sj" }, -- Lịch sử con trỏ (Jumps)
+    -- { "n", "<leader>sl" }, -- Danh sách vị trí (Location List) (đã đổi sang Noice Last Message)
+    -- { "n", "<leader>sm" }, -- Danh sách đánh dấu (Marks) (đã xoá ở trên)
+    -- { "n", "<leader>sp" }, -- Tìm code cấu hình của Plugin (đã xoá ở trên)
+    { "n", "<leader>sq" }, -- Danh sách sửa nhanh (Quickfix)
+    { "n", "<leader>sR" }, -- Mở lại kết quả tìm kiếm gần nhất
     -- { { "n", "v", "x" }, "<leader>sW" }, -- Tìm từ khóa dưới con trỏ (Thư mục hiện tại)
     -- { { "n", "v", "x" }, "<leader>sw" }, -- Tìm từ khóa dưới con trỏ (Gốc dự án)
 
     -- 🧠 LSP & Code Navigation
-    -- { "n", "[D" }, -- Nhảy đến cảnh báo/lỗi đầu tiên
-    -- { "n", "gO" }, -- Danh sách Hàm/Biến trong file
+    { "n", "[D" }, -- Nhảy đến cảnh báo/lỗi đầu tiên
+    { "n", "gO" }, -- Danh sách Hàm/Biến trong file
     -- { { "n", "v", "x" }, "gra" }, -- Gợi ý sửa code (Code Action)
     -- { "n", "gri" }, -- Nhảy đến nơi thực thi (Implementation)
     -- { "n", "grn" }, -- Đổi tên biến toàn cục (Rename)
@@ -194,40 +193,41 @@ local keys_to_delete = {
     -- { { "v", "x" }, "in" }, -- Chọn node con (Treesitter)
 
     -- 🐙 Git & Version Control
-    -- { "n", "<leader>gD" }, -- Xem thay đổi Git (So với origin)
-    -- { "n", "<leader>gd" }, -- Xem thay đổi Git (Hunk)
+    { "n", "<leader>gD" }, -- Xem thay đổi Git (So với origin)
+    { "n", "<leader>gd" }, -- Xem thay đổi Git (Hunk)
     -- { "n", "<leader>gI" }, -- Danh sách GitHub Issues
-    -- { "n", "<leader>gi" }, -- GitHub Issues (Đang mở)
+    { "n", "<leader>gi" }, -- GitHub Issues (Đang mở)
     -- { "n", "<leader>go" }, -- Bật/Tắt hiển thị mini.diff
     -- { "n", "<leader>gP" }, -- Danh sách GitHub Pull Requests
-    -- { "n", "<leader>gp" }, -- GitHub PRs (Đang mở)
-    -- { "n", "<leader>gS" }, -- Danh sách Git Stash
-    -- { "n", "<leader>gs" }, -- Git Status
+    { "n", "<leader>gp" }, -- GitHub PRs (Đang mở)
+    { "n", "<leader>gS" }, -- Danh sách Git Stash
+    { "n", "<leader>gs" }, -- Git Status
 
     -- 🔔 Thông báo (Noice)
     -- { "n", "<leader>n" }, -- Lịch sử thông báo
-    -- { "n", "<leader>sna" }, -- Tất cả tin nhắn Noice
-    -- { "n", "<leader>snd" }, -- Xóa tất cả thông báo
-    -- { "n", "<leader>snh" }, -- Lịch sử tin nhắn Noice
-    -- { "n", "<leader>snt" }, -- Tìm kiếm tin nhắn Noice
-    -- { "n", "<leader>un" }, -- Xóa tất cả thông báo
+    { "n", "<leader>sna" }, -- Tất cả tin nhắn Noice (đã đổi sang <leader>sa)
+    { "n", "<leader>snl" }, -- Tin nhắn Noice cuối (đã đổi sang <leader>sl)
+    { "n", "<leader>snd" }, -- Xóa tất cả thông báo
+    { "n", "<leader>snh" }, -- Lịch sử tin nhắn Noice
+    { "n", "<leader>snt" }, -- Tìm kiếm tin nhắn Noice
+    { "n", "<leader>un" }, -- Xóa tất cả thông báo
 
     -- 🧩 Khác (Mặc định Vim)
     -- { { "v", "x" }, "#" }, -- Tìm từ khóa dưới con trỏ ngược (Visual #)
-    -- { "n", "&" }, -- :help &-default
+    { "n", "&" }, -- :help &-default
     -- { { "v", "x" }, "*" }, -- Tìm từ khóa dưới con trỏ xuôi (Visual *)
-    -- { { "n", "v", "x" }, "<C-Space>" }, -- Treesitter Incremental Selection
+    { { "n", "v", "x" }, "<C-Space>" }, -- Treesitter Incremental Selection
     -- { "n", "<C-W> " }, -- Window Hydra Mode (which-key)
-    -- { "n", "<C-W><C-D>" }, -- Show diagnostics under the cursor
-    -- { "n", "<C-W>d" }, -- Show diagnostics under the cursor
-    -- { "n", "<leader>sD" }, -- Buffer Diagnostics
-    -- { "n", "<leader>sd" }, -- Diagnostics
-    -- { "v", "<S-Tab>" }, -- vim.snippet.jump if active, otherwise <S-Tab>
-    -- { "v", "<Tab>" }, -- vim.snippet.jump if active, otherwise <Tab>
-    -- { { "v", "x" }, "@" }, -- Chạy Macro (Visual)
-    -- { { "v", "x" }, "Q" }, -- Lặp lại Macro (Q)
-    -- { "n", "S" }, -- Flash Treesitter
-    -- { "n", "Y" }, -- Copy đến cuối dòng (Y)
+    { "n", "<C-W><C-D>" }, -- Show diagnostics under the cursor
+    { "n", "<C-W>d" }, -- Show diagnostics under the cursor
+    { "n", "<leader>sD" }, -- Buffer Diagnostics
+    { "n", "<leader>sd" }, -- Diagnostics
+    { "v", "<S-Tab>" }, -- vim.snippet.jump if active, otherwise <S-Tab>
+    { "v", "<Tab>" }, -- vim.snippet.jump if active, otherwise <Tab>
+    { { "v", "x" }, "@" }, -- Chạy Macro (Visual)
+    { { "v", "x" }, "Q" }, -- Lặp lại Macro (Q)
+    { "n", "S" }, -- Flash Treesitter
+    { "n", "Y" }, -- Copy đến cuối dòng (Y)
 
 }
 
@@ -268,6 +268,14 @@ end, { desc = "Toggle AI (Copilot)" })
 vim.keymap.set("n", "<leader>sg", function()
     require("snacks").picker.grep()
 end, { desc = "Live Grep" })
+
+vim.keymap.set("n", "<leader>sa", function()
+    require("noice").cmd("all")
+end, { desc = "Noice All" })
+
+vim.keymap.set("n", "<leader>sl", function()
+    require("noice").cmd("last")
+end, { desc = "Noice Last Message" })
 
 vim.keymap.set("n", "<leader>uC", function()
     require("snacks").picker.colorschemes()

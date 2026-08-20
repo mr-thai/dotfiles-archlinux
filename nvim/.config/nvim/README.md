@@ -42,6 +42,16 @@ Hệ thống cung cấp một **Từ điển 100% phím tắt đang hoạt độ
 👉 Mở `lua/plugins/2_custom/clean_menu.lua`
 - Sửa lại tuỳ chọn: `{ "<leader>abc", desc = "Tên Mới Của Tôi", icon = "🚀" }`.
 
+### 4. Muốn ĐỔI Phím Tắt (Ví dụ: Đổi `<leader>snn` thành `<leader>sn`)
+Nếu bạn thấy phím mặc định quá dài hoặc khó bấm, bạn cần thực hiện 2 bước (Giết cũ - Lập mới):
+1. **Giết phím cũ:** Mở `lua/config/keymaps.lua`, đưa phím cũ (vd: `{ "n", "<leader>snn" }`) vào danh sách `keys_to_delete`.
+2. **Khai sinh phím mới:** Cũng trong file `lua/config/keymaps.lua` (ở nửa trên), tự tạo phím mới và gọi lại lệnh gốc. Ví dụ:
+   ```lua
+   vim.keymap.set("n", "<leader>sn", "<cmd>Lệnh_Gì_Đó<cr>", { desc = "Mô tả của bạn" })
+   ```
+*(Mẹo: Bạn có thể tra lệnh gốc `<cmd>...` của phím cũ bằng cách gõ `:map <leader>snn` trước khi giết nó).*
+
+
 ---
 
 ## ⚙️ Cẩm Nang Quản Lý Cài Đặt Ngầm

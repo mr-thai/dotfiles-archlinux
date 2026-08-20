@@ -11,7 +11,7 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 # Essential Safety Aliases (Synced with Zsh)
-alias rm='trash-put'
+alias del='trash-put'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -pv'

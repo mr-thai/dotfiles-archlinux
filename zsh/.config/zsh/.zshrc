@@ -64,7 +64,7 @@ alias cat='bat --style=plain'
 alias q='exit'
 
 # safety (more flexible)
-alias rm='trash-put'       # rm = trash (safe)
+alias del='trash-put'      # del = trash (safe)
 alias cp='cp -iv'
 alias mv='mv -iv'
 
@@ -379,7 +379,6 @@ _DOTFILES_BLACKLIST=(
     "Cryptomator"
     "github-copilot"
     "supermaven" 
-    "vesktop"
     "zen"
     "mozilla"
     "chromium"

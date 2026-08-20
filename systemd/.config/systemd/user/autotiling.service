@@ -1,10 +1,10 @@
 [Unit]
-Description=Foot Terminal Server
+Description=Sway Autotiling
 After=graphical-session-pre.target
 PartOf=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/foot --server
+ExecStart=/usr/bin/autotiling
 Restart=always
 RestartSec=2
 

@@ -1,32 +1,7 @@
 [[manager.prepend_keymap]]
-on   = [ "f" ]
-run  = "plugin smart-filter"
-desc = "Smart filter"
-
-[[manager.prepend_keymap]]
 on   = [ "T" ]
 run  = "plugin max-preview"
 desc = "Maximize or restore preview"
-
-[[manager.prepend_keymap]]
-on   = [ "<C-g>" ]
-run  = "plugin fg"
-desc = "Find text with ripgrep"
-
-[[manager.prepend_keymap]]
-on   = [ "c", "a" ]
-run  = "plugin compress"
-desc = "Archive selected files"
-
-[[manager.prepend_keymap]]
-on   = [ "z" ]
-run  = "plugin zoxide"
-desc = "Jump to a directory using zoxide"
-
-[[manager.prepend_keymap]]
-on   = [ "\\" ]
-run  = 'shell -- localsend "$@" &'
-desc = "Send via LocalSend"
 
 [[manager.prepend_keymap]]
 on   = [ "g", "s" ]

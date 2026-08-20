@@ -25,7 +25,6 @@ ttf-ms-fonts
 twintaillauncher-git
 ucl
 valent
-vesktop-git
 
 wlrctl
 wlrobs

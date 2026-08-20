@@ -1,12 +1,13 @@
 [Unit]
-Description=Foot Terminal Server
+Description=DankMaterialShell
 After=graphical-session-pre.target
 PartOf=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/foot --server
+ExecStart=/usr/bin/dms run
 Restart=always
 RestartSec=2
+Environment="PATH=/home/mr-thai/.local/bin:/usr/local/bin:/usr/bin"
 
 [Install]
 WantedBy=graphical-session.target

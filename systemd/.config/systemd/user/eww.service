@@ -1,0 +1,13 @@
+[Unit]
+Description=Eww Daemon
+After=graphical-session-pre.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/eww daemon --no-daemonize
+Restart=always
+RestartSec=1
+Environment="PATH=/home/mr-thai/.local/bin:/usr/local/bin:/usr/bin"
+
+[Install]
+WantedBy=graphical-session.target

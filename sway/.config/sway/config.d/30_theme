@@ -13,7 +13,7 @@ default_border pixel 1
 default_floating_border pixel 1
 
 smart_borders on
-smart_gaps off
+smart_gaps on
 
 # --- SYSTEM FONTS ---
 font pango:JetBrainsMono Nerd Font, Symbols Nerd Font 14
