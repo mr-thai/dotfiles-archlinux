@@ -67,7 +67,7 @@ bindsym $mod+v     exec dms ipc call widget toggle clipboardPlus
 bindsym $mod+F2     exec bash $scripts/actions/focus_or_launch.sh zalo "gtk-launch zalo"
 bindsym $mod+F3     exec bash $scripts/actions/focus_or_launch.sh telegram "Telegram"
 bindsym $mod+F4     exec bash $scripts/actions/focus_or_launch.sh vesktop
-bindsym $mod+x exec --no-startup-id sh -c "eww close detail_popup; bash $scripts/actions/toggle_eww.sh"
+bindsym $mod+x exec --no-startup-id killall -9 eww
 # --- DICTIONARY & TRANSLATION (SUBMAP) ---
 mode "Translate" {
     bindsym e exec eww close trans_menu, exec bash ~/.config/eww/scripts/translator/prompt_translate.sh start VI EN-US "English Practice" practice_input bamboo "󰚩 VI → EN" "Vietnamese", mode "default"

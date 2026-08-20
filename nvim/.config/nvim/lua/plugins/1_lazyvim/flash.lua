@@ -42,7 +42,7 @@ return {
         },
 
         search = {
-          enabled = false,
+          enabled = true,
         },
 
         treesitter = {
@@ -66,8 +66,7 @@ return {
       { "S", mode = { "n" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
       { "S", mode = { "o", "x" }, false },
       { "r", mode = "o", false },
-      { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Flash Treesitter Search" },
-      { "<c-s>", mode = { "c" }, false },
+      { "R", mode = { "o", "x" }, false },
     },
   },
 

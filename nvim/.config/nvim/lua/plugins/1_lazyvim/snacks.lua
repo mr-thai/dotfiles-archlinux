@@ -15,6 +15,42 @@ return {
         lazygit = { enabled = true }, -- Git UI trong floating window
         animate = { enabled = false }, -- TẮT HOÀN TOÀN HIỆU ỨNG ĐUÔI CON TRỎ
 
+        -- ==========================================
+        -- DANH MỤC TOÀN BỘ CÁC MODULE CỦA SNACKS.NVIM
+        -- (Bỏ comment và đổi true/false để can thiệp / bật tắt từng module)
+        -- ==========================================
+        -- animate = { enabled = false },      -- Hiệu ứng animation con trỏ & chuyển động mượt mà
+        -- bigfile = { enabled = true },       -- Tự động vô hiệu hoá plugin nặng khi mở file dung lượng lớn
+        -- bufdelete = { enabled = true },     -- Đóng buffer nhanh chóng mà không làm vỡ bố cục chia cửa sổ
+        -- dashboard = { enabled = false },    -- Màn hình khởi động chào mừng (Dashboard với banner & phím tắt)
+        -- debug = { enabled = true },         -- Bộ công cụ inspect & debug biến/bảng cho lập trình viên Lua
+        -- dim = { enabled = true },           -- Làm mờ các đoạn code nằm ngoài phạm vi con trỏ hoặc window không focus
+        -- explorer = { enabled = true },      -- Trình quản lý cây thư mục file explorer (thay thế Neo-tree)
+        -- gh = { enabled = true },            -- Tích hợp GitHub CLI để duyệt và chỉnh sửa Issues, Pull Requests
+        -- git = { enabled = true },           -- Tiện ích tương tác Git cơ bản (root repo, diff, status, log)
+        -- gitbrowse = { enabled = true },     -- Mở nhanh link file, dòng mã, commit hoặc PR trên trình duyệt web
+        -- health = { enabled = true },        -- Module kiểm tra sức khỏe và tương thích hệ thống (:checkhealth snacks)
+        -- image = { enabled = true },         -- Xem trước và render ảnh/PDF/Mermaid trực tiếp trong terminal
+        -- indent = { enabled = true },        -- Hiển thị các đường gióng dẫn hướng thụt lề (indent guides)
+        -- input = { enabled = true },         -- Hộp thoại nhập dữ liệu (input UI) nổi hiện đại thay vim.ui.input
+        -- layout = { enabled = true },        -- Bộ quản lý bố cục nâng cao cho các cửa sổ nổi (floating layouts)
+        -- lazygit = { enabled = true },       -- Mở giao diện LazyGit trong floating window đồng bộ giao diện
+        -- notifier = { enabled = true },      -- Hệ thống thông báo toast thông minh thay thế nvim-notify
+        -- notify = { enabled = true },        -- Cầu nối chuyển hướng vim.notify sang notifier
+        -- picker = { enabled = true },        -- Bộ tìm kiếm mờ (Fuzzy Finder) file, grep, symbol siêu tốc
+        -- profiler = { enabled = true },      -- Đo thời gian tải plugin và hiệu năng khởi động Neovim
+        -- quickfile = { enabled = true },     -- Tối ưu hiển thị nội dung file ngay lập tức trước khi nạp plugin
+        -- rename = { enabled = true },        -- Đổi tên biến LSP tại chỗ và đổi tên file tự động cập nhật import
+        -- scope = { enabled = true },         -- Làm nổi bật phạm vi khối mã hiện tại (thay thế mini.indentscope)
+        -- scratch = { enabled = true },       -- Mở nhanh buffer ghi chú nháp tạm thời (scratchpad)
+        -- scroll = { enabled = true },        -- Hiệu ứng cuộn trang mượt mà (smooth scrolling)
+        -- statuscolumn = { enabled = true },  -- Cột lề trái hiển thị số dòng, git diff, diagnostic icons, folds
+        -- terminal = { enabled = true },      -- Trình quản lý terminal tích hợp hỗ trợ điều hướng thông minh
+        -- toggle = { enabled = true },        -- Bộ công cụ tạo phím tắt bật/tắt nhanh các thiết lập
+        -- win = { enabled = true },           -- Bộ quản lý cửa sổ nổi và popup (floating windows)
+        -- words = { enabled = true },         -- Tự động highlight và điều hướng các từ/biến giống nhau dưới con trỏ
+        -- zen = { enabled = true },           -- Chế độ tập trung (Zen Mode) căn giữa văn bản và ẩn thanh công cụ phụ
+
         picker = {
             enabled = true,
             ui_select = true,
