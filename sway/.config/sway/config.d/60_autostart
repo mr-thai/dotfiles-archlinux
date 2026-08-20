@@ -14,8 +14,8 @@ exec gnome-keyring-daemon --start --components=secrets
 exec udiskie
 
     
-exec bash -c "bash ~/.config/sway/scripts/workspace_osd.sh &"
-exec bash -c "bash ~/.config/sway/scripts/app_osd.sh &"
+# exec bash -c "bash ~/.config/sway/scripts/workspace_osd.sh &"
+# exec bash -c "bash ~/.config/sway/scripts/app_osd.sh &"
 exec autotiling
 exec fcitx5 -d
 
