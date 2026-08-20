@@ -340,3 +340,7 @@ vim.keymap.set("n", "<F11>", function()
 end, { desc = "Undo history" })
 
 vim.keymap.set("n", "<F12>", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Errors" })
+
+vim.keymap.set("n", "<F6>", function()
+    require("snacks").explorer({ cwd = vim.fn.stdpath("config") })
+end, { desc = "Nvim Config Explorer" })

@@ -12,10 +12,10 @@ for_window [app_id="scrcpy"]           floating enable, move scratchpad, border 
 for_window [app_id="fcitx5-config-qt"] floating enable, border pixel 1, resize set width 600 px height 400 px, move position center
 
 # --- ZALO & TELEGRAM (WORKSPACE 8) ---
-assign [app_id="(?i)zalo"] workspace number 8
-assign [class="(?i)zalo"] workspace number 8
-assign [app_id="(?i)org.telegram.desktop"] workspace number 8
-assign [class="(?i)telegramdesktop"] workspace number 8
+assign [app_id="(?i)zalo"] workspace number 6
+assign [class="(?i)zalo"] workspace number 6
+assign [app_id="(?i)org.telegram.desktop"] workspace number 6
+assign [class="(?i)telegramdesktop"] workspace number 6
 
 # --- FLOATING SCRATCHPAD TOOLS ---
 for_window [app_id="scratchpad_nmtui"]      floating enable, border pixel 2, resize set width 35 ppt height 60 ppt, move position center
@@ -27,15 +27,15 @@ for_window [title="(?i)Picture-in-Picture"] floating enable, sticky enable, bord
 for_window [app_id="(?i).*calculator.*"] floating enable, sticky enable, resize set width 400 px height 600 px, move position center
 for_window [class="(?i).*calculator.*"] floating enable, sticky enable, resize set width 400 px height 600 px, move position center
 
-assign [app_id="(?i).*obsidian.*"] workspace number 7
-assign [class="(?i).*obsidian.*"] workspace number 7
-assign [app_id="(?i)beekeeper-studio"] workspace number 2
-assign [class="(?i)beekeeper-studio"] workspace number 2
-assign [app_id="(?i)bruno"] workspace number 2
-assign [class="(?i)bruno"] workspace number 2
+assign [app_id="(?i).*obsidian.*"] workspace number 2
+assign [class="(?i).*obsidian.*"] workspace number 2
+assign [app_id="(?i)beekeeper-studio"] workspace number 3
+assign [class="(?i)beekeeper-studio"] workspace number 3
+assign [app_id="(?i)bruno"] workspace number 3
+assign [class="(?i)bruno"] workspace number 3
 
-assign [app_id="(?i)virt-manager"] workspace number 3
-assign [class="(?i)virt-manager"] workspace number 3
+assign [app_id="(?i)virt-manager"] workspace number 4
+assign [class="(?i)virt-manager"] workspace number 4
 
 assign [app_id="(?i)anki"] workspace number 4
 assign [class="(?i)anki"] workspace number 4
@@ -75,10 +75,14 @@ for_window [class=".*"]    inhibit_idle fullscreen
 for_window [app_id=".*"]   inhibit_idle fullscreen
 
 # --- HEAVY GRAPHICS & GAMING ---
-assign [app_id="com.obsproject.Studio"] workspace number 9
-assign [class="obs"] workspace number 9
+assign [app_id="com.obsproject.Studio"] workspace number 7
+assign [class="obs"] workspace number 7
 for_window [app_id="com.obsproject.Studio" title=".*Projector.*"] floating enable, border pixel 1, sticky enable
 for_window [class="obs" title=".*Projector.*"]                    floating enable, border pixel 1, sticky enable
 for_window [app_id="gamescope"]           floating enable
-for_window [class="gamescope"]            floating enable
-for_window [app_id="timelog_input"] floating enable, border pixel 2, resize set width 50 ppt height 30 ppt, move position center
+
+# --- OFFICE VIEWERS ---
+for_window [app_id="(?i)abiword"] floating enable, border pixel 1, resize set width 70 ppt height 85 ppt, move position center
+for_window [app_id="(?i)gnumeric"] floating enable, border pixel 1, resize set width 70 ppt height 85 ppt, move position center
+for_window [class="(?i)abiword"] floating enable, border pixel 1, resize set width 70 ppt height 85 ppt, move position center
+for_window [class="(?i)gnumeric"] floating enable, border pixel 1, resize set width 70 ppt height 85 ppt, move position center

@@ -66,7 +66,6 @@ bindsym $mod+p      exec $window_switcher
 bindsym $mod+v     exec dms ipc call widget toggle clipboardPlus
 bindsym $mod+F2     exec bash $scripts/actions/focus_or_launch.sh zalo "gtk-launch zalo"
 bindsym $mod+F3     exec bash $scripts/actions/focus_or_launch.sh telegram "Telegram"
-bindsym $mod+x exec --no-startup-id killall -9 eww
 # --- DICTIONARY & TRANSLATION (SUBMAP) ---
 mode "Translate" {
     bindsym e exec eww close trans_menu, exec bash ~/.config/eww/scripts/translator/prompt_translate.sh start VI EN-US "English Practice" practice_input bamboo "󰚩 VI → EN" "Vietnamese", mode "default"
@@ -98,7 +97,7 @@ bindsym $mod+shift+e exec $toggle_scratchpad scratchpad_trans_history "footclien
 bindsym $mod+Shift+p exec dms ipc call settings toggleWith plugins
 bindsym $mod+Escape exec dms ipc call powermenu toggle
 
-bindsym $mod+Shift+c   reload, exec notify-send "Sway" "Configuration reloaded!" -t 2000
+bindsym $mod+Shift+c exec ~/.local/bin/super-reload
 
 # --- SCREENSHOT & RECORDING (SUBMAP MODE) ---
 mode "Capture" {

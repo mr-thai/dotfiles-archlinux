@@ -21,8 +21,11 @@ play = [
 open = [
     { run = 'xdg-open "$@"', orphan = true }
 ]
-office = [
-    { run = 'onlyoffice-desktopeditors "$@"', orphan = true, desc = "Open with OnlyOffice" }
+word = [
+    { run = 'abiword "$@"', orphan = true, desc = "Quick Read Word" }
+]
+excel = [
+    { run = 'gnumeric "$@"', orphan = true, desc = "Quick Read Excel" }
 ]
 pdf = [
     { run = 'zathura "$@"', orphan = true }
@@ -50,27 +53,18 @@ rules = [
     { mime = "application/pdf", use = [ "pdf", "open" ] },
     { mime = "application/epub+zip", use = [ "pdf", "open" ] },
     { mime = "image/vnd.djvu", use = [ "pdf", "open" ] },
-    { mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document", use = [ "office", "open" ] },
-    { mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", use = [ "office", "open" ] },
-    { mime = "application/vnd.openxmlformats-officedocument.presentationml.presentation", use = [ "office", "open" ] },
-    { mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.template", use = [ "office", "open" ] },
-    { mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.template", use = [ "office", "open" ] },
-    { mime = "application/vnd.openxmlformats-officedocument.presentationml.slideshow", use = [ "office", "open" ] },
-    { mime = "application/vnd.ms-word.document.macroEnabled.12", use = [ "office", "open" ] },
-    { mime = "application/vnd.ms-excel.sheet.macroEnabled.12", use = [ "office", "open" ] },
-    { mime = "application/vnd.ms-powerpoint.presentation.macroEnabled.12", use = [ "office", "open" ] },
-    { mime = "application/msword", use = [ "office", "open" ] },
-    { mime = "application/vnd.ms-excel", use = [ "office", "open" ] },
-    { mime = "application/vnd.ms-powerpoint", use = [ "office", "open" ] },
-    { mime = "application/vnd.oasis.opendocument.text", use = [ "office", "open" ] },
-    { mime = "application/vnd.oasis.opendocument.spreadsheet", use = [ "office", "open" ] },
-    { mime = "application/vnd.oasis.opendocument.presentation", use = [ "office", "open" ] },
-    { mime = "application/rtf", use = [ "office", "open" ] },
-    { mime = "application/vnd.oasis.opendocument.text-template", use = [ "office", "open" ] },
-    { mime = "application/vnd.oasis.opendocument.spreadsheet-template", use = [ "office", "open" ] },
-    { mime = "application/vnd.oasis.opendocument.presentation-template", use = [ "office", "open" ] },
-    { mime = "application/x-hwp", use = [ "office", "open" ] },
+    { mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document", use = [ "word", "open" ] },
+    { mime = "application/msword", use = [ "word", "open" ] },
+    { mime = "application/rtf", use = [ "word", "open" ] },
+    { mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", use = [ "excel", "open" ] },
+    { mime = "application/vnd.ms-excel", use = [ "excel", "open" ] },
+    { mime = "text/csv", use = [ "excel", "open" ] },
     { mime = "application/{json,ndjson,javascript,wine-extension-ini}", use = "edit" },
+    { name = "*.docx", use = [ "word", "open" ] },
+    { name = "*.doc", use = [ "word", "open" ] },
+    { name = "*.xlsx", use = [ "excel", "open" ] },
+    { name = "*.xls", use = [ "excel", "open" ] },
+    { name = "*.csv", use = [ "excel", "open" ] },
     { mime = "inode/empty", use = "edit" },
     { url = "*", use = "open" },
 ]
@@ -89,12 +83,6 @@ prepend_previewers = [
     { mime = "application/x-rar", run = "ouch" },
     { mime = "video/*", run = "mediainfo" },
     { mime = "audio/*", run = "mediainfo" },
-    { mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document", run = "office" },
-    { mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", run = "office" },
-    { mime = "application/vnd.openxmlformats-officedocument.presentationml.presentation", run = "office" },
-    { mime = "application/vnd.oasis.opendocument.text", run = "office" },
-    { mime = "application/vnd.oasis.opendocument.spreadsheet", run = "office" },
-    { mime = "application/vnd.oasis.opendocument.presentation", run = "office" },
 ]
 
 

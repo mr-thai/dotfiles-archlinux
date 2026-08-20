@@ -1,0 +1,23 @@
+#!/bin/bash
+# Super Reload Script
+echo "Reloading Sway..."
+swaymsg reload
+
+echo "Reloading Eww..."
+systemctl --user restart eww.service || eww reload
+
+echo "Reloading Systemd Daemons..."
+systemctl --user daemon-reload
+
+
+echo "Reloading Waybar/Other Bars (if any)..."
+killall -SIGUSR2 waybar 2>/dev/null || true
+
+# Restore timelog_hud if a task is currently active
+if [ -f "$HOME/.local/state/timelog/task" ]; then
+    sleep 0.5
+    eww open timelog_hud 2>/dev/null || true
+fi
+
+# Zellij doesn't need reloading usually, but we can clear its cache if needed or just notify
+notify-send "System Reloaded" "Sway, Eww, Systemd have been refreshed." -t 2000

@@ -192,6 +192,19 @@ alias psr='paru -Rns'
 alias psu='paru -Syu'
 alias pss='paru -Ss'
 
+
+# --- WORKFLOW PROFILES ---
+alias p1='swaymsg "exec zen-browser; exec obsidian; exec Zalo.AppImage"'
+alias p2='swaymsg "exec zen-browser; exec obsidian; exec Zalo.AppImage; exec anki"'
+alias p3='swaymsg "exec zen-browser; exec obsidian; exec bruno; exec beekeeper-studio"'
+
+# --- JOURNALCTL ALIASES ---
+alias jc='journalctl'
+alias jcb='journalctl -b'
+alias jcerr='journalctl -b -p 3'
+alias jcf='journalctl -f'
+alias jcnv='journalctl -k -b | grep -iE "nvidia|gpu|pcie"'
+
 #----------- Unified Fast Plugin Loader -----------
 zsh_load_plugin() {
     if [[ -f "/usr/share/zsh/plugins/$1/$2" ]]; then
@@ -258,10 +271,6 @@ export FZF_DEFAULT_OPTS="
   --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window=up:3:wrap"
 
-if command -v atuin >/dev/null 2>&1; then
-  eval "$(atuin init zsh --disable-up-arrow --disable-ctrl-r)"
-  bindkey '^R' atuin-search
-fi
 
 # zsh-you-should-use
 zsh_load_plugin "zsh-you-should-use" "you-should-use.plugin.zsh"
@@ -321,9 +330,9 @@ function zvm_after_init() {
   if [ -f /usr/share/fzf/key-bindings.zsh ]; then
     source /usr/share/fzf/key-bindings.zsh
   fi
-  if command -v atuin >/dev/null 2>&1; then
-    zvm_bindkey viins '^R' atuin-search
-    zvm_bindkey vicmd '^R' atuin-search
+  if command -v fzf >/dev/null 2>&1; then
+    zvm_bindkey viins '^R' fzf-history-widget
+    zvm_bindkey vicmd '^R' fzf-history-widget
   fi
   zvm_bindkey vicmd 'k' history-substring-search-up
   zvm_bindkey vicmd 'j' history-substring-search-down
