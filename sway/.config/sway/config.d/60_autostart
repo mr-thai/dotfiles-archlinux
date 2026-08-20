@@ -26,4 +26,4 @@ exec systemctl --user start dms.service
 
 
 # --- AUTOSTART APPS ---
-exec bash -c 'sleep 1 && swaymsg "workspace 1" && (footclient || foot)'
+exec bash -c 'sleep 0.5 && swaymsg "workspace 1" && (footclient || foot)'

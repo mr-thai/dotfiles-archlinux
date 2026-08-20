@@ -3,3 +3,4 @@
 
 # user config 
 include $HOME/.config/sway/config.d/*
+include /etc/sway/config.d/*
