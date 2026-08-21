@@ -14,7 +14,8 @@ set page-v-padding 12
 set page-h-padding 12
 set statusbar-home-tilde true
 set adjust-open "width"
-
+set pages-per-row 2
+set first-page-column 2,1
 # ------------------------------------------------------------------------------
 # 2. DARK MODE & RECOLOR
 # ------------------------------------------------------------------------------

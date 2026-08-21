@@ -64,7 +64,7 @@ bindcode {
 bindsym $mod+Return exec bash $scripts/actions/focus_or_launch.sh foot "footclient || foot"
 bindsym $mod+p      exec $window_switcher
 bindsym $mod+v     exec dms ipc call widget toggle clipboardPlus
-bindsym $mod+F2     exec bash $scripts/actions/focus_or_launch.sh zalo "gtk-launch zalo"
+bindsym $mod+F2     exec bash $scripts/actions/focus_or_launch.sh ferdium --enable-features=UseOzonePlatform --ozone-platform=wayland
 bindsym $mod+F3     exec bash $scripts/actions/focus_or_launch.sh telegram "Telegram"
 # --- DICTIONARY & TRANSLATION (SUBMAP) ---
 mode "Translate" {

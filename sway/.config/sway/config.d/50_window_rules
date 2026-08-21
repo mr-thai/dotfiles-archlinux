@@ -49,7 +49,7 @@ for_window [app_id="valent"]                    floating enable, border pixel 1,
 # --- MEDIA / VIEWERS ---
 for_window [app_id="mpv"]             floating enable, move position center
 for_window [app_id="imv"]             floating enable, move position center
-for_window [app_id="org.pwmt.zathura"] floating enable, border pixel 1, resize set width 720 px height 1018 px, move position center
+for_window [app_id="org.pwmt.zathura"] workspace number 10
 for_window [title="Picture in picture"]  move workspace current, floating enable, sticky enable, border pixel 0, resize set width 300 px height 168 px, move position 1600 px 20 px
 for_window [title="Picture-in-Picture"]  move workspace current, floating enable, sticky enable, border pixel 0, resize set width 300 px height 168 px, move position 1600 px 20 px
 
@@ -90,3 +90,9 @@ for_window [class="(?i)gnumeric"] floating enable, border pixel 1, resize set wi
 # --- FDM ---
 for_window [app_id="(?i)freedownloadmanager"] floating enable, border pixel 1, resize set width 900 px height 600 px, move position center
 for_window [class="(?i)freedownloadmanager"]  floating enable, border pixel 1, resize set width 900 px height 600 px, move position center
+
+
+#-- ferdium --
+assign [app_id="Ferdium"] workspace number 6
+# Hoặc nếu Ferdium chạy qua XWayland/Class:
+assign [class="Ferdium"] workspace number 6

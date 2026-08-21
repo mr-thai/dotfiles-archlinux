@@ -61,18 +61,7 @@
       "id": "profile_1786172761241_p06qoo6",
       "name": "a",
       "outputs": {
-        "DP-1": {
-          "mode": "1920x1080@60.000",
-          "position": {
-            "x": 1920,
-            "y": 0
-          },
-          "scale": 1,
-          "transform": "180",
-          "vrr": false,
-          "disabled": false
-        },
-        "eDP-1": {
+        "LG Display 0x061A": {
           "mode": "1920x1080@59.977",
           "position": {
             "x": 0,
@@ -80,6 +69,17 @@
           },
           "scale": 1,
           "transform": "Normal",
+          "vrr": false,
+          "disabled": false
+        },
+        "Invalid Vendor Codename - RTK 0x1920": {
+          "mode": "1920x1080@60.000",
+          "position": {
+            "x": 0,
+            "y": 1080
+          },
+          "scale": 1,
+          "transform": "180",
           "vrr": false,
           "disabled": false
         }
@@ -97,6 +97,79 @@
           },
           "scale": 1,
           "transform": "Normal",
+          "vrr": false,
+          "disabled": false
+        }
+      }
+    },
+    {
+      "id": "auto_748c1b81",
+      "name": "",
+      "outputs": {
+        "LG Display 0x061A": {
+          "mode": "1920x1080@59.977",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false
+        }
+      }
+    },
+    {
+      "id": "auto_fcdb8aa7",
+      "name": "",
+      "outputs": {
+        "Invalid Vendor Codename - RTK 0x1920": {
+          "mode": "1920x1080@60.000",
+          "position": {
+            "x": 1920,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false
+        },
+        "LG Display 0x061A": {
+          "mode": "1920x1080@59.977",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false
+        }
+      }
+    },
+    {
+      "id": "profile_1787321839599_pthgo8c",
+      "name": "book reader",
+      "outputs": {
+        "LG Display 0x061A": {
+          "mode": "1920x1080@59.977",
+          "position": {
+            "x": 3883,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false
+        },
+        "Invalid Vendor Codename - RTK 0x1920": {
+          "mode": "1920x1080@60.000",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "270",
           "vrr": false,
           "disabled": false
         }

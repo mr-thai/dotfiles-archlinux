@@ -74,11 +74,11 @@
     "cpuTempEnabled": true,
     "ramUsageEnabled": false,
     "networkSpeedEnabled": true,
-    "networkSpeedShowText": false,
+    "networkSpeedShowText": true,
     "networkSpeedHideVerticalIcon": false,
     "networkSpeedFixedTextWidth": false,
     "networkSpeedUseValueColors": false,
-    "networkSpeedVisualStyle": "gauge",
+    "networkSpeedVisualStyle": "bar",
     "diskPartitionUsageEnabled": false
   },
   "clipboardPlus": {
@@ -100,7 +100,7 @@
   },
   "dankKDEConnect": {
     "enabled": true,
-    "selectedDeviceId": "",
+    "selectedDeviceId": "9f3c251b2e464825955ff12d31dd5380",
     "scanSubdirectories": true
   },
   "dankTranslate": {

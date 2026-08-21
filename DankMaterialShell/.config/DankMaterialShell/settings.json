@@ -566,7 +566,7 @@
   "updaterIncludeFlatpak": true,
   "updaterAllowAUR": true,
   "updaterIgnoredPackages": [],
-  "displayNameMode": "system",
+  "displayNameMode": "model",
   "screenPreferences": {
     "wallpaper": [
       "all"
@@ -587,7 +587,7 @@
   "displayProfiles": {},
   "activeDisplayProfile": {
     "scroll": "auto_5af6115",
-    "sway": "auto_5af6115",
+    "sway": "auto_748c1b81",
     "unknown": "auto_5af6115"
   },
   "displayProfileAutoSelect": true,
