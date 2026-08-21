@@ -1,4 +1,3 @@
-
 return {
   {
     "folke/flash.nvim",
@@ -42,7 +41,7 @@ return {
         },
 
         search = {
-          enabled = true,
+          enabled = false,
         },
 
         treesitter = {
@@ -61,9 +60,23 @@ return {
     },
 
     keys = {
-      { "s", mode = { "n", "x" }, function() require("flash").jump() end,              desc = "Flash Jump" },
+      {
+        "s",
+        mode = { "n", "x" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash Jump",
+      },
       { "s", mode = "o", false },
-      { "S", mode = { "n" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+      {
+        "S",
+        mode = { "n" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
       { "S", mode = { "o", "x" }, false },
       { "r", mode = "o", false },
       { "R", mode = { "o", "x" }, false },

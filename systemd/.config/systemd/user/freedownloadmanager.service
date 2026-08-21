@@ -1,0 +1,12 @@
+[Unit]
+Description=Free Download Manager
+After=graphical-session-pre.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/freedownloadmanager
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target

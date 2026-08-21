@@ -1,9 +1,9 @@
 -- ==========================================
 -- CÁC CẤU HÌNH CÁ NHÂN (Ghi đè mặc định LazyVim)
 -- ==========================================
-vim.opt.showtabline = 0    -- Ẩn hoàn toàn tabline ở cạnh trên (vì dùng [b ]b để chuyển file)
-vim.opt.swapfile = false   -- Không sinh ra file rác .swp
-
+vim.opt.showtabline = 0 -- Ẩn hoàn toàn tabline ở cạnh trên (vì dùng [b ]b để chuyển file)
+vim.opt.swapfile = false -- Không sinh ra file rác .swp
+vim.opt.scrolloff = 10 -- Giữ tối thiểu 8 dòng lề trên/dưới khi cuộn trang
 -- ==========================================
 -- ĐỊNH VỊ GỐC DỰ ÁN (Bỏ "lsp" so với mặc định)
 -- ==========================================
@@ -14,11 +14,11 @@ vim.g.root_spec = { ".git", "lua", "cwd" }
 -- ==========================================
 local python_path = vim.fn.exepath("python3")
 if python_path == "" then
-    python_path = vim.fn.exepath("python")
+  python_path = vim.fn.exepath("python")
 end
 
 if python_path ~= "" then
-    vim.g.python3_host_prog = python_path
+  vim.g.python3_host_prog = python_path
 end
 
 -- ==========================================
@@ -95,4 +95,3 @@ end
 -- opt.wildmode = "longest:full,full"            -- Chế độ tự động hoàn thành trên Command-line
 -- opt.winminwidth = 5                           -- Chiều rộng tối thiểu của một cửa sổ split (5 cột)
 -- opt.wrap = false                              -- Tắt tự động xuống dòng giả lập cho các dòng văn bản dài
-

@@ -1,6 +1,6 @@
 
 require("config.mode_highlight")
-require("config.cursorword")
+
 
 vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {

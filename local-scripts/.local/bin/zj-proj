@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Lấy danh sách các thư mục Code
+DIRS=$(fd . ~/Projects ~/dotfiles ~/.config ~/Documents -t d --min-depth 1 --max-depth 2 2>/dev/null)
+
+# Hiển thị fzf với Preview Window xịn xò
+SELECTED=$(echo -e "$DIRS" | fzf \
+    --prompt="🚀 Nhảy Project > " \
+    --preview="git -C {} branch --show-current 2>/dev/null | awk '{print \"🌿 Branch: \", \$0}' ; git -C {} log -1 --format=\"%h - %s (%cr)\" 2>/dev/null | awk '{print \"📝 \", \$0}' ; echo '' ; eza --tree --level=2 --icons --color=always {}" \
+    --preview-window=right:50%:wrap \
+    --height=100% --reverse)
+
+if [[ -z "$SELECTED" ]]; then
+    exit 0
+fi
+
+# Rút trích tên thư mục để làm tên Tab
+TAB_NAME=$(basename "$SELECTED" | tr . _)
+
+# Lệnh của Zellij để tạo Tab mới tại thư mục đó
+zellij action new-tab --name "$TAB_NAME" -c "$SELECTED"

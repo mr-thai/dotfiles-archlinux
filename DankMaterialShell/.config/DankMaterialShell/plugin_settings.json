@@ -70,10 +70,16 @@
     "enabled": false
   },
   "systemMonitorPlus": {
-    "enabled": false,
-    "cpuTempEnabled": false,
+    "enabled": true,
+    "cpuTempEnabled": true,
     "ramUsageEnabled": false,
-    "networkSpeedEnabled": false
+    "networkSpeedEnabled": true,
+    "networkSpeedShowText": false,
+    "networkSpeedHideVerticalIcon": false,
+    "networkSpeedFixedTextWidth": false,
+    "networkSpeedUseValueColors": false,
+    "networkSpeedVisualStyle": "gauge",
+    "diskPartitionUsageEnabled": false
   },
   "clipboardPlus": {
     "enabled": true,

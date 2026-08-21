@@ -22,33 +22,32 @@ return {
         { "<leader>,", hidden = true }, -- Switch Buffer (đã có [b ]b)
         { "<leader>`", hidden = true }, -- Switch Other Buffer
         { "<leader>:", hidden = true }, -- Command History
-         -- Buffer Keymaps
-         -- Notification History
+        -- Buffer Keymaps
+        -- Notification History
         { "<leader>w", hidden = true }, -- Windows menu
-        
+
         { "<leader>bD", hidden = true },
         { "<leader>bi", hidden = true },
-        
-                { "<leader>cf", hidden = true },
+
+        { "<leader>cf", hidden = true },
         { "<leader>ch", hidden = true },
 
         { "<leader>gB", hidden = true },
         { "<leader>gc", hidden = true },
-                { "<leader>gf", hidden = true },
+        { "<leader>gf", hidden = true },
         { "<leader>gG", hidden = true },
         { "<leader>gl", hidden = true },
         { "<leader>gL", hidden = true },
-                                { "<leader>gY", hidden = true },
+        { "<leader>gY", hidden = true },
 
-        
         { "<leader>x", hidden = true },
 
-                                                                                                                        { "<leader>sP", hidden = true },
-                        { "<leader>sM", hidden = true },
+        { "<leader>sP", hidden = true },
+        { "<leader>sM", hidden = true },
         { "<leader>so", hidden = true },
-                        { "<leader>sT", hidden = true },
-                { "<leader>s\"", hidden = true },
-        
+        { "<leader>sT", hidden = true },
+        { '<leader>s"', hidden = true },
+
         { "<leader>uA", hidden = true },
         { "<leader>uD", hidden = true },
         { "<leader>ud", hidden = true },
@@ -58,7 +57,7 @@ return {
         { "<leader>uI", hidden = true },
         { "<leader>ul", hidden = true },
         { "<leader>uL", hidden = true },
-                { "<leader>up", hidden = true },
+        { "<leader>up", hidden = true },
         { "<leader>ur", hidden = true },
         { "<leader>uS", hidden = true },
         { "<leader>uT", hidden = true },
@@ -80,18 +79,18 @@ return {
         { "<leader>sl", desc = "Noice Last Message" },
 
         { "<leader>cm", hidden = true },
-                { "<leader>cS", hidden = true },
+        { "<leader>cS", hidden = true },
         { "<leader>cf", hidden = true },
         { "<leader>ch", hidden = true },
-                { "<leader>on", hidden = true },
+        { "<leader>on", hidden = true },
         { "<leader>os", hidden = true },
         { "<leader>cg", hidden = true },
         { "<leader>cd", hidden = true },
-                
+
         { "<leader>ss", desc = "Symbol" },
         { "<leader>sS", desc = "Global Symbol" },
         { "<leader>fc", hidden = true }, -- Config Files (đã xoá)
-                { "<leader>uF", hidden = true },
+        { "<leader>uF", hidden = true },
 
         { "<F2>", desc = "Lazygit", icon = "󰊢" },
 
@@ -208,7 +207,6 @@ return {
         { "Q", hidden = true }, -- Lặp lại Macro (Q)
         { "S", hidden = true }, -- Flash Treesitter
         { "Y", hidden = true }, -- Copy đến cuối dòng (Y)
-
       })
     end,
   },
@@ -218,13 +216,6 @@ return {
       { "<leader>S", false }, -- Ngăn chặn tạo Scratch Buffers
       { "<leader>.", false }, -- Ngăn chặn tạo Scratch Buffers
       { "<leader>/", false }, -- Tắt phím Grep mặc định
-    }
-  },
-
-  {
-    "ibhagwan/fzf-lua",
-    keys = {
-      { "<leader>/", false }, -- Tắt phím Grep mặc định
     },
-  }
+  },
 }

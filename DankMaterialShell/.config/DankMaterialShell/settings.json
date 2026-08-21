@@ -133,11 +133,6 @@
       "width": 50
     },
     {
-      "id": "wifi",
-      "enabled": true,
-      "width": 50
-    },
-    {
       "id": "bluetooth",
       "enabled": true,
       "width": 50
@@ -638,18 +633,13 @@
           "enabled": true
         },
         {
-          "id": "privacyIndicator",
+          "id": "systemMonitorPlus",
           "enabled": true
         }
       ],
       "rightWidgets": [
         {
-          "id": "cpuUsage",
-          "enabled": true,
-          "minimumWidth": true
-        },
-        {
-          "id": "systemMonitorPlus",
+          "id": "privacyIndicator",
           "enabled": true
         },
         {
@@ -666,7 +656,12 @@
         },
         {
           "id": "controlCenterButton",
-          "enabled": true
+          "enabled": true,
+          "showNetworkIcon": false,
+          "showMicIcon": false,
+          "showBatteryIcon": false,
+          "showDoNotDisturbIcon": true,
+          "showMicPercent": false
         },
         {
           "id": "clipboardPlus",

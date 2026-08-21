@@ -2,9 +2,9 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/mr-thai/.gtkrc-2.0.mine"
-gtk-theme-name="Granite"
-gtk-icon-theme-name="Papirus"
-gtk-font-name="JetBrainsMono Nerd Font Medium 14"
+gtk-theme-name="catppuccin-mocha-blue-standard+default"
+gtk-icon-theme-name="Qogir-Dark"
+gtk-font-name="JetBrainsMono Nerd Font 14"
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=22
 gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ

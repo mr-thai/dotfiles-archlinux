@@ -1,10 +1,8 @@
 local M = {}
 
+-- Chỉ giữ lại duy nhất màu xanh lá cho chế độ Insert
 local colors = {
-  copy = "#f9e2af", -- Yellow
-  delete = "#f38ba8", -- Red
-  insert = "#a6e3a1", -- Green (Insert)
-  visual = "#cba6f7", -- Mauve (Visual)
+  insert = "#a6e3a1",
 }
 local opacity = 0.2
 local ignore = { "NvimTree", "TelescopePrompt", "lazy", "snacks_dashboard" }
@@ -27,7 +25,7 @@ local function bg_color()
   if hl.background then
     return string.format("#%06x", hl.background)
   end
-  return "#1e1e2e"
+  return "#1e1e2e" -- Màu nền dự phòng (Base của Mocha)
 end
 
 local groups = {}
@@ -42,27 +40,19 @@ local function ensure_groups()
   end
 end
 
+-- Hàm lọc trạng thái đã được lược bỏ 90% độ phức tạp
 local function get_scene()
   if vim.tbl_contains(ignore, vim.bo.filetype) then
     return nil
   end
+
+  -- Chỉ kiểm tra duy nhất chế độ Insert
   local mode = vim.fn.mode(1)
   if mode:find("^i") then
     return "insert"
-  elseif mode:find("^R") then
-    return "delete"
-  elseif mode:find("^v") or mode:find("^V") or mode:find("^\22") then
-    return "visual"
-  elseif mode:find("^n") then
-    local op = vim.v.operator
-    if op ~= "" then
-      if op:match("[yY]") then
-        return "copy"
-      elseif op:match("[cCdDxX~]") then
-        return "delete"
-      end
-    end
   end
+
+  -- Mọi chế độ khác (Normal, Visual, Operator...) đều trả về nil (Không đổi màu)
   return nil
 end
 
@@ -83,6 +73,7 @@ vim.api.nvim_create_autocmd("WinLeave", {
   end,
 })
 
+-- Tùy chỉnh con trỏ nhấp nháy
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25-blinkwait300-blinkon200-blinkoff150,r-cr-o:hor20"
 
 return M

@@ -86,3 +86,7 @@ for_window [app_id="(?i)abiword"] floating enable, border pixel 1, resize set wi
 for_window [app_id="(?i)gnumeric"] floating enable, border pixel 1, resize set width 70 ppt height 85 ppt, move position center
 for_window [class="(?i)abiword"] floating enable, border pixel 1, resize set width 70 ppt height 85 ppt, move position center
 for_window [class="(?i)gnumeric"] floating enable, border pixel 1, resize set width 70 ppt height 85 ppt, move position center
+
+# --- FDM ---
+for_window [app_id="(?i)freedownloadmanager"] floating enable, border pixel 1, resize set width 900 px height 600 px, move position center
+for_window [class="(?i)freedownloadmanager"]  floating enable, border pixel 1, resize set width 900 px height 600 px, move position center

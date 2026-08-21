@@ -18,7 +18,6 @@ keybinds clear-defaults=true {
         bind "Alt w" { CloseFocus; }
         bind "Alt z" { ToggleFocusFullscreen; }
         bind "Alt f" { ToggleFloatingPanes; }
-        bind "Alt p" { TogglePaneEmbedOrFloating; }
         bind "Alt \\" { NewPane "Right"; }
         bind "Alt -" { NewPane "Down"; }
 
@@ -62,6 +61,13 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "normal"
         }
+
+        bind "Alt p" {
+            Run "zj-proj" {
+                floating true
+                close_on_exit true
+            }
+        }
     }
 }
 
@@ -92,7 +98,7 @@ web_client {
 
 // Environment & appearance
 theme "default"
-default_layout "default"
+default_layout "00-default"
 pane_frames false
 copy_command "wl-copy"
 copy_on_select true

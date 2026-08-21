@@ -1,93 +1,25 @@
 return {
   {
     "saghen/blink.cmp",
-    dependencies = {
-      {
-        "mikavilpas/blink-ripgrep.nvim",
-        version = "*",
-      },
-      {
-        "giuxtaposition/blink-cmp-copilot",
-      },
-    },
-    opts = {
-      fuzzy = {
-        sorts = { "exact", "score", "sort_text" },
-      },
-      completion = {
-        menu = {
-          border = "rounded",
-          max_height = 12,
-          draw = {
-            treesitter = { "lsp" },
-            columns = {
-              { "kind_icon" },
-              { "label", "label_description", gap = 1 },
-              { "source_name" },
-            },
-          },
-        },
-        trigger = {
-          show_on_backspace = false,
-        },
-        documentation = {
-          window = {
-            border = "rounded",
-            max_width = 90,
-            max_height = 25,
-          },
-        },
-        accept = {
-          auto_brackets = { enabled = true },
-        },
-      },
-      signature = {
-        enabled = true,
-        window = { border = "rounded" },
-      },
-      sources = {
-        default = { "copilot", "lazydev", "lsp", "path", "snippets", "buffer", "ripgrep" },
-        providers = {
-          copilot = {
-            name = "copilot",
-            module = "blink-cmp-copilot",
-            score_offset = 90,
-            async = true,
-          },
-          lazydev = {
-            name = "LazyDev",
-            module = "lazydev.integrations.blink",
-            score_offset = 100,
-          },
-          lsp        = { score_offset = 100 },
-          snippets   = {
-            module = "blink.cmp.sources.snippets",
-            score_offset = 95,
-          },
-          buffer     = { score_offset = -5  },
-          ripgrep = {
-            module = "blink-ripgrep",
-            name   = "Ripgrep",
-            score_offset = -8,
-            async = true,
-            opts = {
-              prefix_min_len = 3,
-              backend = { use = "gitgrep-or-ripgrep" },
-              project_root_marker = { ".git", "package.json" },
-            },
-          },
-        },
-      },
-      keymap = {
-        preset = "default",
-        ["<CR>"]    = { "accept", "fallback" },
-        ["<Tab>"]   = { "snippet_forward", "fallback" },
-        ["<S-Tab>"] = { "snippet_backward", "fallback" },
-      },
-      cmdline = {
-        enabled = true,
-        completion = { menu = { auto_show = true } },
-      },
-    },
+    opts = function(_, opts)
+      -- LazyVim 'ai.copilot' đã tự động lo phần sources rồi,
+      -- ta chỉ việc cấu hình giao diện bo tròn (Rounded UI)
+      opts.completion = opts.completion or {}
+      opts.completion.menu = opts.completion.menu or {}
+      opts.completion.menu.border = "rounded"
+
+      opts.signature = opts.signature or {}
+      opts.signature.window = opts.signature.window or {}
+      opts.signature.window.border = "rounded"
+
+      opts.completion.documentation = opts.completion.documentation or {}
+      opts.completion.documentation.window = {
+        border = "rounded",
+        max_width = 90,
+        max_height = 25,
+      }
+
+      return opts
+    end,
   },
 }
